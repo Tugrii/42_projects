@@ -1,0 +1,39 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tgeler <tgeler@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/29 00:01:07 by tgeler            #+#    #+#             */
+/*   Updated: 2025/05/29 00:01:07 by tgeler           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include <stddef.h>
+
+size_t	ft_strlen(const char *s)
+{
+	size_t	i;
+
+	i = 0;
+	while (s[i] != '\0')
+		i++;
+	return (i);
+}
+
+char	*ft_strrchr(const char *s, int c)
+{
+	size_t	index;
+
+	index = ft_strlen(s);
+	while (1)
+	{
+		if (s[index] == (char)c)
+			return ((char *)(s + index));
+		if (index == 0)
+			break ;
+		index--;
+	}
+	return (NULL);
+}

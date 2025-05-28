@@ -3,16 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgeler <tgeler@student.42.fr>              +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 14:19:57 by tgeler            #+#    #+#             */
-/*   Updated: 2025/05/26 18:39:58 by tgeler           ###   ########.fr       */
+/*   Updated: 2025/05/28 23:28:22 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <stdio.h>
-
-	
 
 int ft_isescape(const char *str)
 {
@@ -60,10 +56,4 @@ int ft_atoi(const char *nptr)
         i++;
     }
 	return (sign * result);
-}
-int main ()
-{
-	char *str;
-	str = "\r\v\b\f\t\a\b -1234567";
-	printf("%d",ft_atoi(str));
 }
