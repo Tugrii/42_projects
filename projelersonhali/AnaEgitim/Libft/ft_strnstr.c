@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include <stddef.h>
-#include <stdio.h>
+
 size_t	ft_strlen(const char *s)
 {
 	size_t	i;
@@ -21,54 +21,28 @@ size_t	ft_strlen(const char *s)
 		i++;
 	return (i);
 }
-char	*ft_calculate_strnstr(const char *haystack, const char *needle, size_t len,size_t len_sub)
-char *ft_strnstr(const char *haystack, const char *needle, size_t len)
+
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
 	size_t	i;
 	size_t	j;
-	size_t	a;
-	const char	*ptr;
-	size_t	len_sub;
-	size_t	matched;
+	size_t	ndl_len;
 
-	matched = 0;
-	len_sub = ft_strlen(needle);
-	i = 0;
-	if (ft_strlen(needle) == 0)
+	if (*ndl == '\0')
 		return ((char *)haystack);
-	while (i < len)
+	ndl_len = ft_strlen(ndl);
+	i = 0;
+	while (haystack[i] && i < len)
 	{
 		if (haystack[i] == needle[0])
 		{
-			ptr = &haystack[i];
 			j = 0;
-			a = i;
-			while (j < len_sub)
-			{
-				if ((haystack[a] == needle[j])&&
-					(haystack[a] != '\0'))
-					matched++;
-				else
-				{
-					matched = 0;
-					break ;
-				}
-				a++;
+			while (j < ndl_len && i + j < len && haystack[i + j] == needle[j])
 				j++;
-			}
-			if (matched == len_sub)
-				return ((char*)ptr);
-			i = a;
+			if (j == ndl_len)
+				return ((char *)&haystack[i]);
 		}
 		i++;
 	}
 	return (NULL);
-}
-int main ()
-{
-char *haystack = "example";
-char *needle = "";
-size_t len = 7;
-printf("%s",ft_strnstr(haystack,needle,len));
-
 }
