@@ -3,14 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgeler <tgeler@student.42.fr>              +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 14:20:00 by tgeler            #+#    #+#             */
-/*   Updated: 2025/05/26 18:52:14 by tgeler           ###   ########.fr       */
+/*   Updated: 2025/06/03 19:22:08 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	bzero(void *s, size_t n)
+void	ft_bzero(void *s, size_t n)
 {
-	
+	char	*ptr;
+	size_t	i;
+
+	ptr = (char *)s;
+	i = 0;
+	while (i < n)
+	{
+		ptr [i] = '\0';
+		i++;
+	}
+	return ;
 }
