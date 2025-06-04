@@ -10,3 +10,22 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
+#include <stddef.h>
+
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	size_t	i;
+	char	*sub_str;
+
+	sub_str = (char *)malloc(len);
+	if (!sub_str)
+		return (NULL);
+	i = 0;
+	while (i < len)
+	{
+		sub_str[i] = s[start + i];
+		i++;
+	}
+	return (sub_str);
+}

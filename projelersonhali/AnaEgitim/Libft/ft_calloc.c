@@ -10,3 +10,25 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
+#include <stddef.h>
+#include <stdint.h>
+
+void	*ft_calloc(size_t nmemb, size_t size)
+{
+	char	*dynamic_memory;
+	size_t	i;
+
+	if (size != 0 && (nmemb > (SIZE_MAX / size)))
+		return (NULL);
+	i = 0;
+	dynamic_memory = (char *)malloc(nmemb * size);
+	if (!dynamic_memory)
+		return (NULL);
+	while (i < (nmemb * size))
+	{
+		dynamic_memory[i] = '\0';
+		i++;
+	}
+	return ((void *)dynamic_memory);
+}
