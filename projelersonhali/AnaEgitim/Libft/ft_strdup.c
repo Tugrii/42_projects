@@ -10,3 +10,33 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
+#include <stddef.h>
+
+size_t	ft_strlen(const char *str)
+{
+	size_t	i;
+
+	i = 0;
+	while (str[i] != '\0')
+		i++;
+	return (i);
+}
+
+char	*ft_strdup(const char *s)
+{
+	char	*dynamic_memory;
+	size_t	i;
+
+	i = 0;
+	dynamic_memory = (char *)malloc(ft_strlen(s) + 1);
+	if (!dynamic_memory)
+		return (NULL);
+	while (s[i] != '\0')
+	{
+		dynamic_memory[i] = s[i];
+		i++;
+	}
+	dynamic_memory[i] = '\0';
+	return (dynamic_memory);
+}
