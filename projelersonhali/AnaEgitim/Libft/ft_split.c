@@ -24,7 +24,7 @@ size_t	calculate_words_amount(char const *s, char c)
 		i++;
 	while (s[i] != '\0')
 	{
-		if ((s[i] == c) && (s[i - 1] != c))
+		if ((i > 0) && (s[i] == c) && (s[i - 1] != c))
 			number_of_words += 1;
 		i++;
 	}
@@ -33,73 +33,103 @@ size_t	calculate_words_amount(char const *s, char c)
 	return (number_of_words);
 }
 
-void	fill_it(char **array, size_t j, const char *s, size_t index)
+void	fill_it(const char *s, char **array, size_t start, size_t end)
 {
-	size_t	i;
+	static size_t	i = 0;
+	size_t			j;
 
-	k = 0;
-	while (array[j][k] != '\0')
+	j = 0;
+	while (start < end)
 	{
-		array[j][k] = s[i];
-		index++;
-		k++;
+		array[i][j] = s[start];
+		start++;
+		j++;
 	}
+	array[i][j] = '\0';
+	i++;
 	return ;
 }
 
-void	malloc_for_words(const char *s, char c,char **array)
+int	if_null(char **array, size_t j)
 {
 	size_t	i;
-	size_t	end;
-	size_t	start;
-	size_t	j;
-	size_t	k;
 
-	k = 0;
-	j = 0;
-	i = 0;
-	start = 0;
+	if (!array[j])
+	{
+		i = 0;
+		while (i < j)
+		{
+			free(array[i]);
+			i++;
+		}
+		free(array);
+		return (0);
+	}
+	return (1);
+}
+
+int	malloc_for_words(const char *s, char c, char **array, size_t j)
+{
+	static size_t	i = 0;
+	size_t			end;
+	size_t			start;
+
 	while (s[i] == c)
 		i++;
 	while (s[i] != '\0')
 	{
 		if (s[i] != c)
 			start = i;
-		while (s[i] != c && s[i] != '\0')
-			i++;
-		end = i - 1;
-		array[j] = malloc(sizeof(char) * (end - start + 1));
-		array[j][end - start] = '\0';
-		index = i;
-		while ()
+		while (s[i] != c)
 		{
-			array[j][k] = s[index];
-			index++;
-			k++;
+			if (s[i] == '\0')
+				break ;
+			i++;
 		}
+		end = i;
+		array[j] = malloc(sizeof(char) * (end - start + 1));
+		if (if_null(array, j) == 0)
+			return (0);
+		fill_it(s, array, start, end);
+		j++;
 		i++;
 	}
-	return ;
+	return (1);
 }
 
 char	**ft_split(char const *s, char c)
 {
 	size_t	word_amount;
-	size_t	i;
 	char	**array;
+	int		is_worked;
 
+	if (!s)
+		return (NULL);
 	word_amount = calculate_words_amount(s, c);
 	array = malloc(sizeof(char *) * (word_amount + 1));
 	array[word_amount] = NULL;
-	i = 0;
 	if (!array)
 		return (NULL);
-	malloc_for_words(s, c, array);
+	is_worked = malloc_for_words(s, c, array, 0);
+	if (is_worked == 0)
+		return (NULL);
+	return (array);
 }
 #include <stdio.h>
 int main ()
 {
-	char const *s = "tugra,geler";
+	char const *s = ",tugra,elma";
 	char c = ',';
-	printf("%ld",calculate_words_amount(s,c));
+	//char const *s1 = "ahmet";
+	char **result;
+	size_t	i;
+	size_t	number_of_words = calculate_words_amount(s, c);
+	i = 0;
+	result = ft_split(s, c);
+	while (i < number_of_words)
+	{
+		printf("%s",result[i]);
+		i++;
+	}
+		return (0);
 }
