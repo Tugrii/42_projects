@@ -16,21 +16,23 @@
 
 size_t	calculate_words_amount(char const *s, char c)
 {
-	size_t	i;
-	size_t	number_of_words;
+	size_t			i;
+	static size_t	number_of_words = 0;
 
-	number_of_words = 0;
+	if (number_of_words != 0)
+		return (number_of_words);
 	i = 0;
-	while (s[i] == c)
-		i++;
 	while (s[i] != '\0')
 	{
-		if ((i > 0) && (s[i] == c) && (s[i - 1] != c))
+		while (s[i] == c)
+			i++;
+		if (s[i] != c && s[i] != '\0')
+		{
 			number_of_words += 1;
-		i++;
+			while(s[i] != c && s[i] != '\0')
+				i++;
+		}
 	}
-	if ((s[i - 1] != c) && (i != 0))
-		return (number_of_words + 1);
 	return (number_of_words);
 }
 
@@ -51,7 +53,7 @@ void	fill_it(const char *s, char **array, size_t start, size_t end)
 	}
 	array[i][j] = '\0';
 	i++;
-	if (word_amount == i)
+	if (i == word_amount)
 		i = 0;
 	return ;
 }
@@ -77,25 +79,25 @@ int	if_null(char **array, size_t j)
 int	malloc_for_words(const char *s, char c, char **array, size_t j)
 {
 	static size_t	i = 0;
-	size_t			end;
 	size_t			start;
 
-	while (s[i] == c)
-		i++;
 	while (s[i] != '\0')
 	{
+		while (s[i] == c)
+			i++;
 		if (s[i] != c)
 			start = i;
 		while (s[i] != c && s[i] != '\0')
 			i++;
-		end = i;
-		array[j] = malloc(sizeof(char) * (end - start + 1));
+		if (start == i)
+			break ;
+		array[j] = malloc(sizeof(char) * (i - start + 1));
 		if (if_null(array, j) == 0)
 		{
 			i = 0;
 			return (0);
 		}
-		fill_it(s, array, start, end);
+		fill_it(s, array, start, i);
 		j++;
 		i++;
 	}
