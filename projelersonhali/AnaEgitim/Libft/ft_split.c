@@ -12,6 +12,7 @@
 
 #include <stddef.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 size_t	calculate_words_amount(char const *s, char c)
 {
@@ -37,7 +38,10 @@ void	fill_it(const char *s, char **array, size_t start, size_t end)
 {
 	static size_t	i = 0;
 	size_t			j;
+	static size_t	word_amount;
 
+	if (i == 0)
+		word_amount = calculate_words_amount(s, s[end]);
 	j = 0;
 	while (start < end)
 	{
@@ -47,6 +51,8 @@ void	fill_it(const char *s, char **array, size_t start, size_t end)
 	}
 	array[i][j] = '\0';
 	i++;
+	if (word_amount == i)
+		i = 0;
 	return ;
 }
 
@@ -80,20 +86,20 @@ int	malloc_for_words(const char *s, char c, char **array, size_t j)
 	{
 		if (s[i] != c)
 			start = i;
-		while (s[i] != c)
-		{
-			if (s[i] == '\0')
-				break ;
+		while (s[i] != c && s[i] != '\0')
 			i++;
-		}
 		end = i;
 		array[j] = malloc(sizeof(char) * (end - start + 1));
 		if (if_null(array, j) == 0)
+		{
+			i = 0;
 			return (0);
+		}
 		fill_it(s, array, start, end);
 		j++;
 		i++;
 	}
+	i = 0;
 	return (1);
 }
 
@@ -107,29 +113,11 @@ char	**ft_split(char const *s, char c)
 		return (NULL);
 	word_amount = calculate_words_amount(s, c);
 	array = malloc(sizeof(char *) * (word_amount + 1));
-	array[word_amount] = NULL;
 	if (!array)
 		return (NULL);
+	array[word_amount] = NULL;
 	is_worked = malloc_for_words(s, c, array, 0);
 	if (is_worked == 0)
 		return (NULL);
 	return (array);
-}
-#include <stdio.h>
-int main ()
-{
-	char const *s = ",tugra,elma";
-	char c = ',';
-	//char const *s1 = "ahmet";
-	char **result;
-	size_t	i;
-	size_t	number_of_words = calculate_words_amount(s, c);
-	i = 0;
-	result = ft_split(s, c);
-	while (i < number_of_words)
-	{
-		printf("%s",result[i]);
-		i++;
-	}
-		return (0);
 }
