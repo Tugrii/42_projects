@@ -12,13 +12,17 @@
 
 #include <stddef.h>
 #include <stdlib.h>
-#include <stdio.h>
 
-size_t	calculate_words_amount(char const *s, char c)
+size_t	calculate_words_amount(char const *s, char c, int reset)
 {
 	size_t			i;
 	static size_t	number_of_words = 0;
 
+	if (reset == 0)
+	{
+		number_of_words = 0;
+		return (0);
+	}
 	if (number_of_words != 0)
 		return (number_of_words);
 	i = 0;
@@ -29,7 +33,7 @@ size_t	calculate_words_amount(char const *s, char c)
 		if (s[i] != c && s[i] != '\0')
 		{
 			number_of_words += 1;
-			while(s[i] != c && s[i] != '\0')
+			while (s[i] != c && s[i] != '\0')
 				i++;
 		}
 	}
@@ -43,7 +47,7 @@ void	fill_it(const char *s, char **array, size_t start, size_t end)
 	static size_t	word_amount;
 
 	if (i == 0)
-		word_amount = calculate_words_amount(s, s[end]);
+		word_amount = calculate_words_amount(s, s[end], 1);
 	j = 0;
 	while (start < end)
 	{
@@ -113,7 +117,8 @@ char	**ft_split(char const *s, char c)
 
 	if (!s)
 		return (NULL);
-	word_amount = calculate_words_amount(s, c);
+	calculate_words_amount(s, c, 0);
+	word_amount = calculate_words_amount(s, c, 1);
 	array = malloc(sizeof(char *) * (word_amount + 1));
 	if (!array)
 		return (NULL);
