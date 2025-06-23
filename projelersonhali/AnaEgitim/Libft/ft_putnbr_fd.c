@@ -10,7 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-void ft_putnbr_fd(int n, int fd)
+#include "libft.h"
+
+void	ft_putnbr_fd(int n, int fd)
 {
-	
+	char	*str;
+	size_t	i;
+	size_t	size;
+
+	i = 0;
+	str = ft_itoa(n);
+	size = ft_strlen(str);
+	write (fd, &str[i], size);
+	return ;
 }
