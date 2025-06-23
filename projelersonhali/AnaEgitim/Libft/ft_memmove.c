@@ -10,16 +10,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
+#include "libft.h"
 
-char	*start_from_back(char *dest, const char *src, size_t n)
+static char	*start_from_back(char *dest, const char *src, size_t n)
 {
 	while (n--)
 		dest[n] = src[n];
 	return (dest);
 }
 
-char	*start_from_beginning(char *dest, const char *src, size_t n)
+static char	*start_from_beginning(char *dest, const char *src, size_t n)
 {
 	size_t	i;
 

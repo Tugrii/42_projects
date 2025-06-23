@@ -6,11 +6,11 @@
 /*   By: tgeler <tgeler@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 19:40:03 by tgeler            #+#    #+#             */
-/*   Updated: 2025/06/03 19:40:07 by tgeler           ###   ########.fr       */
+/*   Updated: 2025/06/23 15:48:29 by tgeler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isescape(const char *str)
+static int	ft_isescape(const char *str)
 {
 	char	*elements;
 	int		i;

@@ -10,10 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
-#include <stdlib.h>
+#include "libft.h"
 
-size_t	calculate_words_amount(char const *s, char c, int reset)
+static size_t	calculate_words_amount(char const *s, char c, int reset)
 {
 	size_t			i;
 	static size_t	number_of_words = 0;
@@ -40,7 +39,7 @@ size_t	calculate_words_amount(char const *s, char c, int reset)
 	return (number_of_words);
 }
 
-void	fill_it(const char *s, char **array, size_t start, size_t end)
+static void	fill_it(const char *s, char **array, size_t start, size_t end)
 {
 	static size_t	i = 0;
 	size_t			j;
@@ -62,7 +61,7 @@ void	fill_it(const char *s, char **array, size_t start, size_t end)
 	return ;
 }
 
-int	if_null(char **array, size_t j)
+static int	if_null(char **array, size_t j)
 {
 	size_t	i;
 
@@ -80,7 +79,7 @@ int	if_null(char **array, size_t j)
 	return (1);
 }
 
-int	malloc_for_words(const char *s, char c, char **array, size_t j)
+static int	malloc_for_words(const char *s, char c, char **array, size_t j)
 {
 	static size_t	i = 0;
 	size_t			start;

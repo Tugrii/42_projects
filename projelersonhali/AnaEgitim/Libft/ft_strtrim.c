@@ -10,10 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stddef.h>
+#include "libft.h"
 
-size_t	ft_strlen(const char *str)
+static size_t	ft_strlen(const char *str)
 {
 	size_t	i;
 
@@ -23,7 +22,7 @@ size_t	ft_strlen(const char *str)
 	return (i);
 }
 
-size_t	how_many(char const *s1, char const *set)
+static size_t	how_many(char const *s1, char const *set)
 {
 	size_t	i;
 	size_t	j;
@@ -48,7 +47,7 @@ size_t	how_many(char const *s1, char const *set)
 	return (matched_char);
 }
 
-char	*trim_it(char const *s1, char const *set, char *dynamic)
+static char	*trim_it(char const *s1, char const *set, char *dynamic)
 {
 	size_t	i;
 	size_t	j;

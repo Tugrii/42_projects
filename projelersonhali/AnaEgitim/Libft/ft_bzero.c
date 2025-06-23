@@ -6,9 +6,11 @@
 /*   By: tgeler <tgeler@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 19:40:19 by tgeler            #+#    #+#             */
-/*   Updated: 2025/06/03 19:40:22 by tgeler           ###   ########.fr       */
+/*   Updated: 2025/06/23 16:36:07 by tgeler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 void	ft_bzero(void *s, size_t n)
 {
