@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-static size_t	ft_strlen(const char *str)
+static size_t	ft_strlen_dup(const char *str)
 {
 	size_t	i;
 
@@ -28,7 +28,7 @@ char	*ft_strdup(const char *s)
 	size_t	i;
 
 	i = 0;
-	dynamic_memory = (char *)malloc(ft_strlen(s) + 1);
+	dynamic_memory = (char *)malloc(ft_strlen_dup(s) + 1);
 	if (!dynamic_memory)
 		return (NULL);
 	while (s[i] != '\0')

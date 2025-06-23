@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-static size_t	ft_strlen(const char *str)
+static size_t	ft_strlen_trim(const char *str)
 {
 	size_t	i;
 
@@ -80,7 +80,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 {
 	char	*dynamic_memory;
 
-	dynamic_memory = (char *)malloc(ft_strlen(s1) - how_many(s1, set) + 1);
+	dynamic_memory = (char *)malloc(ft_strlen_trim(s1) - how_many(s1, set) + 1);
 	if (!dynamic_memory)
 		return (NULL);
 	return (trim_it(s1, set, dynamic_memory));

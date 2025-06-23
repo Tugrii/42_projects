@@ -10,13 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libf.h"
+#include "libft.h"
 
-char	f(unsigned int i, char c)
-{
-	void(i);
-	return (ft_tolower(c));
-}
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
 	char	*array;
@@ -37,11 +32,4 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 		i++;
 	}
 	return (array);
-}
-#include <stdio.h>
-
-int main ()
-{
-	char	*s = "tugrageleradamdir";
-	printf("%s",ft_strmapi(s, f));
 }

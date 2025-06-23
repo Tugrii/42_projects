@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-static size_t	ft_strlen(const char *s)
+static size_t	ft_strlen_strrchr(const char *s)
 {
 	size_t	i;
 
@@ -26,7 +26,7 @@ char	*ft_strrchr(const char *s, int c)
 {
 	size_t	index;
 
-	index = ft_strlen(s);
+	index = ft_strlen_strrchr(s);
 	while (1)
 	{
 		if (s[index] == (char)c)
