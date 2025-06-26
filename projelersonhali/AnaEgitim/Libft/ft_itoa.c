@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-static char	*just_for_min_int(int n)
+static char	*just_for_min_int()
 {
 	char	*array;
 	char	*ptr;
@@ -45,7 +45,7 @@ static char	*extreme_conditions(int n)
 		array[1] = '\0';
 		return (array);
 	}
-	array = just_for_min_int(n);
+	array = just_for_min_int();
 	return (array);
 }
 
@@ -113,4 +113,5 @@ char	*ft_itoa(int n)
 		array[size] = '\0';
 		return (fill_it(array, n, '+', (size - 1)));
 	}
+	return (NULL);
 }
