@@ -12,76 +12,108 @@
 
 #include "libft.h"
 
-static size_t	ft_strlen_trim(const char *str)
-{
-	size_t	i;
-
-	i = 0;
-	while (str[i] != '\0')
-		i++;
-	return (i);
-}
-
-static size_t	how_many(char const *s1, char const *set)
+static size_t	can_not_trim(char const *s1, char const *the_trimmed_item)
 {
 	size_t	i;
 	size_t	j;
-	size_t	matched_char;
+	size_t	length;
+	size_t	count;
 
-	matched_char = 0;
+	length = ft_strlen(s1);
 	i = 0;
-	while (s1[i] != '\0')
+	count = 0;
+	while (s1[i])
 	{
 		j = 0;
-		while (set[j] != '\0')
+		while (the_trimmed_item[j])
 		{
-			if (s1[i] == set[j])
+			if (s1[i] == the_trimmed_item[j])
 			{
-				matched_char++;
+				count++;
 				break ;
 			}
 			j++;
 		}
 		i++;
 	}
-	return (matched_char);
+	if (count == length)
+		return (1);
+	return (0);
 }
 
-static char	*trim_it(char const *s1, char const *set, char *dynamic)
+static size_t	trim_from_back(char const *s1, char const *the_trimmed_item,
+	size_t last_index)
 {
 	size_t	i;
 	size_t	j;
-	char	*trimmed_str;
-	size_t	a;
 
-	trimmed_str = dynamic;
-	a = 0;
-	i = 0;
-	while (s1[i] != '\0')
+	i = last_index;
+	while (i > 0)
 	{
 		j = 0;
-		while (set[j] != '\0')
+		while (the_trimmed_item[j] != '\0')
 		{
-			if (s1[i] == set[j])
+			if (s1[i] == the_trimmed_item[j])
 				break ;
 			j++;
 		}
-		if (s1[i] != set[j])
-		{
-			trimmed_str[a] = s1[i];
-			a++;
-		}
-		i++;
+		if (s1[i] == the_trimmed_item[j])
+			i--;
+		else
+			return (i);
 	}
-	return (trimmed_str);
+	return (0);
+}
+
+static size_t	trim_from_front(char const *s1, char const *the_trimmed_item)
+{
+	size_t	i;
+	size_t	j;
+
+	j = 0;
+	i = 0;
+	while (s1[i])
+	{
+		j = 0;
+		while (the_trimmed_item[j] != '\0')
+		{
+			if (s1[i] == the_trimmed_item[j])
+				break ;
+			j++;
+		}
+		if (s1[i] == the_trimmed_item[j])
+			i++;
+		else
+			return (i);
+	}
+	return (0);
 }
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	char	*dynamic_memory;
+	size_t		first_index;
+	char		*dynamic;
+	size_t		last_index;
+	size_t		i;
 
-	dynamic_memory = (char *)malloc(ft_strlen_trim(s1) - how_many(s1, set) + 1);
-	if (!dynamic_memory)
+	if (!s1)
 		return (NULL);
-	return (trim_it(s1, set, dynamic_memory));
+	if (!set)
+		return (ft_strdup(s1));
+	if (can_not_trim(s1, set) == 1)
+		return (ft_strdup(""));
+	first_index = trim_from_front(s1, set);
+	last_index = trim_from_back(s1, set, ft_strlen(s1) - 1);
+	dynamic = malloc(sizeof(char) * (last_index - first_index + 2));
+	if (!dynamic)
+		return (NULL);
+	i = 0;
+	while (first_index <= last_index)
+	{
+		dynamic[i] = s1[first_index];
+		first_index++;
+		i++;
+	}
+	dynamic[i] = '\0';
+	return (dynamic);
 }

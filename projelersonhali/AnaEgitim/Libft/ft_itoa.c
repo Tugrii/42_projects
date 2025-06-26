@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-static char	*just_for_min_int()
+static char	*just_for_min_int(void)
 {
 	char	*array;
 	char	*ptr;

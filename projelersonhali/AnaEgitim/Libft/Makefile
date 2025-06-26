@@ -1,6 +1,18 @@
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: tgeler <tgeler@student.42.fr>              +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/06/26 14:43:31 by tgeler            #+#    #+#              #
+#    Updated: 2025/06/26 15:23:58 by tgeler           ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
+CC = cc
+
+CFLAGS = -Wall -Wextra -Werror
 
 SRCS = ft_atoi.c \
 	ft_bzero.c\
@@ -13,11 +25,7 @@ SRCS = ft_atoi.c \
 	ft_itoa.c\
 	ft_lstadd_back.c\
 	ft_lstadd_front.c\
-	ft_lstclear.c\
-	ft_lstdelone.c\
-	ft_lstiter.c\
 	ft_lstlast.c\
-	ft_lstmap.c\
 	ft_lstnew.c\
 	ft_lstsize.c\
 	ft_memchr.c\
@@ -44,38 +52,37 @@ SRCS = ft_atoi.c \
 	ft_tolower.c\
 	ft_toupper.c
 
-
 # .c dosyalarının karşılık gelen .o dosyaları
 OBJS = $(SRCS:.c=.o)
 
-# Oluşacak program ya da kütüphane adı (örnek: libft.a yerine program adı)
+# Oluşacak kütüphane adı
 NAME = libft.a
 
 # Varsayılan hedef: Kütüphane oluştur
 all: $(NAME)
 
-# Statik kütüphane oluşturmak için arşivle (ar)
+# Statik kütüphane oluştur
 $(NAME): $(OBJS)
 	ar rcs $(NAME) $(OBJS)
 
-# .o dosyalarını derle (her .o için ayrı kural)
+# .o dosyalarını derle
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
+
+# Test programını derle ve çalıştır
+test: $(NAME) main.c
+	$(CC) $(CFLAGS) main.c -L. -lft -o test_program
+	./test_program
 
 # Nesne dosyalarını temizle
 clean:
 	rm -f $(OBJS)
 
-# Hem clean hem kütüphaneyi sil
+# Kütüphane ve test programını temizle
 fclean: clean
-	rm -f $(NAME)
+	rm -f $(NAME) test_program
 
-# Temizle ve tekrar derle
+# Temizle ve yeniden derle
 re: fclean all
 
-.PHONY: all clean fclean re
-
-# Test programını derle
-test: $(NAME) main.c
-	$(CC) $(CFLAGS) main.c -L. -lft -o test_program
-
+.PHONY: all clean fclean re test

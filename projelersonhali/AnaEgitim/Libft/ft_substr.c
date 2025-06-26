@@ -15,16 +15,24 @@
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	size_t	i;
-	char	*sub_str;
+	char	*dynamic;
+	size_t	total_length;
 
-	sub_str = (char *)malloc(len);
-	if (!sub_str)
+	if (!s)
 		return (NULL);
+	total_length = ft_strlen(s);
+	if ((start >= total_length) || (len > (total_length - start)))
+		return ("");
+	dynamic = malloc(sizeof(char) * (len + 1));
+	if (!dynamic)
+		return (NULL);
+	dynamic[len] = '\0';
+	s += start;
 	i = 0;
 	while (i < len)
 	{
-		sub_str[i] = s[start + i];
+		*(dynamic + i) = *(s + i);
 		i++;
 	}
-	return (sub_str);
+	return (dynamic);
 }
