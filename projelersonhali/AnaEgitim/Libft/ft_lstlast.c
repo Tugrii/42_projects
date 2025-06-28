@@ -23,5 +23,7 @@ static	t_list	*ft_goto_back(t_list *lst)
 
 t_list	*ft_lstlast(t_list *lst)
 {
+	if (!lst)
+		return (NULL);
 	return (ft_goto_back(lst));
 }

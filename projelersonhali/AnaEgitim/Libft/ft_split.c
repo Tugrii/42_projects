@@ -112,18 +112,24 @@ char	**ft_split(char const *s, char c)
 {
 	size_t	word_amount;
 	char	**array;
-	int		is_worked;
 
 	if (!s)
 		return (NULL);
+	calculate_words_amount(s, c, 0);
+	if (calculate_words_amount(s, c, 1) == 1)
+	{
+		array = malloc(sizeof(char *) * 2);
+		array[0] = ft_strtrim(s, &c);
+		array[1] = NULL;
+		return (array);
+	}
 	calculate_words_amount(s, c, 0);
 	word_amount = calculate_words_amount(s, c, 1);
 	array = malloc(sizeof(char *) * (word_amount + 1));
 	if (!array)
 		return (NULL);
 	array[word_amount] = NULL;
-	is_worked = malloc_for_words(s, c, array, 0);
-	if (is_worked == 0)
+	if (malloc_for_words(s, c, array, 0) == 0)
 		return (NULL);
 	return (array);
 }

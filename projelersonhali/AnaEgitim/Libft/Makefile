@@ -6,7 +6,7 @@
 #    By: tgeler <tgeler@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/26 14:43:31 by tgeler            #+#    #+#              #
-#    Updated: 2025/06/26 15:23:58 by tgeler           ###   ########.fr        #
+#    Updated: 2025/06/28 01:15:09 by tgeler           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,18 +23,15 @@ SRCS = ft_atoi.c \
 	ft_isdigit.c\
 	ft_isprint.c\
 	ft_itoa.c\
-	ft_lstadd_back.c\
-	ft_lstadd_front.c\
-	ft_lstlast.c\
-	ft_lstnew.c\
-	ft_lstsize.c\
 	ft_memchr.c\
 	ft_memcpy.c\
 	ft_memmove.c\
 	ft_memset.c\
+	ft_memcmp.c\
 	ft_putchar_fd.c\
 	ft_putnbr_fd.c\
 	ft_putstr_fd.c\
+	ft_putendl_fd.c\
 	ft_split.c\
 	ft_strchr.c\
 	ft_strdup.c\
@@ -52,8 +49,15 @@ SRCS = ft_atoi.c \
 	ft_tolower.c\
 	ft_toupper.c
 
+BONUS_SRCS = ft_lstadd_back.c\
+	ft_lstadd_front.c\
+	ft_lstlast.c\
+	ft_lstnew.c\
+	ft_lstsize.c\
+
 # .c dosyalarının karşılık gelen .o dosyaları
 OBJS = $(SRCS:.c=.o)
+BONUS_OBJS = $(BONUS_SRCS:.c=.o)
 
 # Oluşacak kütüphane adı
 NAME = libft.a
@@ -65,6 +69,8 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	ar rcs $(NAME) $(OBJS)
 
+bonus: $(OBJS) $(BONUS_OBJS)
+	ar rcs $(NAME) $(OBJS) $(BONUS_OBJS)
 # .o dosyalarını derle
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
