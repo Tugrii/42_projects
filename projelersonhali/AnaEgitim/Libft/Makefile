@@ -6,7 +6,7 @@
 #    By: tgeler <tgeler@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/26 14:43:31 by tgeler            #+#    #+#              #
-#    Updated: 2025/06/28 01:15:09 by tgeler           ###   ########.fr        #
+#    Updated: 2025/06/29 19:35:53 by tgeler           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,11 +49,11 @@ SRCS = ft_atoi.c \
 	ft_tolower.c\
 	ft_toupper.c
 
-BONUS_SRCS = ft_lstadd_back.c\
-	ft_lstadd_front.c\
+BONUS_SRCS = ft_lstadd_front.c\
 	ft_lstlast.c\
 	ft_lstnew.c\
 	ft_lstsize.c\
+
 
 # .c dosyalarının karşılık gelen .o dosyaları
 OBJS = $(SRCS:.c=.o)

@@ -119,7 +119,7 @@ char	**ft_split(char const *s, char c)
 	if (calculate_words_amount(s, c, 1) == 1)
 	{
 		array = malloc(sizeof(char *) * 2);
-		array[0] = ft_strtrim(s, &c);
+		array[0] = ft_strtrim(s, (char []){c, '\0'});
 		array[1] = NULL;
 		return (array);
 	}
