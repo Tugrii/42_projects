@@ -14,24 +14,22 @@
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	size_t	i;
-	char	*dynamic;
-	size_t	total_length;
+	char			*dynamic;
+	size_t			i;
 
-	if (!s)
-		return (NULL);
-	total_length = ft_strlen(s);
-	if ((start >= total_length) || (len > (total_length - start)))
+	if (start >= ft_strlen(s))
 		return (ft_strdup(""));
+	if (ft_strlen(s + start) < len)
+		len = ft_strlen(s + start);
+	i = 0;
 	dynamic = malloc(sizeof(char) * (len + 1));
 	if (!dynamic)
 		return (NULL);
 	dynamic[len] = '\0';
 	s += start;
-	i = 0;
 	while (i < len)
 	{
-		*(dynamic + i) = *(s + i);
+		dynamic[i] = *(s + i);
 		i++;
 	}
 	return (dynamic);

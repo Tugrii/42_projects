@@ -6,9 +6,11 @@
 /*   By: tgeler <tgeler@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 19:40:03 by tgeler            #+#    #+#             */
-/*   Updated: 2025/06/23 15:48:29 by tgeler           ###   ########.fr       */
+/*   Updated: 2025/06/28 19:12:50 by tgeler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 static int	ft_isescape(const char *str)
 {
@@ -16,7 +18,7 @@ static int	ft_isescape(const char *str)
 	int		i;
 	int		j;
 
-	elements = "\a\b\t\n\v\f\r ";
+	elements = "\t\n\v\f\r ";
 	i = 0;
 	while (str[i] != '\0')
 	{
