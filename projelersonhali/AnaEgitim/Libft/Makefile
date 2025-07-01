@@ -6,7 +6,7 @@
 #    By: tgeler <tgeler@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/26 14:43:31 by tgeler            #+#    #+#              #
-#    Updated: 2025/06/29 19:35:53 by tgeler           ###   ########.fr        #
+#    Updated: 2025/07/01 12:47:49 by tgeler           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,46 +49,37 @@ SRCS = ft_atoi.c \
 	ft_tolower.c\
 	ft_toupper.c
 
-BONUS_SRCS = ft_lstadd_front.c\
-	ft_lstlast.c\
-	ft_lstnew.c\
-	ft_lstsize.c\
+BONUS_SRCS = ft_lstadd_front_bonus.c\
+	ft_lstlast_bonus.c\
+	ft_lstnew_bonus.c\
+	ft_lstsize_bonus.c\
 
-
-# .c dosyalarının karşılık gelen .o dosyaları
 OBJS = $(SRCS:.c=.o)
 BONUS_OBJS = $(BONUS_SRCS:.c=.o)
 
-# Oluşacak kütüphane adı
 NAME = libft.a
 
-# Varsayılan hedef: Kütüphane oluştur
 all: $(NAME)
 
-# Statik kütüphane oluştur
 $(NAME): $(OBJS)
 	ar rcs $(NAME) $(OBJS)
 
 bonus: $(OBJS) $(BONUS_OBJS)
 	ar rcs $(NAME) $(OBJS) $(BONUS_OBJS)
-# .o dosyalarını derle
+
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-# Test programını derle ve çalıştır
 test: $(NAME) main.c
-	$(CC) $(CFLAGS) main.c -L. -lft -o test_program
+	$(CC) $(CFLAGS) main.c libft.a -o test_program
 	./test_program
 
-# Nesne dosyalarını temizle
 clean:
-	rm -f $(OBJS)
+	rm -f $(OBJS) $(BONUS_OBJS)
 
-# Kütüphane ve test programını temizle
 fclean: clean
 	rm -f $(NAME) test_program
 
-# Temizle ve yeniden derle
 re: fclean all
 
 .PHONY: all clean fclean re test
