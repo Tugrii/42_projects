@@ -6,7 +6,7 @@
 #    By: tgeler <tgeler@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/26 14:43:31 by tgeler            #+#    #+#              #
-#    Updated: 2025/07/01 12:47:49 by tgeler           ###   ########.fr        #
+#    Updated: 2025/07/03 16:10:08 by tgeler           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,7 @@ SRCS = ft_atoi.c \
 BONUS_SRCS = ft_lstadd_front_bonus.c\
 	ft_lstlast_bonus.c\
 	ft_lstnew_bonus.c\
-	ft_lstsize_bonus.c\
+	ft_lstsize_bonus.c
 
 OBJS = $(SRCS:.c=.o)
 BONUS_OBJS = $(BONUS_SRCS:.c=.o)
