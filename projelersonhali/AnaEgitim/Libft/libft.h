@@ -6,17 +6,15 @@
 /*   By: tgeler <tgeler@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 20:23:03 by tgeler            #+#    #+#             */
-/*   Updated: 2025/06/29 19:34:19 by tgeler           ###   ########.fr       */
+/*   Updated: 2025/07/04 03:00:28 by tgeler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# include <stddef.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include <stdint.h>
 
 typedef struct s_list
 {

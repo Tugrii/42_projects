@@ -6,11 +6,9 @@
 /*   By: tgeler <tgeler@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 19:40:03 by tgeler            #+#    #+#             */
-/*   Updated: 2025/06/28 19:12:50 by tgeler           ###   ########.fr       */
+/*   Updated: 2025/07/04 03:20:56 by tgeler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "libft.h"
 
 static int	ft_isescape(const char *str)
 {

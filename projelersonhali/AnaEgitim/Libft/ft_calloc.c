@@ -16,8 +16,10 @@ void	*ft_calloc(size_t nmemb, size_t size)
 {
 	char	*dynamic_memory;
 	size_t	i;
+	size_t	max;
 
-	if (size != 0 && (nmemb > (SIZE_MAX / size)))
+	max = (size_t) - 1;
+	if (size != 0 && (nmemb > (max / size)))
 		return (NULL);
 	i = 0;
 	dynamic_memory = (char *)malloc(nmemb * size);
