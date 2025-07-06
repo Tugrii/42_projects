@@ -5,131 +5,73 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgeler <tgeler@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/03 19:43:45 by tgeler            #+#    #+#             */
-/*   Updated: 2025/06/03 19:43:45 by tgeler           ###   ########.fr       */
+/*   Created: 2025/07/06 10:28:12 by tgeler            #+#    #+#             */
+/*   Updated: 2025/07/06 10:28:12 by tgeler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	calculate_words_amount(char const *s, char c, int reset)
+static size_t	count_words(const char *s, char c)
 {
-	size_t			i;
-	static size_t	number_of_words = 0;
+	size_t	count;
 
-	if (reset == 0)
+	count = 0;
+	while (*s)
 	{
-		number_of_words = 0;
-		return (0);
+		while (*s == c)
+			s++;
+		if (*s)
+			count++;
+		while (*s && *s != c)
+			s++;
 	}
-	if (number_of_words != 0)
-		return (number_of_words);
+	return (count);
+}
+
+static char	**free_all(char **arr, size_t i)
+{
+	while (i > 0)
+		free(arr[--i]);
+	free(arr);
+	return (NULL);
+}
+
+static char	**fill_words(const char *s, char c, size_t words)
+{
+	char		**result;
+	size_t		i;
+	size_t		len;
+
 	i = 0;
-	while (s[i] != '\0')
+	result = (char **)ft_calloc(words + 1, sizeof(char *));
+	if (!result)
+		return (NULL);
+	while (i < words)
 	{
-		while (s[i] == c)
-			i++;
-		if (s[i] != c && s[i] != '\0')
-		{
-			number_of_words += 1;
-			while (s[i] != c && s[i] != '\0')
-				i++;
-		}
-	}
-	return (number_of_words);
-}
-
-static void	fill_it(const char *s, char **array, size_t start, size_t end)
-{
-	static size_t	i = 0;
-	size_t			j;
-	static size_t	word_amount;
-
-	if (i == 0)
-		word_amount = calculate_words_amount(s, s[end], 1);
-	j = 0;
-	while (start < end)
-	{
-		array[i][j] = s[start];
-		start++;
-		j++;
-	}
-	array[i][j] = '\0';
-	i++;
-	if (i == word_amount)
-		i = 0;
-	return ;
-}
-
-static int	if_null(char **array, size_t j)
-{
-	size_t	i;
-
-	if (!array[j])
-	{
-		i = 0;
-		while (i < j)
-		{
-			free(array[i]);
-			i++;
-		}
-		free(array);
-		return (0);
-	}
-	return (1);
-}
-
-static int	malloc_for_words(const char *s, char c, char **array, size_t j)
-{
-	static size_t	i = 0;
-	size_t			start;
-
-	while (s[i] != '\0')
-	{
-		while (s[i] == c)
-			i++;
-		if (s[i] != c)
-			start = i;
-		while (s[i] != c && s[i] != '\0')
-			i++;
-		if (start == i)
-			break ;
-		array[j] = malloc(sizeof(char) * (i - start + 1));
-		if (if_null(array, j) == 0)
-		{
-			i = 0;
-			return (0);
-		}
-		fill_it(s, array, start, i);
-		j++;
+		while (*s == c)
+			s++;
+		len = 0;
+		while (s[len] && s[len] != c)
+			len++;
+		result[i] = ft_substr(s, 0, len);
+		if (!result[i])
+			return (free_all(result, i));
+		s += len;
 		i++;
 	}
-	i = 0;
-	return (1);
+	result[i] = NULL;
+	return (result);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	size_t	word_amount;
-	char	**array;
+	size_t	words;
+	char	**result;
 
 	if (!s)
 		return (NULL);
-	calculate_words_amount(s, c, 0);
-	if (calculate_words_amount(s, c, 1) == 1)
-	{
-		array = malloc(sizeof(char *) * 2);
-		array[0] = ft_strtrim(s, (char []){c, '\0'});
-		array[1] = NULL;
-		return (array);
-	}
-	calculate_words_amount(s, c, 0);
-	word_amount = calculate_words_amount(s, c, 1);
-	array = malloc(sizeof(char *) * (word_amount + 1));
-	if (!array)
-		return (NULL);
-	array[word_amount] = NULL;
-	if (malloc_for_words(s, c, array, 0) == 0)
-		return (NULL);
-	return (array);
+	words = count_words(s, c);
+	result = fill_words(s, c, words);
+	return (result);
 }

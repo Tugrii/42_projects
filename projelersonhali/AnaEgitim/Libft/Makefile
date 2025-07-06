@@ -6,7 +6,7 @@
 #    By: tgeler <tgeler@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/26 14:43:31 by tgeler            #+#    #+#              #
-#    Updated: 2025/07/03 16:10:08 by tgeler           ###   ########.fr        #
+#    Updated: 2025/07/06 10:36:25 by tgeler           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -82,4 +82,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re test
+.PHONY: all clean fclean re test bonus
