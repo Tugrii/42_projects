@@ -14,66 +14,49 @@
 
 static size_t	count_words(const char *s, char c)
 {
-	size_t	count = 0;
-	int		in_word = 0;
+	size_t	count;
 
+	count = 0;
 	while (*s)
 	{
-		if (*s != c && in_word == 0)
-		{
-			in_word = 1;
+		while (*s == c)
+			s++;
+		if (*s)
 			count++;
-		}
-		else if (*s == c)
-			in_word = 0;
-		s++;
+		while (*s && *s != c)
+			s++;
 	}
 	return (count);
 }
 
-static size_t	word_len(const char *s, char c)
-{
-	size_t	len = 0;
-
-	while (s[len] && s[len] != c)
-		len++;
-	return (len);
-}
-
-static void	free_all(char **arr, size_t i)
+static char	**free_all(char **arr, size_t i)
 {
 	while (i > 0)
 		free(arr[--i]);
 	free(arr);
+	return (NULL);
 }
 
-char	**ft_split(const char *s, char c)
+static char	**fill_words(const char *s, char c, size_t words)
 {
-	char	**result;
-	size_t	words;
-	size_t	i = 0;
-	size_t	len;
+	char		**result;
+	size_t		i;
+	size_t		len;
 
-	if (!s)
-		return (NULL);
-	words = count_words(s, c);
-	result = (char **)malloc((words + 1) * sizeof(char *));
+	i = 0;
+	result = (char **)ft_calloc(words + 1, sizeof(char *));
 	if (!result)
 		return (NULL);
 	while (i < words)
 	{
 		while (*s == c)
 			s++;
-		len = word_len(s, c);
-		result[i] = (char *)malloc((len + 1) * sizeof(char));
+		len = 0;
+		while (s[len] && s[len] != c)
+			len++;
+		result[i] = ft_substr(s, 0, len);
 		if (!result[i])
-		{
-			free_all(result, i);
-			return (NULL);
-		}
-		for (size_t j = 0; j < len; j++)
-			result[i][j] = s[j];
-		result[i][len] = '\0';
+			return (free_all(result, i));
 		s += len;
 		i++;
 	}
@@ -81,3 +64,14 @@ char	**ft_split(const char *s, char c)
 	return (result);
 }
 
+char	**ft_split(char const *s, char c)
+{
+	size_t	words;
+	char	**result;
+
+	if (!s)
+		return (NULL);
+	words = count_words(s, c);
+	result = fill_words(s, c, words);
+	return (result);
+}
