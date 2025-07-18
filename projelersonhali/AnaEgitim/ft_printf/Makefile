@@ -12,7 +12,7 @@
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Wextra
+CFLAGS = -Wall -Wextra -Werror
 
 SRCS = ft_printf.c\
 	helper_f1.c\
