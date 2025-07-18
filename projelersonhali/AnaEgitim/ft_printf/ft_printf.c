@@ -20,16 +20,14 @@ int	process3(const char *sub_type, va_list *argument)
 	{
 		unsigned_integer = va_arg(*argument, unsigned int);
 		if (*sub_type == 'x')
-			ft_puthex_fd(unsigned_integer, 1, 0);
+			return (ft_puthex_fd(unsigned_integer, 1, 0, 0));
 		else
-			ft_puthex_fd(unsigned_integer, 1, 1);
-		return (count_size_of_int(unsigned_integer, 0));
+			return (ft_puthex_fd(unsigned_integer, 1, 1, 0));
 	}
 	if (*sub_type == 'u')
 	{
 		unsigned_integer = va_arg(*argument, unsigned int);
-		put_un_int_fd(unsigned_integer, 1);
-		return (count_size_of_int(unsigned_integer, 0));
+		return (put_un_int_fd(unsigned_integer, 1, 0));
 	}
 	return (0);
 }
@@ -39,19 +37,16 @@ int	process2(const char *sub_type, va_list *argument)
 	void			*ptr;
 
 	if (*sub_type == '%')
-	{
-		va_arg(*argument, int);
 		return (write(1, "%", sizeof(char)));
-	}
 	if (*sub_type == 'p')
 	{
 		if (*sub_type == 'p')
 		{
 			ptr = va_arg(*argument, void *);
+			if (ptr == 0)
+				return (write (1, "(nil)", 5));
 			write (1, "0x", 2);
-			ft_puthex_fd((unsigned long)ptr, 1, 0);
-			return (2 + count_size_of_int((unsigned long)ptr,
-					(unsigned long)ptr));
+			return (2 + ft_puthex_fd((unsigned long)ptr, 1, 0, 0));
 		}
 	}
 	return (process3(sub_type, argument));
@@ -61,7 +56,6 @@ int	process1(const char *sub_type, va_list *argument)
 {
 	int		integer;
 	char	*string;
-	int		previous_integer;
 
 	if (*sub_type == 'd' || *sub_type == 'i' || *sub_type == 'c')
 	{
@@ -70,10 +64,7 @@ int	process1(const char *sub_type, va_list *argument)
 			ft_putnbr_fd(integer, 1);
 		else
 			return (write(1, &integer, 1));
-		previous_integer = integer;
-		if (integer < 0)
-			integer *= -1;
-		return (count_size_of_int(integer, previous_integer));
+		return (count_size_of_int(integer, integer));
 	}
 	if (*sub_type == 's')
 	{

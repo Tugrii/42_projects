@@ -12,18 +12,18 @@
 
 #include "ft_printf.h"
 
-void	put_un_int_fd(unsigned int value, int fd)
+int	put_un_int_fd(unsigned int value, int fd, int counter)
 {
 	char	digit;
 
 	if (value >= 10)
-		put_un_int_fd(value, fd);
+		counter = put_un_int_fd(value / 10, fd, counter);
 	digit = (value % 10) + '0';
 	write(fd, &digit, 1);
-	return ;
+	return (counter + 1);
 }
 
-void	ft_puthex_fd(unsigned long value, int fd, int is_upper)
+int	ft_puthex_fd(unsigned long value, int fd, int is_upper, int counter)
 {
 	char	*base;
 
@@ -32,12 +32,12 @@ void	ft_puthex_fd(unsigned long value, int fd, int is_upper)
 	else
 		base = "0123456789abcdef";
 	if (value >= 16)
-		ft_puthex_fd(value / 16, fd, is_upper);
+		counter = ft_puthex_fd(value / 16, fd, is_upper, counter);
 	write(fd, &base[value % 16], 1);
-	return ;
+	return (counter + 1);
 }
 
-int	count_size_of_int(unsigned long value, int previous_value)
+int	count_size_of_int(int value, int previous_value)
 {
 	size_t	i;
 

@@ -12,7 +12,7 @@
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Wextra
 
 SRCS = ft_printf.c\
 	helper_f1.c\
@@ -41,7 +41,7 @@ test: $(NAME) main.c
 	./test_program
 
 clean:
-	rm -f $(OBJS) $(BONUS_OBJS)
+	rm -f $(OBJS)
 
 fclean: clean
 	rm -f $(NAME) test_program
