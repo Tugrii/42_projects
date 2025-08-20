@@ -5,77 +5,73 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgeler <tgeler@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/30 00:37:40 by tgeler            #+#    #+#             */
-/*   Updated: 2025/07/30 00:37:40 by tgeler           ###   ########.fr       */
+/*   Created: 2025/08/20 21:08:19 by tgeler            #+#    #+#             */
+/*   Updated: 2025/08/20 21:08:19 by tgeler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-
-size_t	ft_strlen(const char *str)
+void	free_and_rebuild(char *stash, char	*newstash, int length_new_stash)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
-	while (str[i] != '\0')
-		i++;
-	return (i);
-}
-
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
-{
-	size_t	i;
-
-	if (dstsize == 0)
-		return (ft_strlen(src));
-	i = 0;
-	while ((i < dstsize - 1) && src[i] != '\0')
-	{
-		dst[i] = src[i];
-		i += 1;
-	}
-	if (dstsize > 0)
-		dst[i] = '\0';
-	return (ft_strlen(src));
-}
-
-char	*ft_strchr(const char *s, int c)
-{
-	while (1)
-	{
-		if (*s == (char)(c))
-			return ((char *)s);
-		if (*s == '\0')
-			break ;
-		s++;
-	}
-	return (NULL);
-}
-
-char	*ft_strjoin(char const *s1, char const *s2)
-{
-	char	*new_str;
-	size_t	i;
-	size_t	prefix_length;
-	size_t	j;
-
-	j = 0;
-	prefix_length = ft_strlen(s1);
-	i = 0;
-	new_str = (char *)malloc(ft_strlen(s2) + prefix_length + 1);
-	if (!new_str)
+	free(stash);
+	stash = malloc(length_new_stash);
+	if (!stash)
 		return (NULL);
-	while (i < prefix_length)
+	fill_it(stash, new_stash, )
+}
+void	fill_it(char *dst, char *src, int length, int j)
+{
+	int	i;
+
+	i = 0;
+	while (i < length)
 	{
-		new_str[i] = s1[i];
-		i++;
-	}
-	while (i < (ft_strlen(s2) + prefix_length))
-	{
-		new_str[i] = s2[j];
-		i++;
+		dst[i] = src[j];
 		j++;
+		i++;
 	}
-	new_str[i] = '\0';
-	return (new_str);
+	return ;
+}
+char	*divide_the_stash(char *line, char *stash)
+{
+	int		i;
+	int		length_line;
+	int		length_new_stash;
+	char	*new_stash;
+
+	i = 0;
+	while (stash[i] != '\n')
+		i++;
+	length_line = i;
+	line = malloc(length_line);
+	if (!line)
+		return (NULL);
+	while(stash[i] != '\0')
+	{
+		length_new_stash++;
+		i++;
+	}
+	new_stash = malloc(length_new_stash);
+	if(!new_stash)
+		return (NULL);
+	fill_it(line, stash, length_line, 0);
+	if (length_new_stash != 0)
+		fill_it(new_stash, stash, length_new_stash, length_line);
+	free_and_rebuild(stash, new_stash, length_new_stash);
+	return (line);
+}
+int	is_there_a_new_line(char *buffer, int BUFFER_SIZE)
+{
+	int	i;
+
+	i = 0;
+	while (i < BUFFER_SIZE)
+	{
+		if (stash[i] == '\n')
+			return (1);
+		i++;
+	}
+	return (0);
 }

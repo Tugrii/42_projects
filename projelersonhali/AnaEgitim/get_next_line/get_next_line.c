@@ -5,60 +5,49 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgeler <tgeler@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/30 00:04:26 by tgeler            #+#    #+#             */
-/*   Updated: 2025/07/30 00:04:26 by tgeler           ###   ########.fr       */
+/*   Created: 2025/08/20 17:21:49 by tgeler            #+#    #+#             */
+/*   Updated: 2025/08/20 17:21:49 by tgeler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-
-void	fill_it(char *stash, char *line, int length)
+int	add_to_stash(char *stash, char *buffer, int BUFFER_SIZE, int i)
 {
-	int	i;
-
-	i = 0;
-	while (i < length)
-	{
-		line[i] = stash[i];
-		i++;
-	}
-	return ;
-}
-char	*control_statements(char *stash, char *line, int length)
-{
-	int	j;
+	int		j;
 
 	j = 0;
-	if (ft_strchr(stash, '\n') == NULL)
+	if (stash == NULL)
+		i = 0;
+	while (j < BUFFER_SIZE)
 	{
-		fill_it(stash, line, length);
-		return (line);
-	}
-	while (stash[j] != '\n')
-	{
-		line[j] = stash[j];
+		stash[i] = buffer[j];
+		i++;
 		j++;
 	}
-	stash = ft_strchr(stash, '\n');
-	return (line);
+	return (j);
+}
+int	fill_buffer(int fd, int BUFFER_SIZE, char *buffer)
+{
+	int	bytes_read;
+
+	bytes_read = read(fd, buffer, BUFFER_SIZE);
+	return (bytes_read);
 }
 char	*get_next_line(int fd)
 {
-	char		*line;
-	static char	*stash = NULL;
-	char		buffer[BUFFER_SIZE];
-	char		*new_str;
-	size_t		i;
+	char			buffer[BUFFER_SIZE];
+	static char		*stash = NULL;
+	int				index;
+	char			*line;
 
-	line = NULL;
-	i = 0;
-	buffer[0] = 't';
-	while (buffer[i] != '\n')
+	index = 0;
+	while (fill_buffer(fd, BUFFER_SIZE, buffer) != 0)
 	{
-		read (fd, buffer, BUFFER_SIZE);
-		new_str = ft_strjoin(stash, buffer);
-		ft_strlcpy(stash, new_str, ft_strlen(new_str));
-		free(new_str);
+		index += add_to_stash(stash, buffer, BUFFER_SIZE, index);
+		if (is_there_a_new_line(buffer, BUFFER_SIZE) == 1)
+		{
+			line = divide_the_stash(line, stash);
+			break ;
+		}
 	}
-	return(control_statements(stash, line, ft_strlen(stash)));
+	return (line);
 }
