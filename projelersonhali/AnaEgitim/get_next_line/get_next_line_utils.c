@@ -16,23 +16,26 @@ int		ft_strlen(char *str)
 {
 	int	i;
 
+	if (!str)
+		return (0);
 	i = 0;
 	while (str[i] != '\0')
 		i++;
 	return(i);
 }
-void	free_and_rebuild(char **stash, char	*new_stash, int length_new_stash)
+int		free_and_rebuild(char **stash, char	*new_stash, int length_new_stash)
 {
 	int	i;
 
 	i = 0;
 	free(*stash);
-	*stash = malloc(length_new_stash);
+	*stash = malloc(length_new_stash + 1);
 	if (!*stash)
-		return (NULL);
+		return (0);
 	fill_it(*stash, new_stash, length_new_stash, 0);
+	(*stash)[length_new_stash] = '\0';
 	free(new_stash);
-	return ;
+	return (1);
 }
 void	fill_it(char *dst, char *src, int length, int j)
 {
@@ -47,39 +50,40 @@ void	fill_it(char *dst, char *src, int length, int j)
 	}
 	return ;
 }
-char	*divide_the_stash(char *line, char **stash, int i)
+char	*divide_the_stash(char *line, char **stash, int i, int length_new_stash)
 {
 	int		length_line;
-	int		length_new_stash;
 	char	*new_stash;
 
 	length_new_stash = 0;
 	while ((*stash)[i] != '\n')
 		i++;
-	length_line = i;
-	line = malloc(length_line);
+	length_line = i + 1;
+	line = malloc(length_line + 1);
 	if (!line)
 		return (NULL);
+	i++;
 	while((*stash)[i] != '\0')
 	{
 		length_new_stash++;
 		i++;
 	}
-	new_stash = malloc(length_new_stash);
+	new_stash = malloc(length_new_stash + 1);
 	if(!new_stash)
 		return (NULL);
 	fill_it(line, *stash, length_line, 0);
 	if (length_new_stash != 0)
 		fill_it(new_stash, *stash, length_new_stash, length_line);
 	free_and_rebuild(&stash, new_stash, length_new_stash);
+	line[length_line] = '\0';
 	return (line);
 }
-int	is_there_a_new_line(char *buffer)
+int	is_there_a_new_line(char *buffer, int bytes_read)
 {
 	int	i;
 
 	i = 0;
-	while (i < BUFFER_SIZE)
+	while (i < bytes_read)
 	{
 		if (buffer[i] == '\n')
 			return (1);

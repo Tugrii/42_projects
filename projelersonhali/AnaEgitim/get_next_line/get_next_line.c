@@ -12,21 +12,39 @@
 
 #include "get_next_line.h"
 
-int	add_to_stash(char *stash, char *buffer, int i, int counter)
+int	make_malloc_for_each_stash(char **stash, int total_length , int bytes_read)
 {
+	if (!*stash)
+		total_length = bytes_read;
+	else
+		total_length = ft_strlen(*stash) + bytes_read;
+	*stash = malloc(total_length + 1);
+	if (!*stash)
+		return (0);
+	return (total_length);
+}
+int	add_to_stash(char **stash, char *buffer, int index, int bytes_read)
+{
+	char	*ptr;
+	int		total_length;
+	int		length_old_stash;
 	int		j;
 
-	i = 0;
 	j = 0;
-	if (stash == NULL)
-		i = 0;
-	stash = malloc(BUFFER_SIZE * counter);
-	while (j < BUFFER_SIZE)
+	length_old_stash = 0;
+	ptr = *stash;
+	total_length = make_malloc_for_each_stash(*stash, total_length, bytes_read);
+	(*stash)[total_length] = '\0';
+	length_old_stash = ft_strlen(ptr);
+	while (length_old_stash--)
+		(*stash)[length_old_stash] = ptr[length_old_stash];
+	while (j < bytes_read)
 	{
-		stash[i] = buffer[j];
-		i++;
+		(*stash)[index] = buffer[j];
+		index++;
 		j++;
 	}
+	free (ptr);
 	return (j);
 }
 int	fill_buffer(int fd, char *buffer)
@@ -42,21 +60,22 @@ char	*get_next_line(int fd)
 	static char		*stash = NULL;
 	int				index;
 	char			*line;
-	int				counter;
+	int				bytes_read;
 
-	counter = 1;
+	bytes_read = 1;
 	index = 0;
+	line = NULL;
 	if (stash != NULL)
 		index = ft_strlen(stash);
-	while (fill_buffer(fd, buffer) != 0)
+	while (bytes_read != 0)
 	{
-		index += add_to_stash(stash, buffer, index, counter);
-		if (is_there_a_new_line(buffer) == 1)
+		bytes_read = fill_buffer(fd, buffer);
+		index += add_to_stash(&stash, buffer, index, bytes_read);
+		if (is_there_a_new_line(buffer, bytes_read) == 1)
 		{
-			line = divide_the_stash(line, &stash, 0);
+			line = divide_the_stash(line, &stash, 0, 0);
 			break ;
 		}
-		counter++;
 	}
 	return (line);
 }
