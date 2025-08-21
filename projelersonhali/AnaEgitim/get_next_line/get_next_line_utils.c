@@ -10,16 +10,29 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-void	free_and_rebuild(char *stash, char	*newstash, int length_new_stash)
+#include "get_next_line.h"
+
+int		ft_strlen(char *str)
 {
 	int	i;
 
 	i = 0;
-	free(stash);
-	stash = malloc(length_new_stash);
-	if (!stash)
+	while (str[i] != '\0')
+		i++;
+	return(i);
+}
+void	free_and_rebuild(char **stash, char	*new_stash, int length_new_stash)
+{
+	int	i;
+
+	i = 0;
+	free(*stash);
+	*stash = malloc(length_new_stash);
+	if (!*stash)
 		return (NULL);
-	fill_it(stash, new_stash, )
+	fill_it(*stash, new_stash, length_new_stash, 0);
+	free(new_stash);
+	return ;
 }
 void	fill_it(char *dst, char *src, int length, int j)
 {
@@ -34,21 +47,20 @@ void	fill_it(char *dst, char *src, int length, int j)
 	}
 	return ;
 }
-char	*divide_the_stash(char *line, char *stash)
+char	*divide_the_stash(char *line, char **stash, int i)
 {
-	int		i;
 	int		length_line;
 	int		length_new_stash;
 	char	*new_stash;
 
-	i = 0;
-	while (stash[i] != '\n')
+	length_new_stash = 0;
+	while ((*stash)[i] != '\n')
 		i++;
 	length_line = i;
 	line = malloc(length_line);
 	if (!line)
 		return (NULL);
-	while(stash[i] != '\0')
+	while((*stash)[i] != '\0')
 	{
 		length_new_stash++;
 		i++;
@@ -56,20 +68,20 @@ char	*divide_the_stash(char *line, char *stash)
 	new_stash = malloc(length_new_stash);
 	if(!new_stash)
 		return (NULL);
-	fill_it(line, stash, length_line, 0);
+	fill_it(line, *stash, length_line, 0);
 	if (length_new_stash != 0)
-		fill_it(new_stash, stash, length_new_stash, length_line);
-	free_and_rebuild(stash, new_stash, length_new_stash);
+		fill_it(new_stash, *stash, length_new_stash, length_line);
+	free_and_rebuild(&stash, new_stash, length_new_stash);
 	return (line);
 }
-int	is_there_a_new_line(char *buffer, int BUFFER_SIZE)
+int	is_there_a_new_line(char *buffer)
 {
 	int	i;
 
 	i = 0;
 	while (i < BUFFER_SIZE)
 	{
-		if (stash[i] == '\n')
+		if (buffer[i] == '\n')
 			return (1);
 		i++;
 	}

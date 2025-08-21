@@ -10,13 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int	add_to_stash(char *stash, char *buffer, int BUFFER_SIZE, int i)
+#include "get_next_line.h"
+
+int	add_to_stash(char *stash, char *buffer, int i, int counter)
 {
 	int		j;
 
+	i = 0;
 	j = 0;
 	if (stash == NULL)
 		i = 0;
+	stash = malloc(BUFFER_SIZE * counter);
 	while (j < BUFFER_SIZE)
 	{
 		stash[i] = buffer[j];
@@ -25,7 +29,7 @@ int	add_to_stash(char *stash, char *buffer, int BUFFER_SIZE, int i)
 	}
 	return (j);
 }
-int	fill_buffer(int fd, int BUFFER_SIZE, char *buffer)
+int	fill_buffer(int fd, char *buffer)
 {
 	int	bytes_read;
 
@@ -38,16 +42,21 @@ char	*get_next_line(int fd)
 	static char		*stash = NULL;
 	int				index;
 	char			*line;
+	int				counter;
 
+	counter = 1;
 	index = 0;
-	while (fill_buffer(fd, BUFFER_SIZE, buffer) != 0)
+	if (stash != NULL)
+		index = ft_strlen(stash);
+	while (fill_buffer(fd, buffer) != 0)
 	{
-		index += add_to_stash(stash, buffer, BUFFER_SIZE, index);
-		if (is_there_a_new_line(buffer, BUFFER_SIZE) == 1)
+		index += add_to_stash(stash, buffer, index, counter);
+		if (is_there_a_new_line(buffer) == 1)
 		{
-			line = divide_the_stash(line, stash);
+			line = divide_the_stash(line, &stash, 0);
 			break ;
 		}
+		counter++;
 	}
 	return (line);
 }

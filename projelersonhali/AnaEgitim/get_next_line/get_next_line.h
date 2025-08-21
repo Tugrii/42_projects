@@ -14,7 +14,9 @@
 # define GET_NEXT_LINE_H
 # include <unistd.h>
 # include <stdlib.h>
-# ifndef BUFFER_SIZE
+int		is_there_a_new_line(char *buffer);
+char	*divide_the_stash(char *line, char *stash, int i);
+#ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 100
 # endif
 #endif
