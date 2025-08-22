@@ -14,6 +14,8 @@
 # define GET_NEXT_LINE_H
 # include <unistd.h>
 # include <stdlib.h>
+# include <fcntl.h>
+# include <stdio.h>
 int		is_there_a_new_line(char *buffer, int bytes_read);
 char 	*divide_the_stash(char *line, char **stash, int i, int length_new_stash);
 char    *get_next_line(int fd);
@@ -22,7 +24,7 @@ void    fill_it(char *dst, char *src, int length, int j);
 int     free_and_rebuild(char **stash, char *new_stash, int length_new_stash);
 int     add_to_stash(char **stash, char *buffer, int index, int j);
 int     fill_buffer(int fd, char *buffer);
-int	make_malloc_for_each_stash(char **stash, int total_length , int bytes_read);
+int	make_malloc_for_each_stash(char **stash, int bytes_read);
 #ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 100
 # endif

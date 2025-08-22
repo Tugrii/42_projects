@@ -12,8 +12,10 @@
 
 #include "get_next_line.h"
 
-int	make_malloc_for_each_stash(char **stash, int total_length , int bytes_read)
+int	make_malloc_for_each_stash(char **stash, int bytes_read)
 {
+	int	total_length;
+
 	if (!*stash)
 		total_length = bytes_read;
 	else
@@ -21,20 +23,19 @@ int	make_malloc_for_each_stash(char **stash, int total_length , int bytes_read)
 	*stash = malloc(total_length + 1);
 	if (!*stash)
 		return (0);
+	(*stash)[total_length] = '\0';
 	return (total_length);
 }
 int	add_to_stash(char **stash, char *buffer, int index, int bytes_read)
 {
 	char	*ptr;
-	int		total_length;
 	int		length_old_stash;
 	int		j;
 
 	j = 0;
 	length_old_stash = 0;
 	ptr = *stash;
-	total_length = make_malloc_for_each_stash(*stash, total_length, bytes_read);
-	(*stash)[total_length] = '\0';
+	make_malloc_for_each_stash(stash, bytes_read);
 	length_old_stash = ft_strlen(ptr);
 	while (length_old_stash--)
 		(*stash)[length_old_stash] = ptr[length_old_stash];

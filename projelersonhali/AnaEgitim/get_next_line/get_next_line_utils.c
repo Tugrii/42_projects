@@ -25,9 +25,6 @@ int		ft_strlen(char *str)
 }
 int		free_and_rebuild(char **stash, char	*new_stash, int length_new_stash)
 {
-	int	i;
-
-	i = 0;
 	free(*stash);
 	*stash = malloc(length_new_stash + 1);
 	if (!*stash)
@@ -55,7 +52,6 @@ char	*divide_the_stash(char *line, char **stash, int i, int length_new_stash)
 	int		length_line;
 	char	*new_stash;
 
-	length_new_stash = 0;
 	while ((*stash)[i] != '\n')
 		i++;
 	length_line = i + 1;
@@ -74,18 +70,18 @@ char	*divide_the_stash(char *line, char **stash, int i, int length_new_stash)
 	fill_it(line, *stash, length_line, 0);
 	if (length_new_stash != 0)
 		fill_it(new_stash, *stash, length_new_stash, length_line);
-	free_and_rebuild(&stash, new_stash, length_new_stash);
+	free_and_rebuild(stash, new_stash, length_new_stash);
 	line[length_line] = '\0';
 	return (line);
 }
-int	is_there_a_new_line(char *buffer, int bytes_read)
+int	is_there_a_new_line(char *stash, int bytes_read)
 {
 	int	i;
 
 	i = 0;
 	while (i < bytes_read)
 	{
-		if (buffer[i] == '\n')
+		if (stash[i] == '\n')
 			return (1);
 		i++;
 	}
