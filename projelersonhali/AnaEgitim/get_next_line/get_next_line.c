@@ -12,6 +12,14 @@
 
 #include "get_next_line.h"
 
+int	make_malloc_and_fill_for_end(char **line, char *stash, int length_to_fill)
+{
+	*line = malloc(length_to_fill);
+	if (!*line)
+		return (0);
+	fill_it(*line, stash, length_to_fill, 0);
+	return (1);
+}
 int	make_malloc_for_each_stash(char **stash, int bytes_read)
 {
 	int	total_length;
@@ -62,6 +70,7 @@ char	*get_next_line(int fd)
 	int				index;
 	char			*line;
 	int				bytes_read;
+	static int		at_the_end;
 
 	bytes_read = 1;
 	index = 0;
@@ -75,9 +84,11 @@ char	*get_next_line(int fd)
 	}
 	if (is_there_a_new_line(stash, ft_strlen(stash)) == 1)
 		line = divide_the_stash(line, &stash, 0, 0);
-	else
-		line = stash;
-	printf("%p\n",line);
-	printf("%p\n",stash);
+	else if(at_the_end == 0)
+	{
+		make_malloc_and_fill_for_end(&line, stash, ft_strlen(stash));
+		at_the_end = 1;
+	}
+	printf("%s",line);
 	return (line);
 }
