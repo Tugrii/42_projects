@@ -12,14 +12,21 @@
 
 #include "get_next_line.h"
 
-int	make_malloc_and_fill_for_end(char **line, char *stash, int length_to_fill)
+char	*make_malloc_and_fill(char **line, char *stash, int length_to_fill)
 {
-	*line = malloc(length_to_fill);
-	if (!*line)
-		return (0);
-	fill_it(*line, stash, length_to_fill, 0);
-	return (1);
+	static int	i = 0;
+
+	if (i == 0)
+	{
+		*line = malloc(length_to_fill);
+		if (!*line)
+			return (NULL);
+		fill_it(*line, stash, length_to_fill, 0);
+	}
+	i++;
+	return (*line);
 }
+
 int	make_malloc_for_each_stash(char **stash, int bytes_read)
 {
 	int	total_length;
@@ -34,6 +41,7 @@ int	make_malloc_for_each_stash(char **stash, int bytes_read)
 	(*stash)[total_length] = '\0';
 	return (total_length);
 }
+
 int	add_to_stash(char **stash, char *buffer, int index, int bytes_read)
 {
 	char	*ptr;
@@ -56,6 +64,7 @@ int	add_to_stash(char **stash, char *buffer, int index, int bytes_read)
 	free (ptr);
 	return (j);
 }
+
 int	fill_buffer(int fd, char *buffer)
 {
 	int	bytes_read;
@@ -63,6 +72,7 @@ int	fill_buffer(int fd, char *buffer)
 	bytes_read = read(fd, buffer, BUFFER_SIZE);
 	return (bytes_read);
 }
+
 char	*get_next_line(int fd)
 {
 	char			buffer[BUFFER_SIZE];
@@ -70,25 +80,21 @@ char	*get_next_line(int fd)
 	int				index;
 	char			*line;
 	int				bytes_read;
-	static int		at_the_end;
 
 	bytes_read = 1;
 	index = 0;
 	line = NULL;
 	if (stash != NULL)
 		index = ft_strlen(stash);
-	while (bytes_read != 0 && (is_there_a_new_line(stash, ft_strlen(stash)) == 0 || stash == NULL))
+	while (bytes_read != 0 && (is_there_a_new_line(stash, ft_strlen(stash)) == 0
+			|| stash == NULL))
 	{
-			bytes_read = fill_buffer(fd, buffer);
-			index += add_to_stash(&stash, buffer, index, bytes_read);
+		bytes_read = fill_buffer(fd, buffer);
+		index += add_to_stash(&stash, buffer, index, bytes_read);
 	}
 	if (is_there_a_new_line(stash, ft_strlen(stash)) == 1)
 		line = divide_the_stash(line, &stash, 0, 0);
-	else if(at_the_end == 0)
-	{
-		make_malloc_and_fill_for_end(&line, stash, ft_strlen(stash));
-		at_the_end = 1;
-	}
-	printf("%s",line);
+	else
+		return (make_malloc_and_fill(&line, stash, ft_strlen(stash)));
 	return (line);
 }
