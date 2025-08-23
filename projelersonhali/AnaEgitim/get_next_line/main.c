@@ -15,9 +15,18 @@ int main ()
 {
 	int fd = open("tugra", O_CREAT| O_RDWR, 0777);
 	//printf("%s",get_next_line(fd));
+	//printf("%s",get_next_line(fd));
+	//printf("%s",get_next_line(fd));
+	//printf("%s",get_next_line(fd));
+	//printf("%s",get_next_line(fd));
+	//printf("%s",get_next_line(fd));
 	get_next_line(fd);
 	get_next_line(fd);
 	get_next_line(fd);
+	get_next_line(fd);
+
+	//get_next_line(fd);
+	//get_next_line(fd);
 	//printf("%s",get_next_line(fd));
 	//printf("%s",get_next_line(fd));
 }

@@ -68,15 +68,16 @@ char	*get_next_line(int fd)
 	line = NULL;
 	if (stash != NULL)
 		index = ft_strlen(stash);
-	while (bytes_read != 0)
+	while (bytes_read != 0 && (is_there_a_new_line(stash, ft_strlen(stash)) == 0 || stash == NULL))
 	{
-		bytes_read = fill_buffer(fd, buffer);
-		index += add_to_stash(&stash, buffer, index, bytes_read);
-		if (is_there_a_new_line(buffer, bytes_read) == 1)
-		{
-			line = divide_the_stash(line, &stash, 0, 0);
-			break ;
-		}
+			bytes_read = fill_buffer(fd, buffer);
+			index += add_to_stash(&stash, buffer, index, bytes_read);
 	}
+	if (is_there_a_new_line(stash, ft_strlen(stash)) == 1)
+		line = divide_the_stash(line, &stash, 0, 0);
+	else
+		line = stash;
+	printf("%p\n",line);
+	printf("%p\n",stash);
 	return (line);
 }
