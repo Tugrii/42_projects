@@ -26,7 +26,7 @@ int		free_and_rebuild(char **stash, char *new_stash, int length_new_stash);
 int		add_to_stash(char **stash, char *buffer, int index, int j);
 int		fill_buffer(int fd, char *buffer);
 int		make_malloc_for_each_stash(char **stash, int bytes_read);
-char	*make_malloc_and_fill(char **line, char *stash, int length_to_fill);
+char	*make_malloc_and_fill(char **line, char **stash, int length_to_fill);
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 100
 # endif

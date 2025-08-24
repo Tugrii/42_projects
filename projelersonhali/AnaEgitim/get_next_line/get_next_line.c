@@ -12,7 +12,7 @@
 
 #include "get_next_line.h"
 
-char	*make_malloc_and_fill(char **line, char *stash, int length_to_fill)
+char	*make_malloc_and_fill(char **line, char **stash, int length_to_fill)
 {
 	static int	i = 0;
 
@@ -21,7 +21,9 @@ char	*make_malloc_and_fill(char **line, char *stash, int length_to_fill)
 		*line = malloc(length_to_fill);
 		if (!*line)
 			return (NULL);
-		fill_it(*line, stash, length_to_fill, 0);
+		fill_it(*line, *stash, length_to_fill, 0);
+		free(*stash);
+		*stash = NULL;
 	}
 	i++;
 	return (*line);
@@ -84,6 +86,8 @@ char	*get_next_line(int fd)
 	bytes_read = 1;
 	index = 0;
 	line = NULL;
+	if (fd < 0)
+		return(line);
 	if (stash != NULL)
 		index = ft_strlen(stash);
 	while (bytes_read != 0 && (is_there_a_new_line(stash, ft_strlen(stash)) == 0
@@ -95,6 +99,6 @@ char	*get_next_line(int fd)
 	if (is_there_a_new_line(stash, ft_strlen(stash)) == 1)
 		line = divide_the_stash(line, &stash, 0, 0);
 	else
-		return (make_malloc_and_fill(&line, stash, ft_strlen(stash)));
+		return (make_malloc_and_fill(&line, &stash, ft_strlen(stash)));
 	return (line);
 }

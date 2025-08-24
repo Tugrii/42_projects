@@ -14,16 +14,26 @@
 int main ()
 {
 	int fd = open("tugra", O_CREAT| O_RDWR, 0777);
+	char *ptr;
+	//get_next_line(fd));
+
+	/* printf("%s",get_next_line(fd));
 	printf("%s",get_next_line(fd));
 	printf("%s",get_next_line(fd));
-	printf("%s",get_next_line(fd));
-	printf("%s",get_next_line(fd));
-	printf("%s",get_next_line(fd));
+	printf("%s",get_next_line(fd)); */
 	//printf("%s",get_next_line(fd));
-	//get_next_line(fd);
-	//get_next_line(fd);
-	//get_next_line(fd);
-	//get_next_line(fd);
+	ptr = get_next_line(fd);
+	printf("%s",ptr);
+	free(ptr);
+	ptr = get_next_line(fd);
+	printf("%s",ptr);
+	free(ptr);
+	ptr = get_next_line(fd);
+	printf("%s",ptr);
+	free(ptr);
+	ptr = get_next_line(fd);
+	printf("%s",ptr);
+	free(ptr);
 	//get_next_line(fd);
 	//get_next_line(fd);
 	//get_next_line(fd);
