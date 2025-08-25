@@ -16,6 +16,8 @@ int	ft_strlen(char *str)
 {
 	int	i;
 
+	if (str == NULL)
+		return (0);
 	if (!str)
 		return (0);
 	i = 0;

@@ -14,18 +14,13 @@
 
 char	*make_malloc_and_fill(char **line, char **stash, int length_to_fill)
 {
-	static int	i = 0;
-
-	if (i == 0)
-	{
-		*line = malloc(length_to_fill);
-		if (!*line)
-			return (NULL);
-		fill_it(*line, *stash, length_to_fill, 0);
-		free(*stash);
-		*stash = NULL;
-	}
-	i++;
+	*line = malloc(length_to_fill + 1);
+	if (!*line)
+		return (NULL);
+	fill_it(*line, *stash, length_to_fill, 0);
+	(*line)[length_to_fill] = '\0';
+	free(*stash);
+	*stash = NULL;
 	return (*line);
 }
 
@@ -81,24 +76,25 @@ char	*get_next_line(int fd)
 	static char		*stash = NULL;
 	int				index;
 	char			*line;
-	int				bytes_read;
+	static int		bytes_read = 1;
 
-	bytes_read = 1;
 	index = 0;
 	line = NULL;
 	if (fd < 0)
-		return(line);
-	if (stash != NULL)
+		return (line);
+	if (stash)
 		index = ft_strlen(stash);
-	while (bytes_read != 0 && (is_there_a_new_line(stash, ft_strlen(stash)) == 0
-			|| stash == NULL))
+	while (bytes_read != 0)
 	{
 		bytes_read = fill_buffer(fd, buffer);
-		index += add_to_stash(&stash, buffer, index, bytes_read);
+		if (bytes_read != 0)
+			index += add_to_stash(&stash, buffer, index, bytes_read);
+		if (stash && is_there_a_new_line(stash, ft_strlen(stash)) == 1)
+			break ;
 	}
-	if (is_there_a_new_line(stash, ft_strlen(stash)) == 1)
-		line = divide_the_stash(line, &stash, 0, 0);
-	else
+	if (stash && is_there_a_new_line(stash, ft_strlen(stash)) == 1)
+		return (divide_the_stash(line, &stash, 0, 0));
+	if (bytes_read == 0 && stash)
 		return (make_malloc_and_fill(&line, &stash, ft_strlen(stash)));
 	return (line);
 }

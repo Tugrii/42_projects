@@ -31,9 +31,15 @@ int main ()
 	ptr = get_next_line(fd);
 	printf("%s",ptr);
 	free(ptr);
+	 ptr = get_next_line(fd);
+	printf("%s",ptr);
+	free(ptr);
 	ptr = get_next_line(fd);
 	printf("%s",ptr);
 	free(ptr);
+	/*ptr = get_next_line(fd);
+	printf("%s",ptr);
+	free(ptr); */
 	//get_next_line(fd);
 	//get_next_line(fd);
 	//get_next_line(fd);
