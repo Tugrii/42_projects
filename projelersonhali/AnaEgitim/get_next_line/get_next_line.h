@@ -17,12 +17,11 @@
 # include <fcntl.h>
 # include <stdio.h>
 
-int		is_there_a_new_line(char *buffer, int bytes_read);
-char	*divide_the_stash(char *line, char **stash, int i, int length_new_stas);
+int		is_there_a_null_or_new_line(char *buffer, int bytes_read, int i, char mode);
+char	*divide_the_stash(char *line, char **stash);
 char	*get_next_line(int fd);
 int		ft_strlen(char *str);
 void	fill_it(char *dst, char *src, int length, int j);
-int		free_and_rebuild(char **stash, char *new_stash, int length_new_stash);
 int		add_to_stash(char **stash, char *buffer, int index, int j);
 void	*fill_refill_buffer(int fd, char **buffer, char mode);
 int		make_malloc_for_each_stash(char **stash, int bytes_read);

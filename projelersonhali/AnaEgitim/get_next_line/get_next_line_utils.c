@@ -25,19 +25,6 @@ int	ft_strlen(char *str)
 		i++;
 	return (i);
 }
-
-int	free_and_rebuild(char **stash, char	*new_stash, int length_new_stash)
-{
-	free(*stash);
-	*stash = malloc(length_new_stash + 1);
-	if (!*stash)
-		return (0);
-	fill_it(*stash, new_stash, length_new_stash, 0);
-	(*stash)[length_new_stash] = '\0';
-	free(new_stash);
-	return (1);
-}
-
 void	fill_it(char *dst, char *src, int length, int j)
 {
 	int	i;
@@ -52,44 +39,60 @@ void	fill_it(char *dst, char *src, int length, int j)
 	return ;
 }
 
-char	*divide_the_stash(char *line, char **stash, int i, int length_new_stas)
+char	*divide_the_stash(char *line, char **stash)
 {
 	int		length_line;
 	char	*new_stash;
+	int		length_new_stash;
 
-	while ((*stash)[i] != '\n')
-		i++;
-	length_line = i + 1;
+	length_line = is_there_a_null_or_new_line(*stash, ft_strlen(*stash), 0, '\n');
 	line = malloc(length_line + 1);
 	if (!line)
 		return (NULL);
-	i++;
-	while ((*stash)[i] != '\0')
-	{
-		length_new_stas++;
-		i++;
-	}
-	new_stash = malloc(length_new_stas + 1);
-	if (!new_stash)
-		return (NULL);
-	fill_it(line, *stash, length_line, 0);
-	if (length_new_stas != 0)
-		fill_it(new_stash, *stash, length_new_stas, length_line);
-	free_and_rebuild(stash, new_stash, length_new_stas);
 	line[length_line] = '\0';
+	fill_it(line, *stash, length_line, 0);
+	length_new_stash = ft_strlen(*stash) - length_line;
+	if (length_new_stash == 0)
+	{
+		free (*stash);
+		*stash = NULL;
+	}
+	else
+	{
+		new_stash = malloc(length_new_stash + 1);
+		if (!new_stash)
+			return (NULL);
+		new_stash[length_new_stash] = '\0';
+		fill_it(new_stash, *stash, length_new_stash, length_line);
+		free (*stash);
+		*stash = new_stash;
+	}
 	return (line);
 }
 
-int	is_there_a_new_line(char *stash, int bytes_read)
+int	is_there_a_null_or_new_line(char *stash, int bytes_read, int i, char mode)
 {
-	int	i;
+	int	j;
 
-	i = 0;
-	while (i < bytes_read)
+	j = 0;
+	if (mode == '\n')
 	{
-		if (stash[i] == '\n')
-			return (1);
-		i++;
+		while (i < bytes_read)
+		{
+			if (stash[i] == '\n')
+				return (i + 1);
+			i++;
+		}
+	}
+	if (mode == '\0')
+	{
+		while (i < bytes_read)
+		{
+			if (stash[i] == '\0')
+				return (j);
+			i++;
+			j++;
+		}
 	}
 	return (0);
 }
