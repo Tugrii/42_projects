@@ -23,9 +23,9 @@ char	*get_next_line(int fd);
 int		ft_strlen(char *str);
 char	*last_stash_controls(char **stash, char **line);
 void	fill_it(char *dst, char *src, int length, int j);
+char	*tr_old_to_new(char **stash, int bytes_read);
 int		add_to_stash(char **stash, char *buffer, int index, int j);
 void	*fill_refill_buffer(int fd, char **buffer, char mode);
-int		make_malloc_for_each_stash(char **stash, int bytes_read);
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 100
 # endif

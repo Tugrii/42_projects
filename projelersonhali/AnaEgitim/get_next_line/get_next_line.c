@@ -12,44 +12,44 @@
 
 #include "get_next_line.h"
 
-
-int	make_malloc_for_each_stash(char **stash, int bytes_read)
+char	*tr_old_to_new(char **stash, int bytes_read)
 {
+	char	*new_stash;
+
+	new_stash = NULL;
+	int	last_datas_length;
 	int	total_length;
 
-	total_length = 0;
-
-	if (!*stash)
-		total_length = bytes_read;
-	else
-		total_length = ft_strlen(*stash) + bytes_read;
-	*stash = malloc(total_length + 1);
-	if (!*stash)
-		return (0);
-	(*stash)[total_length] = '\0';
-	return (total_length);
+	last_datas_length = ft_strlen(*stash);
+	total_length = last_datas_length + bytes_read;
+	new_stash = malloc(total_length + 1);
+	if (!new_stash)
+		return (NULL);
+	(new_stash)[total_length] = '\0';
+	fill_it(new_stash, *stash, last_datas_length, 0);
+	free (*stash);
+	return (new_stash);
 }
-
 int	add_to_stash(char **stash, char *buffer, int index, int bytes_read)
 {
-	char	*ptr;
-	int		length_old_stash;
-	int		j;
+	int			j;
 
 	j = 0;
-	length_old_stash = 0;
-	ptr = *stash;
-	make_malloc_for_each_stash(stash, bytes_read);
-	length_old_stash = ft_strlen(ptr);
-	while (length_old_stash--)
-		(*stash)[length_old_stash] = ptr[length_old_stash];
+	if (!*stash)
+	{
+		*stash = malloc(bytes_read + 1);
+		if (!*stash)
+			return (0);
+		(*stash)[bytes_read] = '\0';
+	}
+	else
+		*stash = tr_old_to_new(stash, bytes_read);
 	while (j < bytes_read)
 	{
 		(*stash)[index] = buffer[j];
 		index++;
 		j++;
 	}
-	free (ptr);
 	return (j);
 }
 
@@ -91,10 +91,10 @@ char	*get_next_line(int fd)
 		return (line);
 	if (stash)
 		index = ft_strlen(stash);
-	while (bytes_read != 0)
+	while (bytes_read > 0)
 	{
 		bytes_read = *(int *)fill_refill_buffer(fd, &buffer, 'i');
-		if (bytes_read != 0)
+		if (bytes_read > 0)
 			index += add_to_stash(&stash, buffer, index, bytes_read);
 		free((char *)fill_refill_buffer(fd, &buffer, 'p'));
 	}
