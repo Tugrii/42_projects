@@ -38,6 +38,22 @@ void	fill_it(char *dst, char *src, int length, int j)
 	}
 	return ;
 }
+char	*last_stash_controls(char **stash, char **line)
+{
+	int	length;
+
+	if (!*stash)
+		return (*line);
+	length = ft_strlen(*stash);
+	*line = malloc(length + 1);
+	if (!*line)
+		return(NULL);
+	(*line)[length] = '\0';
+	fill_it(*line, *stash, length, 0);
+	free(*stash);
+	*stash = NULL;
+	return (*line);
+}
 
 char	*divide_the_stash(char *line, char **stash)
 {
@@ -45,54 +61,44 @@ char	*divide_the_stash(char *line, char **stash)
 	char	*new_stash;
 	int		length_new_stash;
 
-	length_line = is_there_a_null_or_new_line(*stash, ft_strlen(*stash), 0, '\n');
+	//printf("%s","girdim");
+	length_line = is_there_a_new_line(*stash, ft_strlen(*stash), 0);
+	//printf("%d",length_line);
 	line = malloc(length_line + 1);
 	if (!line)
 		return (NULL);
 	line[length_line] = '\0';
-	fill_it(line, *stash, length_line, 0);
 	length_new_stash = ft_strlen(*stash) - length_line;
+	fill_it(line, *stash, length_line, 0);
 	if (length_new_stash == 0)
 	{
+		//printf("%s","FERRO");
 		free (*stash);
 		*stash = NULL;
-	}
+	}  
 	else
 	{
+		//printf("%s","TRİGONOMETRİ");
 		new_stash = malloc(length_new_stash + 1);
 		if (!new_stash)
 			return (NULL);
 		new_stash[length_new_stash] = '\0';
 		fill_it(new_stash, *stash, length_new_stash, length_line);
+		//printf("%s",*stash);
+		//printf("%s",new_stash);
 		free (*stash);
 		*stash = new_stash;
 	}
 	return (line);
 }
 
-int	is_there_a_null_or_new_line(char *stash, int bytes_read, int i, char mode)
+int	is_there_a_new_line(char *stash, int bytes_read, int i)
 {
-	int	j;
-
-	j = 0;
-	if (mode == '\n')
+	while (i < bytes_read)
 	{
-		while (i < bytes_read)
-		{
-			if (stash[i] == '\n')
-				return (i + 1);
-			i++;
-		}
-	}
-	if (mode == '\0')
-	{
-		while (i < bytes_read)
-		{
-			if (stash[i] == '\0')
-				return (j);
-			i++;
-			j++;
-		}
+		if (stash[i] == '\n')
+			return (i + 1);
+		i++;
 	}
 	return (0);
 }

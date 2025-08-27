@@ -5,42 +5,25 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgeler <tgeler@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/30 00:54:25 by tgeler            #+#    #+#             */
-/*   Updated: 2025/07/30 00:54:25 by tgeler           ###   ########.fr       */
+/*   Created: 2025/08/27 13:30:33 by tgeler            #+#    #+#             */
+/*   Updated: 2025/08/27 15:45:14 by tgeler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "get_next_line.h"
+#include "get_next_line.h"
+
 int main ()
 {
-	int fd = open("tugra", O_CREAT| O_RDWR, 0777);
-	char *ptr;
-	//get_next_line(fd));
-	int	i;
+	int i;
 
+	int fd = open("tugra", O_CREAT| O_RDWR , 0777);
 	i = 0;
-	/* printf("%s",get_next_line(fd));
-	printf("%s",get_next_line(fd));
-	printf("%s",get_next_line(fd));
-	printf("%s",get_next_line(fd)); */
-	//printf("%s",get_next_line(fd));
-	while (i < 7)
+	char *ptr;
+	while (i < 5)
 	{
 		ptr = get_next_line(fd);
 		printf("%s",ptr);
 		free(ptr);
-		i++;
+		i++ ;
 	}
-	/*ptr = get_next_line(fd);
-	printf("%s",ptr);
-	free(ptr); */
-	//get_next_line(fd);
-	//get_next_line(fd);
-	//get_next_line(fd);
-
-	//get_next_line(fd);
-	//get_next_line(fd);
-	//printf("%s",get_next_line(fd));
-	//printf("%s",get_next_line(fd));
 }
-// cc -Wall -Wextra  -Werror -D BUFFER_SIZE=42 main.c get_next_line.c get_next_line_utils.c

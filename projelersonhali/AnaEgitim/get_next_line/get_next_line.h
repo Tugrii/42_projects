@@ -17,15 +17,15 @@
 # include <fcntl.h>
 # include <stdio.h>
 
-int		is_there_a_null_or_new_line(char *buffer, int bytes_read, int i, char mode);
+int		is_there_a_new_line(char *buffer, int bytes_read, int i);
 char	*divide_the_stash(char *line, char **stash);
 char	*get_next_line(int fd);
 int		ft_strlen(char *str);
+char	*last_stash_controls(char **stash, char **line);
 void	fill_it(char *dst, char *src, int length, int j);
 int		add_to_stash(char **stash, char *buffer, int index, int j);
 void	*fill_refill_buffer(int fd, char **buffer, char mode);
 int		make_malloc_for_each_stash(char **stash, int bytes_read);
-char	*make_malloc_and_fill(char **line, char **stash, int length_to_fill);
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 100
 # endif

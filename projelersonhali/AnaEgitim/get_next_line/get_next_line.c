@@ -12,18 +12,6 @@
 
 #include "get_next_line.h"
 
-/* char	*make_malloc_and_fill(char **line, char **stash, int length_to_fill)
-{
-	printf("%s","evreka");
-	*line = malloc(length_to_fill + 1);
-	if (!*line)
-		return (NULL);
-	fill_it(*line, *stash, length_to_fill, 0);
-	(*line)[length_to_fill] = '\0';
-	free(*stash);
-	*stash = NULL;
-	return (*line);
-} */
 
 int	make_malloc_for_each_stash(char **stash, int bytes_read)
 {
@@ -94,9 +82,8 @@ char	*get_next_line(int fd)
 	static int		bytes_read = 1;
 	static int 		i = 1;
 
-	 printf("%s","\n");
-	printf("%d.CAGRI :",i);
-	printf("%s","\n");
+	/* printf("%d.CAGRI :",i);
+	printf("%s","\n"); */
 	i++;
 	index = 0;
 	line = NULL;
@@ -111,9 +98,9 @@ char	*get_next_line(int fd)
 			index += add_to_stash(&stash, buffer, index, bytes_read);
 		free((char *)fill_refill_buffer(fd, &buffer, 'p'));
 	}
-	if (stash)
+	/* if (!stash)
+		printf("%s","stashbos"); */
+	if (stash && is_there_a_new_line(stash, ft_strlen(stash), 0) != 0)
 		return (divide_the_stash(line, &stash));
-	/*else
-		return (make_malloc_and_fill(&line, &stash, ft_strlen(stash))); */
-	return (line);
+	return (last_stash_controls(&stash, &line));
 }
