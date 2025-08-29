@@ -6,7 +6,7 @@
 /*   By: tgeler <tgeler@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 13:30:33 by tgeler            #+#    #+#             */
-/*   Updated: 2025/08/27 15:45:14 by tgeler           ###   ########.fr       */
+/*   Updated: 2025/08/30 02:49:55 by tgeler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int main ()
 	int fd = open("tugra", O_CREAT| O_RDWR , 0777);
 	i = 0;
 	char *ptr;
+
 	while (i < 5)
 	{
 		ptr = get_next_line(fd);
@@ -26,4 +27,5 @@ int main ()
 		free(ptr);
 		i++ ;
 	}
+
 }
