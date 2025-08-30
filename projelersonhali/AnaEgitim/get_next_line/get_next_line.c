@@ -53,20 +53,23 @@ int	fill_buffer(char **stash, char **line, int index, int fd)
 	int		bytes_read;
 	char	*buffer;
 
-	bytes_read = 0;
-	while (is_there_a_new_line(*stash, ft_strlen(*stash), 0) == 0)
+	bytes_read = 1;
+	//printf("%s","fill_buffer");
+	while (is_there_a_new_line(*stash, ft_strlen(*stash), 0) == 0 || is_there_a_new_line(*stash, ft_strlen(*stash), 0) == 1)
 	{
 		buffer = malloc(BUFFER_SIZE + 1);
 		if (!buffer)
 			return (0);
 		buffer[BUFFER_SIZE] = '\0';
-		bytes_read = read(fd, buffer, BUFFER_SIZE);
+		if (bytes_read > 0)
+			bytes_read = read(fd, buffer, BUFFER_SIZE);
 		if (bytes_read <= 0)
 		{
 			free (buffer);
 			return (bytes_read);
 		}
 		index = add_to_stash(stash, buffer, index, bytes_read);
+		//printf("%s","stash_dolduruldu");
 		free (buffer);
 	}
 	if (is_there_a_new_line(*stash, ft_strlen(*stash), 0) != 0)
@@ -89,5 +92,7 @@ char	*get_next_line(int fd)
 		index = ft_strlen(stash);
 	if (bytes_read > 0)
 		bytes_read = fill_buffer(&stash, &line, index, fd);
+	if (is_there_a_new_line(stash, ft_strlen(stash), 0) == 1)
+		return (divide_the_stash(&line, &stash));
 	return (last_stash_controls(&stash, &line, bytes_read));
 }

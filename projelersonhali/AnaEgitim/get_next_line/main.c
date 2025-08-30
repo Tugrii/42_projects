@@ -6,7 +6,7 @@
 /*   By: tgeler <tgeler@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 13:30:33 by tgeler            #+#    #+#             */
-/*   Updated: 2025/08/30 02:49:55 by tgeler           ###   ########.fr       */
+/*   Updated: 2025/08/30 15:50:32 by tgeler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ int main ()
 	i = 0;
 	char *ptr;
 
-	while (i < 5)
+	while (i < 2)
 	{
 		ptr = get_next_line(fd);
-		printf("%s",ptr);
+		//printf("%s",ptr);
 		free(ptr);
 		i++ ;
 	}

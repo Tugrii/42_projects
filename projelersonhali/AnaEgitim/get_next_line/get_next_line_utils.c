@@ -45,6 +45,7 @@ char	*last_stash_controls(char **stash, char **line, int bytes_read)
 {
 	int	length;
 
+	//printf("%s","last_stash_controls");
 	if (bytes_read > 0)
 		return (*line);
 	else
@@ -69,7 +70,10 @@ char	*divide_the_stash(char **line, char **stash)
 	char	*new_stash;
 	int		length_new_stash;
 
+	//printf("%s","divide_the_stash");
+	//printf("%d",ft_strlen(*stash));
 	length_line = is_there_a_new_line(*stash, ft_strlen(*stash), 0);
+	//printf("%d",length_line);
 	*line = malloc(length_line + 1);
 	if (!*line)
 		return (NULL);
@@ -99,7 +103,10 @@ int	is_there_a_new_line(char *stash, int bytes_read, int i)
 	while (i < bytes_read)
 	{
 		if (stash[i] == '\n')
+		{
+			//printf("%d", i + 1);
 			return (i + 1);
+		}
 		i++;
 	}
 	return (0);
