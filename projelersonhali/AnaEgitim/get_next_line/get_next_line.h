@@ -23,7 +23,8 @@ char	*get_next_line(int fd);
 int		ft_strlen(char *str);
 char	*last_stash_controls(char **stash, char **line);
 void	fill_it(char *dst, char *src, int j, int i);
-void	add_to_stash(char **stash, char *buffer, int bytes_read);
+char	*add_to_stash(char **stash, char *buffer, int bytes_read);
+char *build_new_malloc_for_stash(char **stash, char *buffer, int bytes_read);
 void	fill_new_stash(char *new_stash, char *stash, int index, int length);
 int		fill_buffer(char **stash, char **line, int fd);
 # ifndef BUFFER_SIZE

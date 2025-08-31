@@ -30,10 +30,18 @@ void	fill_it(char *dst, char *src, int j, int i)
 
 	length = ft_strlen(src);
 	if (i == -1)
+		length = is_there_a_new_line(src, length, 0, '2');
+	if (i == -2)
 	{
 		i = 0;
-		length = is_there_a_new_line(src, length, 0, '2');
+		while (i < length)
+		{
+			dst[j + i] = src[i];
+			i++;
+		}
+		return ;
 	}
+	i = 0;
 	while (i < length)
 	{
 		dst[i] = src[j];
@@ -41,20 +49,6 @@ void	fill_it(char *dst, char *src, int j, int i)
 		i++;
 	}
 	return ;
-}
-
-char	*last_stash_controls(char **stash, char **line)
-{
-	if ((*stash)[0] == '\n')
-	{
-		*line = malloc(2);
-		if(!*line)
-			return (NULL);
-		(*line)[0] = '\n';
-		(*line)[1] = '\0';
-		free (*stash);
-		return (*line);
-	}
 }
 
 char	*divide_the_stash(char **line, char **stash)
@@ -93,11 +87,13 @@ int	is_there_a_new_line(char *string, int bytes_read, int i, char mode)
 	return_value = 0;
 	if (!string)
 		return (0);
+	if (string[0] == '\n')
+		return (1);
 	while (i < bytes_read)
 	{
 		if (string[i] == '\n')
 		{
-			return_value = i;
+			return_value = i + 1;
 			if (mode == '2')
 				return (return_value);
 		}
