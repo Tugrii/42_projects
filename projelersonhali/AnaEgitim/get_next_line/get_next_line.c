@@ -12,48 +12,59 @@
 
 #include "get_next_line.h"
 
-char	*tr_old_to_new(char **stash, int bytes_read)
+void	fill_new_stash(char *new_stash, char *stash, int index, int length)
 {
-	char	*new_stash;
-	int		total_length;
+	int	i;
 
-	total_length = ft_strlen(*stash) + bytes_read;
-	new_stash = malloc(total_length + 1);
+	i = 0;
+	while (i < length)
+	{
+		new_stash[i] = stash[index];
+		index++;
+		i++;
+	}
+	return ;
+}
+char *build_new_malloc_for_stash(char **stash, int bytes_read)
+{
+	int		length;
+	char	*new_stash;
+
+	length = ft_strlen(*stash) + bytes_read;
+	new_stash = malloc(length + 1);
 	if (!new_stash)
 		return (NULL);
-	new_stash[total_length] = '\0';
-	fill_it(new_stash, *stash, 0);
+	new_stash[length] = '\0';
+	fill_it(new_stash, *stash, 0, 0);
 	free (*stash);
 	return (new_stash);
 }
 
-int	add_to_stash(char **stash, char *buffer, int index, int bytes_read)
+void	add_to_stash(char **stash, char *buffer, int bytes_read)
 {
-	int			j;
+	char	*new_stash;
+	int		length;
 
-	j = 0;
+	length = ft_strlen(*stash) + bytes_read;
 	if (!*stash)
 	{
-		*stash = malloc(bytes_read + 1);
+		*stash = malloc(length + 1);
 		if (!*stash)
-			return (0);
-		(*stash)[bytes_read] = '\0';
+			return ;
+		(*stash)[length] = '\0';
+		fill_it(*stash, buffer, 0, 0);
+		return ;
 	}
 	else
-		*stash = tr_old_to_new(stash, bytes_read);
-	while (j < bytes_read)
-	{
-		(*stash)[index] = buffer[j];
-		index++;
-		j++;
-	}
-	return (index);
+		*stash = build_new_malloc_for_stash(stash, bytes_read);
+	fill_it(new_stash, buffer, 0, length);
+	return ;
 }
 
-int	fill_buffer(char **stash, char **line, int index, int fd)
+int	fill_buffer(char **stash, char **line, int fd)
 {
-	int		bytes_read;
-	char	*buffer;
+	int			bytes_read;
+	char		*buffer;
 
 	bytes_read = 1;
 	while (is_there_a_new_line(*stash, ft_strlen(*stash), 0, '1') == 0)
@@ -69,7 +80,7 @@ int	fill_buffer(char **stash, char **line, int index, int fd)
 			free (buffer);
 			return (bytes_read);
 		}
-		index = add_to_stash(stash, buffer, index, bytes_read);
+		add_to_stash(stash, buffer, bytes_read);
 		free (buffer);
 	}
 	if (is_there_a_new_line(*stash, ft_strlen(*stash), 0, '1') != 0)
@@ -80,17 +91,22 @@ int	fill_buffer(char **stash, char **line, int index, int fd)
 char	*get_next_line(int fd)
 {
 	static char		*stash = NULL;
-	int				index;
 	char			*line;
 	static int		bytes_read = 1;
-
-	index = 0;
+	static int		i = 1;
 	line = NULL;
 	if (fd < 0)
 		return (line);
-	if (stash)
-		index = ft_strlen(stash);
+	if (i == 3 && !*stash)
+		printf("%s","EVET");
+	if (ft_strlen(stash) == 1)
+	{
+		line = last_stash_controls(&stash, &line);
+		stash = NULL;
+		return (line);
+	}
 	if (bytes_read > 0)
-		bytes_read = fill_buffer(&stash, &line, index, fd);
-	return (last_stash_controls(&stash, &line, bytes_read));
+		bytes_read = fill_buffer(&stash, &line,fd);
+	i++;
+	return (line);
 }

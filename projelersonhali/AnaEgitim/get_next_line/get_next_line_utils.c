@@ -24,13 +24,16 @@ int	ft_strlen(char *str)
 	return (i);
 }
 
-void	fill_it(char *dst, char *src, int j)
+void	fill_it(char *dst, char *src, int j, int i)
 {
-	int	i;
 	int	length;
 
 	length = ft_strlen(src);
-	i = 0;
+	if (i == -1)
+	{
+		i = 0;
+		length = is_there_a_new_line(src, length, 0, '2');
+	}
 	while (i < length)
 	{
 		dst[i] = src[j];
@@ -40,24 +43,16 @@ void	fill_it(char *dst, char *src, int j)
 	return ;
 }
 
-char	*last_stash_controls(char **stash, char **line, int bytes_read)
+char	*last_stash_controls(char **stash, char **line)
 {
-	int	length;
-
-	if (bytes_read > 0)
-		return (*line);
-	else
+	if ((*stash)[0] == '\n')
 	{
-		if (!*stash)
+		*line = malloc(2);
+		if(!*line)
 			return (NULL);
-		length = ft_strlen(*stash);
-		*line = malloc(length + 1);
-		if (!*line)
-			return (NULL);
-		(*line)[length] = '\0';
-		fill_it(*line, *stash, 0);
+		(*line)[0] = '\n';
+		(*line)[1] = '\0';
 		free (*stash);
-		*stash = NULL;
 		return (*line);
 	}
 }
@@ -73,7 +68,7 @@ char	*divide_the_stash(char **line, char **stash)
 	if (!*line)
 		return (NULL);
 	(*line)[length_line] = '\0';
-	fill_it(*line, *stash, 0);
+	fill_it(*line, *stash, 0, -1);
 	length_new_stash = ft_strlen(*stash) - length_line;
 	if (length_new_stash == 0)
 	{
@@ -85,24 +80,24 @@ char	*divide_the_stash(char **line, char **stash)
 	if (!new_stash)
 		return (NULL);
 	new_stash[length_new_stash] = '\0';
-	fill_it(new_stash, *stash, length_line);
+	fill_new_stash(new_stash, *stash, length_line, length_new_stash);
 	free(*stash);
 	*stash = new_stash;
 	return (*line);
 }
 
-int	is_there_a_new_line(char *stash, int bytes_read, int i, char mode)
+int	is_there_a_new_line(char *string, int bytes_read, int i, char mode)
 {
 	int	return_value;
 
 	return_value = 0;
-	if (!stash)
+	if (!string)
 		return (0);
 	while (i < bytes_read)
 	{
-		if (stash[i] == '\n')
+		if (string[i] == '\n')
 		{
-			return_value = i + 1;
+			return_value = i;
 			if (mode == '2')
 				return (return_value);
 		}
