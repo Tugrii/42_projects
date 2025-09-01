@@ -12,6 +12,20 @@
 
 #include "get_next_line.h"
 
+void	last_stash_controls(char **stash, char **line)
+{
+	int	length;
+
+	if (!*stash)
+		return ;
+	length = ft_strlen(*stash);
+	*line = malloc(length + 1);
+	(*line)[length] = '\0';
+	fill_it(*line, *stash, 0, 0);
+	free (*stash);
+	*stash = NULL;
+	return ;
+}
 int	ft_strlen(char *str)
 {
 	int	i;

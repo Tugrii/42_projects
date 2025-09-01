@@ -84,6 +84,7 @@ int	fill_buffer(char **stash, char **line, int fd)
 			buffer[bytes_read] = '\0';
 		if (bytes_read <= 0)
 		{
+			last_stash_controls(stash, line);
 			free (buffer);
 			return (bytes_read);
 		}
