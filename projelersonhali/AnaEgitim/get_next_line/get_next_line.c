@@ -60,85 +60,41 @@ char	*add_to_stash(char **stash, char *buffer, int bytes_read)
 	return (*stash);
 }
 
-int	fill_buffer(char **stash, char **line, int fd)
+char	*fill_buffer(char **stash, char **line, int fd)
 {
 	int			bytes_read;
 	char		*buffer;
-/* 	static	int		i = 1;
-	static int 		j = 1; */
-/* 	if (i == 1)
-	{
-		printf("%s",*stash);
-	} */
+
 	while (is_there_a_new_line(*stash, ft_strlen(*stash), 0, '1') == 0)
 	{
-	/* 	if (i == 3)
-		{
-			printf("%s","DONGU_CALISTI");
-		} */
 		buffer = malloc(BUFFER_SIZE + 1);
 		if (!buffer)
-			return (0);
+			return (NULL);
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
 		if (bytes_read > 0)
 			buffer[bytes_read] = '\0';
 		if (bytes_read <= 0)
 		{
-			last_stash_controls(stash, line);
 			free (buffer);
-			return (bytes_read);
+			buffer = NULL; 
+			return (last_stash_controls(stash, line, &buffer, bytes_read));
 		}
-		/* if (i == 3)
-		{
-			printf("%s",buffer);
-		} */
 		*stash = add_to_stash(stash, buffer, bytes_read);
 		free (buffer);
+		buffer = NULL;
 	}
-	/*   if (i == 2)
-   {
-	   printf("%s","STAS_ONCEKI_DURUM:");
-	   printf("%s",*stash);
-	   printf("%s","UZUNLUK_STASH:");
-	   printf("%d",ft_strlen(*stash));
-   } */
 	if (is_there_a_new_line(*stash, ft_strlen(*stash), 0, '1') != 0)
 		*line = divide_the_stash(line, stash);
- 	/* if (i == 2)
-   {
-		printf("%s","STAS_SONRAKI_DURUM:");
-	   printf("%s",*stash);
-	   printf("%s","UZUNLUK_STASH:");
-	   printf("%d",ft_strlen(*stash));
-   } */
-	//i++;
-	return (bytes_read);
+	return (*line);
 }
 
 char	*get_next_line(int fd)
 {
 	static char		*stash = NULL;
 	char			*line;
-	//static int		i = 1;
+
 	line = NULL;
 	if (fd < 0)
-		return (line);
-	/* if (i == 2)
-	 {
-		printf("%s","BUSTASHTIR");
-		 printf("%s",stash);
-	 } */
-	fill_buffer(&stash, &line,fd);
-	// i++;
-	return (line);
-
+		return (NULL);
+	return (fill_buffer(&stash, &line,fd));
 }
-
-
-
-
-
-			/* printf("%s",*stash);
-			printf("%s","UZUNLUK_STASH:");
-			printf("%d",ft_strlen(*stash));
-			printf("%s","DIGERSTASH:"); */

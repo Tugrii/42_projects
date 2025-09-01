@@ -12,19 +12,33 @@
 
 #include "get_next_line.h"
 
-void	last_stash_controls(char **stash, char **line)
+char	*last_stash_controls(char **stash, char **line, char **buffer, int bytes_read)
 {
 	int	length;
 
 	if (!*stash)
-		return ;
-	length = ft_strlen(*stash);
-	*line = malloc(length + 1);
-	(*line)[length] = '\0';
-	fill_it(*line, *stash, 0, 0);
-	free (*stash);
-	*stash = NULL;
-	return ;
+	{
+		free(*buffer);
+		*buffer = NULL;
+		return (NULL);
+	}
+	if (bytes_read == -1)
+	{
+		free(*stash);
+		*stash = NULL;
+		return (NULL);
+	}
+	if (bytes_read == 0)
+	{
+		length = ft_strlen(*stash);
+		*line = malloc(length + 1);
+		(*line)[length] = '\0';
+		fill_it(*line, *stash, 0, 0);
+		free (*stash);
+		*stash = NULL;
+		return (*line);
+	}
+	return (NULL);
 }
 int	ft_strlen(char *str)
 {
@@ -115,25 +129,3 @@ int	is_there_a_new_line(char *string, int bytes_read, int i, char mode)
 	}
 	return (return_value);
 }
-
-	/* length_line = is_there_a_new_line(*stash, ft_strlen(*stash), 0);
-	*line = malloc(length_line + 1);
-	if (!*line)
-		return (NULL);
-	(*line)[length_line] = '\0';
-	fill_it(*line, *stash, 0, length_line);
-	length_new_stash = ft_strlen(*stash) - length_line;
-	if (length_new_stash == 0)
-	{
-		free(*stash);
-		*stash = NULL;
-		return (*line);
-	}
-	new_stash = malloc(length_new_stash + 1);
-	if (!new_stash)
-		return (NULL);
-	new_stash[length_new_stash] = '\0';
-	fill_it(new_stash, *stash, length_line, length_new_stash);
-	free(*stash);
-	*stash = new_stash;
-	return (*line); */
