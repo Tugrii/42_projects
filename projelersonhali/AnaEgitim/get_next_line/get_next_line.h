@@ -22,11 +22,12 @@ char	*divide_the_stash(char **line, char **stash);
 char	*get_next_line(int fd);
 int		ft_strlen(char *str);
 void	fill_it(char *dst, char *src, int j, int i);
-char	*add_to_stash(char **stash, char *buffer, int bytes_read);
-char *build_new_malloc_for_stash(char **stash, char *buffer, int bytes_read);
+char	*add_to_stash(char **stash, char *buffer, int bytes);
+char	*build_new_malloc_for_stash(char **stash, char *buffer, int bytes_read);
 void	fill_new_stash(char *new_stash, char *stash, int index, int length);
 char	*fill_buffer(char **stash, char **line, int fd);
-char	*last_stash_controls(char **stash, char **line, char **buffer, int bytes_read);
+char	*last_stash_controls(char **stash, char **line,
+			char **buffer, int bytes_read);
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
 # endif

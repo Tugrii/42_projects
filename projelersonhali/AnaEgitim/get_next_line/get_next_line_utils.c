@@ -12,7 +12,8 @@
 
 #include "get_next_line.h"
 
-char	*last_stash_controls(char **stash, char **line, char **buffer, int bytes_read)
+char	*last_stash_controls(char **stash, char **line,
+				char **buffer, int bytes_read)
 {
 	int	length;
 
@@ -28,16 +29,17 @@ char	*last_stash_controls(char **stash, char **line, char **buffer, int bytes_re
 		*stash = NULL;
 		return (NULL);
 	}
-		length = ft_strlen(*stash);
-		*line = malloc(length + 1);
-		if (!*line)
-			return (NULL);
-		(*line)[length] = '\0';
-		fill_it(*line, *stash, 0, 0);
-		free (*stash);
-		*stash = NULL;
-		return (*line);
+	length = ft_strlen(*stash);
+	*line = malloc(length + 1);
+	if (!*line)
+		return (NULL);
+	(*line)[length] = '\0';
+	fill_it(*line, *stash, 0, 0);
+	free (*stash);
+	*stash = NULL;
+	return (*line);
 }
+
 int	ft_strlen(char *str)
 {
 	int	i;

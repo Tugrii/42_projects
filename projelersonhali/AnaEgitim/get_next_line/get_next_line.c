@@ -26,7 +26,8 @@ void	fill_new_stash(char *new_stash, char *src, int start, int length)
 	}
 	return ;
 }
-char *build_new_malloc_for_stash(char **stash, char *buffer, int bytes_read)
+
+char	*build_new_malloc_for_stash(char **stash, char *buffer, int bytes_read)
 {
 	int		total_length;
 	char	*new_stash;
@@ -77,7 +78,7 @@ char	*fill_buffer(char **stash, char **line, int fd)
 		if (bytes_read <= 0)
 		{
 			free (buffer);
-			buffer = NULL; 
+			buffer = NULL;
 			return (last_stash_controls(stash, line, &buffer, bytes_read));
 		}
 		*stash = add_to_stash(stash, buffer, bytes_read);
@@ -97,5 +98,5 @@ char	*get_next_line(int fd)
 	line = NULL;
 	if (fd < 0)
 		return (NULL);
-	return (fill_buffer(&stash, &line,fd));
+	return (fill_buffer(&stash, &line, fd));
 }
