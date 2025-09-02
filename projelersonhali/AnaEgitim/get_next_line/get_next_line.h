@@ -14,8 +14,6 @@
 # define GET_NEXT_LINE_H
 # include <unistd.h>
 # include <stdlib.h>
-# include <fcntl.h>
-# include <stdio.h>
 
 int		is_there_a_new_line(char *string, int bytes_read, int i, char mode);
 char	*divide_the_stash(char **line, char **stash);
