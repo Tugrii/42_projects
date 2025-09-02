@@ -65,6 +65,7 @@ char	*fill_buffer(char **stash, char **line, int fd)
 	int			bytes_read;
 	char		*buffer;
 
+	bytes_read = 1;
 	while (is_there_a_new_line(*stash, ft_strlen(*stash), 0, '1') == 0)
 	{
 		buffer = malloc(BUFFER_SIZE + 1);
