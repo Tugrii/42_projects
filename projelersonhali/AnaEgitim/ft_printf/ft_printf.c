@@ -101,5 +101,6 @@ int	ft_printf(const char *type, ...)
 			type += 2;
 		}
 	}
+	va_end(argument);
 	return (return_value);
 }
