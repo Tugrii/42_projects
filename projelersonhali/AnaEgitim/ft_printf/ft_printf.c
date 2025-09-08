@@ -20,14 +20,14 @@ int	process3(const char *sub_type, va_list *argument)
 	{
 		unsigned_integer = va_arg(*argument, unsigned int);
 		if (*sub_type == 'x')
-			return (ft_puthex_fd(unsigned_integer, 1, 0, 0));
+			return (ft_puthex(unsigned_integer, 0, 0));
 		else
-			return (ft_puthex_fd(unsigned_integer, 1, 1, 0));
+			return (ft_puthex(unsigned_integer, 1, 0));
 	}
 	if (*sub_type == 'u')
 	{
 		unsigned_integer = va_arg(*argument, unsigned int);
-		return (put_un_int_fd(unsigned_integer, 1, 0));
+		return (put_un_int(unsigned_integer, 0));
 	}
 	return (0);
 }
@@ -46,7 +46,7 @@ int	process2(const char *sub_type, va_list *argument)
 			if (ptr == 0)
 				return (write (1, "(nil)", 5));
 			write (1, "0x", 2);
-			return (2 + ft_puthex_fd((unsigned long)ptr, 1, 0, 0));
+			return (2 + ft_puthex((unsigned long)ptr, 0, 0));
 		}
 	}
 	return (process3(sub_type, argument));
