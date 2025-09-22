@@ -14,7 +14,7 @@
 # define FT_PRINTF_H
 
 # include <stdarg.h>
-# include "Libft/libft.h"
+# include "../Libft/libft.h"
 
 int		ft_printf(const char *type, ...);
 int		process1(const char *sub_type, va_list *argument);
