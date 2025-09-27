@@ -6,19 +6,46 @@
 /*   By: tgeler <tgeler@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 21:24:58 by tgeler            #+#    #+#             */
-/*   Updated: 2025/09/24 20:39:39 by tgeler           ###   ########.fr       */
+/*   Updated: 2025/09/27 22:22:18 by tgeler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "library/Libft/libft.h"
 #include "check_status.h"
 
+int	check_map_only_contain_valid_characters(t_list *map)
+{
+	t_list	*traversal;
+	char	*line;
+	int		lenght_line;
+	int		i;
+
+	traversal = map;
+	traversal = traversal->next;
+	line = traversal->content;
+	length_line = ft_strlen(line);
+	while (traversal->next)
+	{
+		i = 0;
+		while (i < (length_line - 1))
+		{
+			if (line[i] != '0' && line[i] != '1' && line[i] != 'C'
+				&& line[i] != 'E' && line[i] != 'P')
+				return (0);
+			i++;
+		}
+		traversal = traversal->next;
+		line = traversal->content;
+	}
+	return (1);
+}
+
 int	check_map_rectangularity(t_list *map)
 {
 	int		current_line_length;
 	int		previous_line_length;
 	t_list	*traversal;
-	
+
 	traversal = map;
 	current_line_length = 0;
 	previous_line_length = 0;
@@ -45,14 +72,9 @@ int	check_map_is_closed(t_list *map)
 	while (traversal)
 	{
 		if ((traversal == map ) || !(traversal->next))
-		{
-			if (!(ft_strchr((traversal->content), '1')))
-			{
-				ft_printf("Map is not CLOSED!\n");
-				return (0);
-			}
-		}
-		truth = check_interval_line(traversal);
+			truth = check_last_and_initial(traversal);
+		else
+			truth = check_interval_line(traversal);
 		if (truth == 0)
 		{
 			ft_printf("Map is not CLOSED!\n");
@@ -88,26 +110,18 @@ int	check_map_has_one_exit_and_start(t_list *map)
 int	check_map_has_at_least_one_clctb(t_list *map)
 {
 	t_list 	*traversal;
-	char	*adress_catcher;
-	int		collectible_exist;
+	char	*line;
 
-	collectible_exist = 0;
 	traversal = map;
-	while (traversal)
+	traversal = traversal->next;
+	while (traversal->next)
 	{
-		adress_catcher = (traversal->content);
-		while (adress_catcher)
-		{			
-			adress_catcher = ft_strchr(adress_catcher, 'C');
-			if (adress_catcher)
-				return (1);
-		}
+		line = traversal->content;
+		line = ft_strchr(line, 'C');
+		if (line)
+			return (1);
 		traversal = traversal->next;
 	}
 	ft_printf("Error! The map has not even one collectible\n");
 	return (0);
-}
-int	check_not_surrounded(t_list *map);
-{
-	
 }
