@@ -6,12 +6,12 @@
 /*   By: tgeler <tgeler@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 21:24:58 by tgeler            #+#    #+#             */
-/*   Updated: 2025/09/27 22:22:18 by tgeler           ###   ########.fr       */
+/*   Updated: 2025/09/28 18:28:22 by tgeler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "library/Libft/libft.h"
 #include "check_status.h"
+#include "../../library/ft_printf/ft_printf.h"
 
 int	check_map_only_contain_valid_characters(t_list *map)
 {
@@ -67,14 +67,16 @@ int	check_map_is_closed(t_list *map)
 {
 	t_list	*traversal;
 	int		truth;
+	int		length_line;
 	
 	traversal = map;
+	length_line = ft_strlen(traversal->content);
 	while (traversal)
 	{
 		if ((traversal == map ) || !(traversal->next))
-			truth = check_last_and_initial(traversal);
+			truth = check_last_and_initial(traversal, length_line);
 		else
-			truth = check_interval_line(traversal);
+			truth = check_interval_line(traversal, length_line);
 		if (truth == 0)
 		{
 			ft_printf("Map is not CLOSED!\n");

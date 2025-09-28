@@ -6,11 +6,11 @@
 /*   By: tgeler <tgeler@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 19:34:53 by tgeler            #+#    #+#             */
-/*   Updated: 2025/09/27 22:01:47 by tgeler           ###   ########.fr       */
+/*   Updated: 2025/09/28 17:32:07 by tgeler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "library/Libft/libft.h"
+#include "../../library/Libft/libft.h"
 
 int	exit_start_counter(t_list *traversal, char mode)
 {

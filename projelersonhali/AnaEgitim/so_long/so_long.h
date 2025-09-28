@@ -6,7 +6,7 @@
 /*   By: tgeler <tgeler@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 20:32:14 by tgeler            #+#    #+#             */
-/*   Updated: 2025/09/23 21:12:31 by tgeler           ###   ########.fr       */
+/*   Updated: 2025/09/28 18:23:43 by tgeler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,10 @@
 # include <fcntl.h>
 # include <math.h>
 # include "library/minilibx-linux/mlx.h"
-# include "library/ft_printf/ft_printf.h"
 # include "library/get_next_line/get_next_line.h"
 # include "library/Libft/libft.h"
+# include "src/create_map/create_map.h"
+# include "src/check_map/check_status.h"
 # ifndef	TILE_SIZE
 #  define TILE_SIZE 32
 # endif

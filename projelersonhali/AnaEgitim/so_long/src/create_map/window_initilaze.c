@@ -6,11 +6,11 @@
 /*   By: tgeler <tgeler@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 18:30:22 by tgeler            #+#    #+#             */
-/*   Updated: 2025/09/23 20:58:56 by tgeler           ###   ########.fr       */
+/*   Updated: 2025/09/28 19:19:16 by tgeler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+# include "../../so_long.h"
 
 t_list *save_map_in_linked_list(t_list *map, int fd)
 {
@@ -44,63 +44,3 @@ int	window_initilaze()
 	if (!(create_win.window))
 		return (-3);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* 
-open, close, read, write,
-malloc, free, perror,
-strerror, exit
-• All functions of the math
-library (-lm compiler option,
-man man 3 math)
-• All functions of the MiniLibX
-• ft_printf and any equivalent
-YOU coded
-Libft authorized Yes
-*/
