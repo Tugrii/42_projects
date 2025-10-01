@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_code.c                                       :+:      :+:    :+:   */
+/*   put_images_to_map.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgeler <tgeler@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/28 17:36:12 by tgeler            #+#    #+#             */
-/*   Updated: 2025/09/28 17:36:12 by tgeler           ###   ########.fr       */
+/*   Created: 2025/10/01 23:07:28 by tgeler            #+#    #+#             */
+/*   Updated: 2025/10/01 23:07:28 by tgeler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../library/ft_printf/ft_printf.h"
+# include "create_map.h"
 
-int	error_mesages(int error)
+textures fill_map_with_images(window_management *win)
 {
-	if (error == 1)
-		ft_printf("There is no map! to build the game!\n");
-	if (error == 2)
-		ft_printf("Error occured! that cause by fd is not aplicable\n");
-	if (error == 3)
-		ft_printf("Error! Map has not valid name!\n");
-	if (error == 4)
-		ft_printf("Map is not valid!\n");
-	return (0);
+	textures	image;
+	int			img_size;
+
+	img_size = 32;
+	image.wall = mlx_xpm_file_to_image(win, "../../textures/wall.xpm", &img_size, &img_size);
+	image.wall = mlx_xpm_file_to_image(win, "../../textures/wall.xpm", &img_size, &img_size);
+	image.wall = mlx_xpm_file_to_image(win, "../../textures/wall.xpm", &img_size, &img_size);
 }

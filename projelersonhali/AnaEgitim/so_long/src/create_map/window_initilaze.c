@@ -6,11 +6,11 @@
 /*   By: tgeler <tgeler@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 18:30:22 by tgeler            #+#    #+#             */
-/*   Updated: 2025/09/28 19:19:16 by tgeler           ###   ########.fr       */
+/*   Updated: 2025/10/01 23:18:59 by tgeler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../so_long.h"
+#include "create_map.h"
 
 t_list *save_map_in_linked_list(t_list *map, int fd)
 {
@@ -32,15 +32,17 @@ t_list *save_map_in_linked_list(t_list *map, int fd)
 	return (map);
 }
 
-int	window_initilaze()
+window management window_initilaze(t_list *map)
 {
-	window_management	create_win;
+	window_management	win;
 	
-	//create_win.width = TILE_SIZE * 
-	create_win.minilibx = mlx_init();
-	if (!(create_win.minilibx))
+	win.width = TILE_SIZE * calculate_width_or_height(map, 'w');
+	win.length = TILE_SIZE * calculate_width_or_height(map, 'l');
+	win.minilibx = mlx_init();
+	if (!(win.minilibx))
 		return (-2);
-	create_win.window = mlx_new_window(create_win.minilibx, 640, 480, "so_long");
-	if (!(create_win.window))
+	win.window = mlx_new_window(win.minilibx, win.width, win.length , "so_long");
+	if (!(win.window))
 		return (-3);
+	return (win);
 }

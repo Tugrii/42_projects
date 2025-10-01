@@ -1,26 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_code.c                                       :+:      :+:    :+:   */
+/*   window_initilaze_utils.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgeler <tgeler@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/28 17:36:12 by tgeler            #+#    #+#             */
-/*   Updated: 2025/09/28 17:36:12 by tgeler           ###   ########.fr       */
+/*   Created: 2025/10/01 17:45:01 by tgeler            #+#    #+#             */
+/*   Updated: 2025/10/01 17:45:01 by tgeler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../library/ft_printf/ft_printf.h"
+#include "../../library/Libft/libft.h"
 
-int	error_mesages(int error)
+int	calculate_width_or_height(t_list *map, char mode)
 {
-	if (error == 1)
-		ft_printf("There is no map! to build the game!\n");
-	if (error == 2)
-		ft_printf("Error occured! that cause by fd is not aplicable\n");
-	if (error == 3)
-		ft_printf("Error! Map has not valid name!\n");
-	if (error == 4)
-		ft_printf("Map is not valid!\n");
+	t_list	*traversal;
+	int		width;
+	int		length;
+
+	heigth = 0;
+	traversal = map;
+	while (traversal)
+	{
+		if (!(traversal->next))
+			length = ft_strlen(traversal->content);
+		width++;
+		traversal = traversal->next;
+	}
+	if (mode == 'l')
+		return (length);
+	if (mode == 'w')
+		return (width);
 	return (0);
 }
