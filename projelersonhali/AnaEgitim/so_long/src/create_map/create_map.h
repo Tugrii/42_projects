@@ -29,10 +29,22 @@ typedef struct txtrs
 {
 	void	*wall;
 	void	*floor;
-	void	*player;
+	void	*player[4];
 	void	*collectible;
 	void	*exit;
 }textures;
+typedef struct gamer
+{
+	int	x;
+	int	y;
+	void *frames[4];
+	int	current_frame;
+}player;
+typedef struct put_images
+{
+	int x;
+	int y;
+}put_img;
 int	error_meages(int error);
 t_list *save_map_in_linked_list(t_list *map, int fd);
 window management window_initilaze(t_list *map);

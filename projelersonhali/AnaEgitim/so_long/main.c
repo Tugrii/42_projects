@@ -6,7 +6,7 @@
 /*   By: tgeler <tgeler@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 20:25:42 by tgeler            #+#    #+#             */
-/*   Updated: 2025/10/01 18:18:06 by tgeler           ###   ########.fr       */
+/*   Updated: 2025/10/02 12:10:31 by tgeler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,6 @@ int main(int argc, char **argv)
 	if (check_status(map) == 0)
 		return (error_mesages(4));
 	win = window_initilaze(map);
-	fill_map_with_images(&win);
+	put_images_to_map(&win, map);
 	close (fd);
 }
