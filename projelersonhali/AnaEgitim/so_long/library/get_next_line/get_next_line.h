@@ -18,7 +18,7 @@
 int		is_there_a_new_line(char *string, int bytes_read, int i, char mode);
 char	*divide_the_stash(char **line, char **stash);
 char	*get_next_line(int fd);
-int		ft_strlen(char *str);
+size_t	gnl_strlen(const char *str);
 void	fill_it(char *dst, char *src, int j, int i);
 char	*add_to_stash(char **stash, char *buffer, int bytes);
 char	*build_new_malloc_for_stash(char **stash, char *buffer, int bytes_read);

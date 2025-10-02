@@ -18,7 +18,7 @@ int	calculate_width_or_height(t_list *map, char mode)
 	int		width;
 	int		length;
 
-	heigth = 0;
+	length = 0;
 	traversal = map;
 	while (traversal)
 	{

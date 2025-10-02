@@ -15,7 +15,7 @@
 int	check_file_has_valid_name(char	*file_name)
 {
 	int		length;
-	char	*matced;
+	char	*matched;
 
 	length = ft_strlen(file_name);
 	matched = ft_strnstr(file_name, ".ber", length);

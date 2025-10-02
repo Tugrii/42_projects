@@ -6,7 +6,7 @@
 /*   By: tgeler <tgeler@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 18:30:22 by tgeler            #+#    #+#             */
-/*   Updated: 2025/10/01 23:18:59 by tgeler           ###   ########.fr       */
+/*   Updated: 2025/10/02 18:11:18 by tgeler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ t_list *save_map_in_linked_list(t_list *map, int fd)
 {
 	char	*line;
 	int		i;
-	char	*previous_line;
 	
 	i = 0;
 	map = NULL;
@@ -32,7 +31,7 @@ t_list *save_map_in_linked_list(t_list *map, int fd)
 	return (map);
 }
 
-window management window_initilaze(t_list *map)
+window_management window_initilaze(t_list *map)
 {
 	window_management	win;
 	
@@ -40,9 +39,9 @@ window management window_initilaze(t_list *map)
 	win.length = TILE_SIZE * calculate_width_or_height(map, 'l');
 	win.minilibx = mlx_init();
 	if (!(win.minilibx))
-		return (-2);
+		return (win);
 	win.window = mlx_new_window(win.minilibx, win.width, win.length , "so_long");
 	if (!(win.window))
-		return (-3);
+		return (win);
 	return (win);
 }

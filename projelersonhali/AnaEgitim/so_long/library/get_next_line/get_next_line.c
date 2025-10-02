@@ -33,7 +33,7 @@ char	*build_new_malloc_for_stash(char **stash, char *buffer, int bytes_read)
 	char	*new_stash;
 	int		old_length;
 
-	old_length = ft_strlen(*stash);
+	old_length = gnl_strlen(*stash);
 	total_length = old_length + bytes_read;
 	new_stash = malloc(total_length + 1);
 	if (!new_stash)
@@ -67,7 +67,7 @@ char	*fill_buffer(char **stash, char **line, int fd)
 	char		*buffer;
 
 	bytes_read = 1;
-	while (is_there_a_new_line(*stash, ft_strlen(*stash), 0, '1') == 0)
+	while (is_there_a_new_line(*stash, gnl_strlen(*stash), 0, '1') == 0)
 	{
 		buffer = malloc(BUFFER_SIZE + 1);
 		if (!buffer)
@@ -85,7 +85,7 @@ char	*fill_buffer(char **stash, char **line, int fd)
 		free (buffer);
 		buffer = NULL;
 	}
-	if (is_there_a_new_line(*stash, ft_strlen(*stash), 0, '1') != 0)
+	if (is_there_a_new_line(*stash, gnl_strlen(*stash), 0, '1') != 0)
 		*line = divide_the_stash(line, stash);
 	return (*line);
 }

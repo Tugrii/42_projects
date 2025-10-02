@@ -6,7 +6,7 @@
 /*   By: tgeler <tgeler@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 20:23:03 by tgeler            #+#    #+#             */
-/*   Updated: 2025/07/04 03:00:28 by tgeler           ###   ########.fr       */
+/*   Updated: 2025/10/02 17:49:25 by tgeler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,6 @@ char	*ft_strtrim(char const *s1, const char *set);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 int		ft_tolower(int c);
 int		ft_toupper(int c);
+void	ft_lstadd_back(t_list **lst, t_list *new);
 
 #endif

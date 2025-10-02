@@ -15,6 +15,7 @@
 #include "../../library/ft_printf/ft_printf.h"
 #include "../../library/Libft/libft.h"
 #include "../../library/minilibx-linux/mlx.h"
+#include "../../library/get_next_line/get_next_line.h"
 # ifndef	TILE_SIZE
 #  define TILE_SIZE 32
 # endif
@@ -24,6 +25,7 @@ typedef struct w_mng
 	void	*window;
 	int		width;
 	int		length;
+	int		empty;
 }window_management;
 typedef struct txtrs
 {
@@ -45,9 +47,12 @@ typedef struct put_images
 	int x;
 	int y;
 }put_img;
-int	error_meages(int error);
+int	error_messages(int error);
 t_list *save_map_in_linked_list(t_list *map, int fd);
-window management window_initilaze(t_list *map);
+window_management window_initilaze(t_list *map);
 int	calculate_width_or_height(t_list *map, char mode);
 textures fill_map_with_images(window_management *win);
+int	put_images_to_map(window_management *win, t_list *map);
+void	put_all_images(window_management *win, textures *image, t_list	*map, int length);
+void	put_all_images_utils(window_management *win, textures *image, put_img *cordinat, char *line);
 #endif

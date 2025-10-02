@@ -6,7 +6,7 @@
 /*   By: tgeler <tgeler@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 20:25:42 by tgeler            #+#    #+#             */
-/*   Updated: 2025/10/02 12:10:31 by tgeler           ###   ########.fr       */
+/*   Updated: 2025/10/02 23:17:46 by tgeler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,17 @@ int main(int argc, char **argv)
 	t_list	*map;
 	window_management win;
 	
+	map = NULL;
 	if (argc != 2)
-		return (error_mesages(1));
+		return (error_messages(1));
 	fd = open(argv[1],O_RDONLY,0777);
 	if (fd < 0)
-		return (error_mesages(2));
+		return (error_messages(2));
 	if (check_file_has_valid_name(argv[1]) == 0)
-		return (error_mesages(3));
-	map = save_map_in_linked_list(&map, fd);
+		return (error_messages(3));
+	map = save_map_in_linked_list(map, fd);
 	if (check_status(map) == 0)
-		return (error_mesages(4));
+		return (error_messages(4));
 	win = window_initilaze(map);
 	put_images_to_map(&win, map);
 	close (fd);

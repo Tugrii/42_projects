@@ -12,7 +12,7 @@
 
 #include "../../library/ft_printf/ft_printf.h"
 
-int	error_mesages(int error)
+int	error_messages(int error)
 {
 	if (error == 1)
 		ft_printf("There is no map! to build the game!\n");

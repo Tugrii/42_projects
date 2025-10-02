@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 # include "create_map.h"
+
 void	put_all_images_utils(window_management *win, textures *image, put_img *cordinat, char *line)
 {
 
@@ -70,5 +71,6 @@ int	put_images_to_map(window_management *win, t_list *map)
 
 	line_length = ft_strlen(map->content) - 1;
 	image = fill_map_with_images(win);
-	put_all_images(win, image, map, line_length);
+	put_all_images(win, &image, map, line_length);
+	return (0);
 }
