@@ -36,6 +36,7 @@ void	put_all_images(window_management *win, textures *image, t_list	*map, int le
 	put_img		cordinat;
 	traversal = map;
 	cordinat.y = 0;
+	length -= 1;
 	while(traversal)
 	{
 		line = traversal->content;
@@ -56,12 +57,12 @@ textures fill_map_with_images(window_management *win)
 	int			img_size;
 
 	img_size = 32;
-	image.wall = mlx_xpm_file_to_image(win->minilibx, "../../textures/wall.xpm", &img_size, &img_size);
-	image.collectible = mlx_xpm_file_to_image(win->minilibx, "../../textures/collectible.xpm", &img_size, &img_size);
-	image.player[0] = mlx_xpm_file_to_image(win->minilibx, "../../textures/char-_1_.xpm", &img_size, &img_size);
-	image.player[1] = mlx_xpm_file_to_image(win->minilibx, "../../textures/char-_2_.xpm", &img_size, &img_size);
-	image.player[2] = mlx_xpm_file_to_image(win->minilibx, "../../textures/char-_3_.xpm", &img_size, &img_size);
-	image.player[3] = mlx_xpm_file_to_image(win->minilibx, "../../textures/char-_4_.xpm", &img_size, &img_size);
+	image.wall = mlx_xpm_file_to_image(win->minilibx, "./textures/wall.xpm", &img_size, &img_size);
+	image.collectible = mlx_xpm_file_to_image(win->minilibx, "./textures/collectible.xpm", &img_size, &img_size);
+	image.player[0] = mlx_xpm_file_to_image(win->minilibx, "./textures/char-_1_.xpm", &img_size, &img_size);
+	image.player[1] = mlx_xpm_file_to_image(win->minilibx, "./textures/char-_2_.xpm", &img_size, &img_size);
+	image.player[2] = mlx_xpm_file_to_image(win->minilibx, "./textures/char-_3_.xpm", &img_size, &img_size);
+	image.player[3] = mlx_xpm_file_to_image(win->minilibx, "./textures/char-_4_.xpm", &img_size, &img_size);
 	return (image);
 }
 int	put_images_to_map(window_management *win, t_list *map)
@@ -69,7 +70,7 @@ int	put_images_to_map(window_management *win, t_list *map)
 	textures	image;
 	int			line_length;
 
-	line_length = ft_strlen(map->content) - 1;
+	line_length = ft_strlen(map->content);
 	image = fill_map_with_images(win);
 	put_all_images(win, &image, map, line_length);
 	return (0);

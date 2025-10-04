@@ -12,7 +12,7 @@
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 
 LIBFT_SRCS = library/Libft/ft_atoi.c \
 	library/Libft/ft_bzero.c\

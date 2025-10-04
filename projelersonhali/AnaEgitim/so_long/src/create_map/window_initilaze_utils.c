@@ -18,18 +18,19 @@ int	calculate_width_or_height(t_list *map, char mode)
 	int		width;
 	int		length;
 
-	length = 0;
+	width = 0;
 	traversal = map;
+	if (!traversal)
+		return (0);
+	if (mode == 'l')
+	{
+		length = ft_strlen(traversal->content) - 1;
+		return (length);
+	}
 	while (traversal)
 	{
-		if (!(traversal->next))
-			length = ft_strlen(traversal->content);
 		width++;
 		traversal = traversal->next;
 	}
-	if (mode == 'l')
-		return (length);
-	if (mode == 'w')
-		return (width);
-	return (0);
+	return (width);
 }

@@ -6,7 +6,7 @@
 /*   By: tgeler <tgeler@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 21:24:58 by tgeler            #+#    #+#             */
-/*   Updated: 2025/10/04 17:33:53 by tgeler           ###   ########.fr       */
+/*   Updated: 2025/10/04 20:13:25 by tgeler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,14 +71,16 @@ int	check_map_is_closed(t_list *map)
 {
 	t_list	*traversal;
 	int		truth;
+	int		length;
 	
 	traversal = map;
+	length = ft_strlen(traversal->content);
 	while (traversal)
 	{
 		if ((traversal == map ) || !(traversal->next))
-			truth = check_last_and_initial(traversal, ft_strlen(traversal->content));
+			truth = check_last_and_initial(traversal, length);
 		else
-			truth = check_interval_line(traversal, ft_strlen(traversal->content));
+			truth = check_interval_line(traversal, length);
 		if (truth == 0)
 		{
 			ft_printf("Map is not CLOSED!\n");

@@ -23,8 +23,8 @@ typedef struct w_mng
 {
 	void	*minilibx;
 	void	*window;
-	int		width;
-	int		length;
+	unsigned int		width;
+	unsigned int		length;
 	int		empty;
 }window_management;
 typedef struct txtrs
@@ -49,7 +49,7 @@ typedef struct put_images
 }put_img;
 int	error_messages(int error);
 t_list *save_map_in_linked_list(t_list *map, int fd);
-window_management window_initilaze(t_list *map);
+void window_initilaze(t_list *map, window_management	*win);
 int	calculate_width_or_height(t_list *map, char mode);
 textures fill_map_with_images(window_management *win);
 int	put_images_to_map(window_management *win, t_list *map);
