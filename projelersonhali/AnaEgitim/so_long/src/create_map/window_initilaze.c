@@ -6,7 +6,7 @@
 /*   By: tgeler <tgeler@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 18:30:22 by tgeler            #+#    #+#             */
-/*   Updated: 2025/10/02 18:11:18 by tgeler           ###   ########.fr       */
+/*   Updated: 2025/10/04 15:44:24 by tgeler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,14 @@
 t_list *save_map_in_linked_list(t_list *map, int fd)
 {
 	char	*line;
-	int		i;
+	t_list	*new_node;
 	
-	i = 0;
-	map = NULL;
 	line = get_next_line(fd);
 	while (line)
 	{
-		if (i != 0)
-			line = get_next_line(fd);
-		ft_lstadd_back(&map, ft_lstnew(line));
-		free(line);
-		i++;
+		new_node = ft_lstnew(line);
+		ft_lstadd_back(&map, new_node);
+		line = get_next_line(fd);
 	}
 	return (map);
 }

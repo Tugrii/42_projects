@@ -6,7 +6,7 @@
 /*   By: tgeler <tgeler@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 21:24:58 by tgeler            #+#    #+#             */
-/*   Updated: 2025/10/02 23:54:06 by tgeler           ###   ########.fr       */
+/*   Updated: 2025/10/04 17:33:53 by tgeler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,21 +45,25 @@ int	check_map_rectangularity(t_list *map)
 	int		current_line_length;
 	int		previous_line_length;
 	t_list	*traversal;
+	int		i;
 
+	i = 1;
 	traversal = map;
-	current_line_length = 0;
-	previous_line_length = 0;
+	current_line_length = ft_strlen(traversal->content);
 	while (traversal)
 	{
-		previous_line_length = ft_strlen(traversal->content);
-		if ((previous_line_length != current_line_length) && previous_line_length != 0)
+		if (i != 1)
+			previous_line_length = current_line_length;
+		current_line_length = ft_strlen(traversal->content);
+		if (!ft_strchr(traversal->content, '\n'))
+			previous_line_length -= 1;
+		if (i != 1 && (previous_line_length != current_line_length))
 		{
-			ft_printf("Map is not RECTANGULAR\n");		
+			ft_printf("Map is not RECTANGULAR!\n");			
 			return (0);
 		}
 		traversal = traversal->next;
-		if (traversal)
-			current_line_length = ft_strlen(traversal->content);
+		i++;
 	}
 	return (1);
 }
@@ -67,16 +71,14 @@ int	check_map_is_closed(t_list *map)
 {
 	t_list	*traversal;
 	int		truth;
-	int		length_line;
 	
 	traversal = map;
-	length_line = ft_strlen(traversal->content);
 	while (traversal)
 	{
 		if ((traversal == map ) || !(traversal->next))
-			truth = check_last_and_initial(traversal, length_line);
+			truth = check_last_and_initial(traversal, ft_strlen(traversal->content));
 		else
-			truth = check_interval_line(traversal, length_line);
+			truth = check_interval_line(traversal, ft_strlen(traversal->content));
 		if (truth == 0)
 		{
 			ft_printf("Map is not CLOSED!\n");
@@ -102,9 +104,9 @@ int	check_map_has_one_exit_and_start(t_list *map)
 		traversal = traversal->next;
 	}
 	if (number_of_starts != 1)
-		ft_printf("Error! Map has %d%s\n",number_of_starts, "STARTS!");
+		ft_printf("Error! Map has %d%s\n",number_of_starts, " STARTS!");
 	if (number_of_exits != 1)
-		ft_printf("Error! Map has%d%s\n",number_of_exits, "EXITS!");
+		ft_printf("Error! Map has %d%s\n",number_of_exits, " EXITS!");
 	if (number_of_starts != 1 || number_of_exits != 1)
 		return (0);
 	return (1);	
