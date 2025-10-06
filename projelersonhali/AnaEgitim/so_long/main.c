@@ -6,7 +6,7 @@
 /*   By: tgeler <tgeler@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 20:25:42 by tgeler            #+#    #+#             */
-/*   Updated: 2025/10/04 23:11:19 by tgeler           ###   ########.fr       */
+/*   Updated: 2025/10/06 21:15:56 by tgeler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,9 @@ int main(int argc, char **argv)
 		return (error_messages(4));
 	window_initilaze(map, &win);
 	if (!win.minilibx || !win.window)
-	{
-    	ft_printf("mlx_init or mlx_new_window failed");
-    	exit(1);
-	}
+		return (error_messages(5));
 	put_images_to_map(&win, map);
-	mlx_loop(win.minilibx);
+	run_map(map, )
 	close (fd);
 	return (0);
 }

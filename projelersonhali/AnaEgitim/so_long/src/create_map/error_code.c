@@ -22,5 +22,10 @@ int	error_messages(int error)
 		ft_printf("Error! Map has not valid name!\n");
 	if (error == 4)
 		ft_printf("Map is not valid!\n");
+	if (error == 5)
+	{
+		ft_printf("mlx_init or mlx_new_window failed\n");
+		exit(1);
+	}
 	return (0);
 }

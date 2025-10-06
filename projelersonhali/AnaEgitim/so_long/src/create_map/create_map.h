@@ -35,13 +35,6 @@ typedef struct txtrs
 	void	*collectible;
 	void	*exit;
 }textures;
-typedef struct gamer
-{
-	int	x;
-	int	y;
-	void *frames[4];
-	int	current_frame;
-}player;
 typedef struct put_images
 {
 	int x;

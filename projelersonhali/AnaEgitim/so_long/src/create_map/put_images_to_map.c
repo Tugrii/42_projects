@@ -15,6 +15,8 @@
 void	put_all_images_utils(window_management *win, textures *image, put_img *cordinat, char *line)
 {
 
+	if (line[cordinat->x] == '0')
+		mlx_put_image_to_window(win->minilibx , win->window, image->floor, (cordinat->x) * TILE_SIZE, (cordinat->y) * TILE_SIZE);
 	if (line[cordinat->x] == '1')
 		mlx_put_image_to_window(win->minilibx , win->window, image->wall, (cordinat->x) * TILE_SIZE, (cordinat->y) * TILE_SIZE);
 	if (line[cordinat->x] == 'C')
@@ -59,6 +61,7 @@ textures fill_map_with_images(window_management *win)
 	img_size = 32;
 	image.wall = mlx_xpm_file_to_image(win->minilibx, "./textures/wall.xpm", &img_size, &img_size);
 	image.collectible = mlx_xpm_file_to_image(win->minilibx, "./textures/collectible.xpm", &img_size, &img_size);
+	image.floor = mlx_xpm_file_to_image(win->minilibx, "./textures/floor.xpm", &img_size, &img_size);
 	image.player[0] = mlx_xpm_file_to_image(win->minilibx, "./textures/char-_1_.xpm", &img_size, &img_size);
 	image.player[1] = mlx_xpm_file_to_image(win->minilibx, "./textures/char-_2_.xpm", &img_size, &img_size);
 	image.player[2] = mlx_xpm_file_to_image(win->minilibx, "./textures/char-_3_.xpm", &img_size, &img_size);

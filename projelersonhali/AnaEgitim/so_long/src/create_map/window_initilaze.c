@@ -6,7 +6,7 @@
 /*   By: tgeler <tgeler@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 18:30:22 by tgeler            #+#    #+#             */
-/*   Updated: 2025/10/04 21:59:40 by tgeler           ###   ########.fr       */
+/*   Updated: 2025/10/07 00:08:46 by tgeler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void window_initilaze(t_list *map, window_management	*win)
 	win->minilibx = mlx_init();
 	if (!(win->minilibx))
 		return ;
-	win->window = mlx_new_window(win->minilibx, win->width, win->length , "so_long");
+	win->window = mlx_new_window(win->minilibx, win->length, win->width , "so_long");
 	if (!(win->window))
 		return ;
 	return ;
