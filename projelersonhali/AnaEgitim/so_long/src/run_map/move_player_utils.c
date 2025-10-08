@@ -30,3 +30,27 @@ int	check_is_wall_collectible(cordinat_map_infos *map, char mode)
 		return (1);
 	return (0);
 }
+int	find_exits_cordinates(cordinat_map_infos *exit, char mode)
+{
+	t_list *traversal;
+	char	*line;
+	int		x;
+	int		y;
+
+	traversal = exit->map_content;
+	while (traversal)
+	{
+		line = traversal->content;
+		x = 0;
+		while (i < exit->map_length)
+		{
+			if (line[x] == 'E' && mode == 'x')
+				return (x);
+			if (line[x] == 'E' && mode == 'y')
+				return (y)
+			x++;
+		}
+		y++;
+		traversal = traversal->next;
+	}
+}
