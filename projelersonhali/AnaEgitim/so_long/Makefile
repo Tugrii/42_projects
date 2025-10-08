@@ -69,8 +69,12 @@ SO_LONG_SRCS = src/create_map/error_code.c\
 				src/check_map/check_not_surrounded_utils.c\
 				src/check_map/check_map_is_closed_utils.c\
 				src/check_map/check_map_has_one_exit_and_start_utils.c\
-				src/check_map/check_file_has_valid_name.c
-
+				src/check_map/check_file_has_valid_name.c\
+				src/run_map/run_map.c\
+				src/run_map/move_player_utils.c\
+				src/run_map/move_player.c\
+				src/run_map/handle_key.c\
+				src/run_map/find_initial_position.c      
 NAME = so_long
 
 SRCS = main.c $(LIBFT_SRCS) $(FT_PRINTF_SRCS) $(GNL_SRCS) $(SO_LONG_SRCS)

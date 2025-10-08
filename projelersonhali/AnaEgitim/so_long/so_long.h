@@ -6,7 +6,7 @@
 /*   By: tgeler <tgeler@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 20:32:14 by tgeler            #+#    #+#             */
-/*   Updated: 2025/10/06 19:30:37 by tgeler           ###   ########.fr       */
+/*   Updated: 2025/10/08 17:07:37 by tgeler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,5 @@
 # include "src/create_map/create_map.h"
 # include "src/check_map/check_status.h"
 # include "src/run_map/run_map.h"
-t_list *save_map_in_linked_list(t_list *map, int fd);
-
 
 #endif

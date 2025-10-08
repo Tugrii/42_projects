@@ -21,6 +21,8 @@ void	put_all_images_utils(window_management *win, textures *image, put_img *cord
 		mlx_put_image_to_window(win->minilibx , win->window, image->wall, (cordinat->x) * TILE_SIZE, (cordinat->y) * TILE_SIZE);
 	if (line[cordinat->x] == 'C')
 		mlx_put_image_to_window(win->minilibx , win->window, image->collectible, (cordinat->x) * TILE_SIZE, (cordinat->y) * TILE_SIZE);
+	if (line[cordinat->x] == 'E')
+		mlx_put_image_to_window(win->minilibx , win->window, image->exit_close, (cordinat->x) * TILE_SIZE, (cordinat->y) * TILE_SIZE);
 	if (line[cordinat->x] == 'P')
 	{
 		mlx_put_image_to_window(win->minilibx, win->window,
@@ -62,6 +64,8 @@ textures fill_map_with_images(window_management *win)
 	image.wall = mlx_xpm_file_to_image(win->minilibx, "./textures/wall.xpm", &img_size, &img_size);
 	image.collectible = mlx_xpm_file_to_image(win->minilibx, "./textures/collectible.xpm", &img_size, &img_size);
 	image.floor = mlx_xpm_file_to_image(win->minilibx, "./textures/floor.xpm", &img_size, &img_size);
+	image.exit[0] = mlx_xpm_file_to_image(win->minilibx, "./textures/exit_open.xpm", &img_size, &img_size);
+	image.exit[1] = mlx_xpm_file_to_image(win->minilibx, "./textures/exit_close.xpm", &img_size, &img_size);
 	image.player[0] = mlx_xpm_file_to_image(win->minilibx, "./textures/char-_1_.xpm", &img_size, &img_size);
 	image.player[1] = mlx_xpm_file_to_image(win->minilibx, "./textures/char-_2_.xpm", &img_size, &img_size);
 	image.player[2] = mlx_xpm_file_to_image(win->minilibx, "./textures/char-_3_.xpm", &img_size, &img_size);

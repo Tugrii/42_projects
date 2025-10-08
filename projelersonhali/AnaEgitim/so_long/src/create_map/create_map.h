@@ -33,7 +33,8 @@ typedef struct txtrs
 	void	*floor;
 	void	*player[4];
 	void	*collectible;
-	void	*exit;
+	void	*exit[2];
+	int 	index;
 }textures;
 typedef struct put_images
 {

@@ -6,7 +6,7 @@
 /*   By: tgeler <tgeler@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 20:25:42 by tgeler            #+#    #+#             */
-/*   Updated: 2025/10/06 21:15:56 by tgeler           ###   ########.fr       */
+/*   Updated: 2025/10/08 17:00:14 by tgeler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int main(int argc, char **argv)
 	if (!win.minilibx || !win.window)
 		return (error_messages(5));
 	put_images_to_map(&win, map);
-	run_map(map, )
+	run_map(map, &win);
 	close (fd);
 	return (0);
 }
