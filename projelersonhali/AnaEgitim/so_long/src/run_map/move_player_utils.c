@@ -42,15 +42,16 @@ int	find_exits_cordinates(cordinat_map_infos *exit, char mode)
 	{
 		line = traversal->content;
 		x = 0;
-		while (i < exit->map_length)
+		while (x < exit->map_length)
 		{
 			if (line[x] == 'E' && mode == 'x')
 				return (x);
 			if (line[x] == 'E' && mode == 'y')
-				return (y)
+				return (y);
 			x++;
 		}
 		y++;
 		traversal = traversal->next;
 	}
+	return (0);
 }

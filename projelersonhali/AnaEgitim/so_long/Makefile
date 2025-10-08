@@ -74,7 +74,8 @@ SO_LONG_SRCS = src/create_map/error_code.c\
 				src/run_map/move_player_utils.c\
 				src/run_map/move_player.c\
 				src/run_map/handle_key.c\
-				src/run_map/find_initial_position.c      
+				src/run_map/find_initial_position.c\
+				src/run_map/take_the_struct.c
 NAME = so_long
 
 SRCS = main.c $(LIBFT_SRCS) $(FT_PRINTF_SRCS) $(GNL_SRCS) $(SO_LONG_SRCS)

@@ -22,7 +22,7 @@ void	put_all_images_utils(window_management *win, textures *image, put_img *cord
 	if (line[cordinat->x] == 'C')
 		mlx_put_image_to_window(win->minilibx , win->window, image->collectible, (cordinat->x) * TILE_SIZE, (cordinat->y) * TILE_SIZE);
 	if (line[cordinat->x] == 'E')
-		mlx_put_image_to_window(win->minilibx , win->window, image->exit_close, (cordinat->x) * TILE_SIZE, (cordinat->y) * TILE_SIZE);
+		mlx_put_image_to_window(win->minilibx , win->window, image->exit[1], (cordinat->x) * TILE_SIZE, (cordinat->y) * TILE_SIZE);
 	if (line[cordinat->x] == 'P')
 	{
 		mlx_put_image_to_window(win->minilibx, win->window,

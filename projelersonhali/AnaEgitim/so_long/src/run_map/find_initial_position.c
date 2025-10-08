@@ -15,7 +15,6 @@
 void	find_initial_position(cordinat_map_infos *player)
 {
 	t_list	*traversal;
-	int		length;
 	char	*line;
 
 	traversal = player->map_content;
@@ -32,7 +31,7 @@ void	find_initial_position(cordinat_map_infos *player)
 			player->x++;
 		}
 		player->y++;
-		traversal->next;
+		traversal = traversal->next;
 	}
 	return ;
 }
