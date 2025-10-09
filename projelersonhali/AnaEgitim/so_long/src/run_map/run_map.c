@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 # include "run_map.h"
+# include "../../library/ft_printf/ft_printf.h"
 
 int	run_map(t_list *map, window_management *win)
 {
@@ -19,6 +20,8 @@ int	run_map(t_list *map, window_management *win)
 	player.map_content = map;
 	player.minilibx = win->minilibx;
 	player.window = win->window;
+	player.collectibles_amount = 0;
+	//find_first_clb_amount(&player);
 	find_initial_position(&player);
 	mlx_hook(win->window, 2, (1L << 0) , handle_key, &player);
 	mlx_loop(win->minilibx);

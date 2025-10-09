@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 # include "run_map.h"
-
+# include "../../library/ft_printf/ft_printf.h"
 int	move_player(cordinat_map_infos *player, int x, int y)
 {
 	textures	images;
@@ -20,14 +20,15 @@ int	move_player(cordinat_map_infos *player, int x, int y)
 
 	temp = take_the_struct(player);
 	images = fill_map_with_images(&temp);
-	if (check_is_wall_collectible(player, '1') == 0)
+	if (check_is_wall_collectible(player, x, y, '1') == 0)
 	{
-		if (player->collectibles_amount != 0 && player->collectibles_amount != -42 && check_is_wall_collectible(player, 'C') == 1)
+		if (player->collectibles_amount != 0 && player->collectibles_amount != -42 && check_is_wall_collectible(player, x, y, 'C') == 1)
 			player->collectibles_amount--;
 		mlx_put_image_to_window(player->minilibx , player->window, images.floor, (player->x) * TILE_SIZE, (player->y) * TILE_SIZE);
 		mlx_put_image_to_window(player->minilibx , player->window, images.player[0], ((player->x) + x) * TILE_SIZE, ((player->y) + y) * TILE_SIZE);
 		(player->x) += x;
 		(player->y) += y;
+		//ft_printf("%d",player->collectibles_amount);
 	}
 	if (player->collectibles_amount == 0)
 	{
