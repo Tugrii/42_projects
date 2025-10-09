@@ -20,8 +20,8 @@ int	run_map(t_list *map, window_management *win)
 	player.map_content = map;
 	player.minilibx = win->minilibx;
 	player.window = win->window;
-	player.collectibles_amount = 0;
-	//find_first_clb_amount(&player);
+	player.map_length = ft_strlen(map->content) - 1;
+	find_first_clb_amount(&player);
 	find_initial_position(&player);
 	mlx_hook(win->window, 2, (1L << 0) , handle_key, &player);
 	mlx_loop(win->minilibx);

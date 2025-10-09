@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 # include "run_map.h"
-#include "../../library/ft_printf/ft_printf.h"
+
 int	find_first_clb_amount(cordinat_map_infos *clb)
 {
 	t_list *traversal;
@@ -19,26 +19,24 @@ int	find_first_clb_amount(cordinat_map_infos *clb)
 	char	*line;
 	int		x;
 
-	//ft_printf("GIRDIM");
 	amount_of_clb = 0;
 	traversal = clb->map_content;
 	while (traversal)
 	{
 		line = traversal->content;
 		x = 0;
-		//ft_printf("%d",clb->map_length);
-		while (x < clb->map_length)
+		while (x < (clb->map_length))
 		{
 			if (line[x] == 'C')
 				amount_of_clb++;
-			//ft_printf("%d",amount_of_clb);
 			x++;
 		}
 		traversal = traversal->next;
 	}
-	return (amount_of_clb);
+	clb->collectibles_amount = amount_of_clb;
+	return (0);
 }
-int	check_is_wall_collectible(cordinat_map_infos *map, int x, int y, char mode)
+int	check_is_wall_collectible(cordinat_map_infos *map, int x, int y)
 {
 	char	*line;
 	t_list	*traversal;
@@ -46,19 +44,17 @@ int	check_is_wall_collectible(cordinat_map_infos *map, int x, int y, char mode)
 
 	line_number = 0;
 	traversal = map->map_content;
-	if (mode == 'C')
-		y = 0;
 	while (line_number < (map->y + y))
 	{
 		line_number++;
 		traversal = traversal->next;
 	}
 	line = traversal->content;
-	if (mode == 'C' && line[map->x] == 'C')
+	if (line[map->x + x] == '1')
 		return (1);
-	if (mode == '1' && line[map->x + x] == '1')
-		return (1);
-	return (0);
+	if (line[map->x + x] == 'C')
+		return (0);
+	return (-1);
 }
 int	find_exits_cordinates(cordinat_map_infos *exit, char mode)
 {
@@ -67,6 +63,7 @@ int	find_exits_cordinates(cordinat_map_infos *exit, char mode)
 	int		x;
 	int		y;
 
+	y = 0;
 	traversal = exit->map_content;
 	while (traversal)
 	{
