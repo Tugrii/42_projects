@@ -53,7 +53,10 @@ int	check_is_wall_collectible(cordinat_map_infos *map, int x, int y)
 	if (line[map->x + x] == '1')
 		return (1);
 	if (line[map->x + x] == 'C')
-		return (0);
+	{
+		line[map->x + x] = 'X';
+		(map->collectibles_amount)--;
+	}
 	return (-1);
 }
 int	find_exits_cordinates(cordinat_map_infos *exit, char mode)

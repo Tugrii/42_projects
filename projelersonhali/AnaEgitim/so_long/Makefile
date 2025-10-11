@@ -73,7 +73,7 @@ SO_LONG_SRCS = src/create_map/error_code.c\
 				src/run_map/run_map.c\
 				src/run_map/move_player_utils.c\
 				src/run_map/move_player.c\
-				src/run_map/handle_key.c\
+				src/run_map/handle.c\
 				src/run_map/find_initial_position.c\
 				src/run_map/take_the_struct.c
 NAME = so_long

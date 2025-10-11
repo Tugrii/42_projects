@@ -6,13 +6,13 @@
 /*   By: tgeler <tgeler@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 20:25:42 by tgeler            #+#    #+#             */
-/*   Updated: 2025/10/08 17:00:14 by tgeler           ###   ########.fr       */
+/*   Updated: 2025/10/11 23:50:47 by tgeler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	int		fd;
 	t_list	*map;

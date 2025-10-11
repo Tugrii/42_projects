@@ -21,6 +21,7 @@ typedef struct infos
 	t_list *map_content;
 	int map_length;
 	int	collectibles_amount;
+	int	movements_amount;
 	void *minilibx;
 	void *window;
 }cordinat_map_infos;
@@ -32,5 +33,6 @@ int handle_key(int keycode, cordinat_map_infos *player);
 void	find_initial_position(cordinat_map_infos *player);
 int	find_first_clb_amount(cordinat_map_infos *clb);
 window_management take_the_struct(cordinat_map_infos *ptr);
+int	handle_close(cordinat_map_infos *game);
 
 #endif
