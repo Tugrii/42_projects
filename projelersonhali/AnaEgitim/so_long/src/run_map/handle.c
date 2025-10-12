@@ -12,19 +12,33 @@
 
 # include "run_map.h"
 
+void	handle_close_utils(cordinat_map_infos *game)
+{
+	mlx_destroy_image(game->minilibx, game->images->exit[0]);
+	mlx_destroy_image(game->minilibx, game->images->exit[1]);
+	mlx_destroy_image(game->minilibx, game->images->floor);
+	mlx_destroy_image(game->minilibx, game->images->wall);
+	mlx_destroy_image(game->minilibx, game->images->collectible);
+	mlx_destroy_image(game->minilibx, game->images->player[0]);
+	mlx_destroy_image(game->minilibx, game->images->player[1]);
+	mlx_destroy_image(game->minilibx, game->images->player[2]);
+	mlx_destroy_image(game->minilibx, game->images->player[3]);
+	mlx_destroy_window(game->minilibx, game->window);
+	mlx_destroy_display(game->minilibx);
+	return ;
+}
 int	handle_close(cordinat_map_infos *game)
 {
-	t_list	*traversal;
-	t_list	*tmp;
+	t_list	*temp;
 
-	traversal = game->map_content;
-	while (traversal)
+	while (game->map_content)
 	{
-		tmp = traversal->next;
-		free(traversal);
-		traversal = tmp;
-
+		temp = game->map_content->next;
+		free(game->map_content->content);
+		free(game->map_content);
+		game->map_content = temp;
 	}
+	handle_close_utils(game);
 	exit(0);
 }
 int handle_key(int keycode, cordinat_map_infos *player)

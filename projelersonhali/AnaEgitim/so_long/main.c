@@ -6,7 +6,7 @@
 /*   By: tgeler <tgeler@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 20:25:42 by tgeler            #+#    #+#             */
-/*   Updated: 2025/10/11 23:50:47 by tgeler           ###   ########.fr       */
+/*   Updated: 2025/10/12 14:32:18 by tgeler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	main(int argc, char **argv)
 	int		fd;
 	t_list	*map;
 	window_management win;
+	textures	images;
 	
 	map = NULL;
 	if (argc != 2)
@@ -32,8 +33,8 @@ int	main(int argc, char **argv)
 	window_initilaze(map, &win);
 	if (!win.minilibx || !win.window)
 		return (error_messages(5));
-	put_images_to_map(&win, map);
-	run_map(map, &win);
+	put_images_to_map(&win, map, &images);
+	run_map(map, &win, &images);
 	close (fd);
 	return (0);
 }

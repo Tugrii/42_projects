@@ -24,8 +24,9 @@ typedef struct infos
 	int	movements_amount;
 	void *minilibx;
 	void *window;
+	textures *images;
 }cordinat_map_infos;
-int	run_map(t_list *map, window_management *win);
+int	run_map(t_list *map, window_management *win, textures *images);
 int	move_player(cordinat_map_infos *player, int x, int y);
 int	find_exits_cordinates(cordinat_map_infos *exit, char mode);
 int	check_is_wall_collectible(cordinat_map_infos *map, int x, int y);

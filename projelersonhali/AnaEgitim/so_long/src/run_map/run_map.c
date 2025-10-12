@@ -12,7 +12,7 @@
 
 # include "run_map.h"
 
-int	run_map(t_list *map, window_management *win)
+int	run_map(t_list *map, window_management *win, textures *images)
 {
 	cordinat_map_infos	player;
 
@@ -21,6 +21,7 @@ int	run_map(t_list *map, window_management *win)
 	player.window = win->window;
 	player.movements_amount = 0;
 	player.map_length = ft_strlen(map->content) - 1;
+	player.images = images;
 	find_first_clb_amount(&player);
 	find_initial_position(&player);
 	mlx_hook(win->window, 17, 0, handle_close, &player);

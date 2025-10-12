@@ -45,8 +45,8 @@ int	error_messages(int error);
 t_list *save_map_in_linked_list(t_list *map, int fd);
 void window_initilaze(t_list *map, window_management	*win);
 int	calculate_width_or_height(t_list *map, char mode);
-textures fill_map_with_images(window_management *win);
-int	put_images_to_map(window_management *win, t_list *map);
+void fill_map_with_images(window_management *win, textures *image);
+int	put_images_to_map(window_management *win, t_list *map, textures *image);
 void	put_all_images(window_management *win, textures *image, t_list	*map, int length);
 void	put_all_images_utils(window_management *win, textures *image, put_img *cordinat, char *line);
 #endif
