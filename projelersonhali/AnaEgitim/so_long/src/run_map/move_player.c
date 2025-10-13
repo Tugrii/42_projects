@@ -13,11 +13,11 @@
 # include "run_map.h"
 
 int	move_player(cordinat_map_infos *player, int x, int y)
-{
-	cordinat_map_infos exit;
-	
+{	
 	if (check_is_wall_collectible(player, x, y) != 1)
 	{
+		if (player->collectibles_amount == -1)
+			check_is_won(player, x , y);
 		if ((player->collectibles_amount) != -1)
 			check_is_wall_collectible(player, x, y);
 		mlx_put_image_to_window(player->minilibx , player->window, player->images->floor, (player->x) * TILE_SIZE, (player->y) * TILE_SIZE);
@@ -29,9 +29,9 @@ int	move_player(cordinat_map_infos *player, int x, int y)
 	}
 	if (player->collectibles_amount == 0)
 	{
-		exit.x = find_exits_cordinates(player, 'x');
-		exit.y = find_exits_cordinates(player, 'y');
-		mlx_put_image_to_window(player->minilibx , player->window, player->images->exit[0], (exit.x) * TILE_SIZE, (exit.y) * TILE_SIZE);
+		player->exit_x = find_exits_cordinates(player, 'x');
+		player->exit_y = find_exits_cordinates(player, 'y');
+		mlx_put_image_to_window(player->minilibx , player->window, player->images->exit[0], (player->exit_x) * TILE_SIZE, (player->exit_y) * TILE_SIZE);
 		player->collectibles_amount = -1;
 	}
 	return (1);

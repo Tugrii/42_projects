@@ -85,3 +85,22 @@ int	find_exits_cordinates(cordinat_map_infos *exit, char mode)
 	}
 	return (0);
 }
+int	check_is_won(cordinat_map_infos *player, int x, int y)
+{
+	t_list	*traversal;
+	int		line_number;
+
+	line_number = 0;
+	traversal = player->map_content;
+	while (line_number < (player->y + y))
+	{
+		line_number++;
+		traversal = traversal->next;
+	}
+	if (((player->y + y) == player->exit_y) && ((player->x + x) == player->exit_x))
+	{
+		ft_printf("YOU WON THE GAME!\n");
+		handle_close(player);
+	}
+	return (0);
+}
