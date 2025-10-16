@@ -37,7 +37,7 @@ void	find_initial_position(cordinat_map_infos *player);
 int	find_first_clb_amount(cordinat_map_infos *clb);
 window_management take_the_struct(cordinat_map_infos *ptr);
 int	handle_close(cordinat_map_infos *game);
-int	check_is_won(cordinat_map_infos *player, int x, int y);
+int	check_is_door(cordinat_map_infos *player, int x, int y);
 
 
 #endif

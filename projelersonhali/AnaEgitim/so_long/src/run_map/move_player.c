@@ -13,26 +13,31 @@
 # include "run_map.h"
 
 int	move_player(cordinat_map_infos *player, int x, int y)
-{	
+{
 	if (check_is_wall_collectible(player, x, y) != 1)
 	{
-		if (player->collectibles_amount == -1)
-			check_is_won(player, x , y);
+		if (check_is_door(player, x , y) == 1)
+		{
+			//bu, kapının onunde adam gorselı olacak
+			mlx_put_image_to_window(player->minilibx , player->window, player->images->exit[1], (player->exit_x) * TILE_SIZE, (player->exit_y) * TILE_SIZE);
+			//
+			write(1,"TUGRA",5);
+			mlx_put_image_to_window(player->minilibx , player->window, player->images->floor, (player->x) * TILE_SIZE, (player->y) * TILE_SIZE);
+		}
+		else
+		{
+			write(1,"GELER",5);
+			mlx_put_image_to_window(player->minilibx , player->window, player->images->player[0], ((player->x) + x) * TILE_SIZE, ((player->y) + y) * TILE_SIZE);
+			mlx_put_image_to_window(player->minilibx , player->window, player->images->floor, (player->x) * TILE_SIZE, (player->y) * TILE_SIZE);
+		}
 		if ((player->collectibles_amount) != -1)
 			check_is_wall_collectible(player, x, y);
-		mlx_put_image_to_window(player->minilibx , player->window, player->images->floor, (player->x) * TILE_SIZE, (player->y) * TILE_SIZE);
-		mlx_put_image_to_window(player->minilibx , player->window, player->images->player[0], ((player->x) + x) * TILE_SIZE, ((player->y) + y) * TILE_SIZE);
 		(player->x) += x;
 		(player->y) += y;
 		(player->movements_amount)++;
 		ft_printf("Move Number : %d\n", player->movements_amount);
 	}
-	if (player->collectibles_amount == 0)
-	{
-		player->exit_x = find_exits_cordinates(player, 'x');
-		player->exit_y = find_exits_cordinates(player, 'y');
+	if (player->collectibles_amount == -1)
 		mlx_put_image_to_window(player->minilibx , player->window, player->images->exit[0], (player->exit_x) * TILE_SIZE, (player->exit_y) * TILE_SIZE);
-		player->collectibles_amount = -1;
-	}
 	return (1);
 }

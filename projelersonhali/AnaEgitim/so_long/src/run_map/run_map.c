@@ -22,6 +22,8 @@ int	run_map(t_list *map, window_management *win, textures *images)
 	player.movements_amount = 0;
 	player.map_length = ft_strlen(map->content) - 1;
 	player.images = images;
+	player.exit_x = find_exits_cordinates(&player, 'x');
+	player.exit_y = find_exits_cordinates(&player, 'y');
 	find_first_clb_amount(&player);
 	find_initial_position(&player);
 	mlx_hook(win->window, 17, 0, handle_close, &player);

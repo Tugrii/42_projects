@@ -56,6 +56,8 @@ int	check_is_wall_collectible(cordinat_map_infos *map, int x, int y)
 	{
 		line[map->x + x] = 'X';
 		(map->collectibles_amount)--;
+		if (map->collectibles_amount == 0)
+			map->collectibles_amount = -1;
 	}
 	return (-1);
 }
@@ -85,7 +87,7 @@ int	find_exits_cordinates(cordinat_map_infos *exit, char mode)
 	}
 	return (0);
 }
-int	check_is_won(cordinat_map_infos *player, int x, int y)
+int	check_is_door(cordinat_map_infos *player, int x, int y)
 {
 	t_list	*traversal;
 	int		line_number;
@@ -99,8 +101,13 @@ int	check_is_won(cordinat_map_infos *player, int x, int y)
 	}
 	if (((player->y + y) == player->exit_y) && ((player->x + x) == player->exit_x))
 	{
-		ft_printf("YOU WON THE GAME!\n");
-		handle_close(player);
+		if (player->collectibles_amount == -1)
+		{
+			ft_printf("YOU WON THE GAME!\n");
+			handle_close(player);
+		}
+		else
+			return (1);
 	}
 	return (0);
 }
