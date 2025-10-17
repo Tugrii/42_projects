@@ -16,6 +16,7 @@ void	handle_close_utils(cordinat_map_infos *game)
 {
 	mlx_destroy_image(game->minilibx, game->images->exit[0]);
 	mlx_destroy_image(game->minilibx, game->images->exit[1]);
+	mlx_destroy_image(game->minilibx, game->images->exit[2]);
 	mlx_destroy_image(game->minilibx, game->images->floor);
 	mlx_destroy_image(game->minilibx, game->images->wall);
 	mlx_destroy_image(game->minilibx, game->images->collectible);

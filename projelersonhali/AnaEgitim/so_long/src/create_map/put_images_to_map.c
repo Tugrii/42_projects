@@ -65,6 +65,7 @@ void fill_map_with_images(window_management *win, textures *image)
 	image->floor = mlx_xpm_file_to_image(win->minilibx, "./textures/floor.xpm", &img_size, &img_size);
 	image->exit[0] = mlx_xpm_file_to_image(win->minilibx, "./textures/exit_open.xpm", &img_size, &img_size);
 	image->exit[1] = mlx_xpm_file_to_image(win->minilibx, "./textures/exit_close.xpm", &img_size, &img_size);
+	image->exit[2] = mlx_xpm_file_to_image(win->minilibx, "./textures/exit_close_char.xpm", &img_size, &img_size);
 	image->player[0] = mlx_xpm_file_to_image(win->minilibx, "./textures/char-_1_.xpm", &img_size, &img_size);
 	image->player[1] = mlx_xpm_file_to_image(win->minilibx, "./textures/char-_2_.xpm", &img_size, &img_size);
 	image->player[2] = mlx_xpm_file_to_image(win->minilibx, "./textures/char-_3_.xpm", &img_size, &img_size);

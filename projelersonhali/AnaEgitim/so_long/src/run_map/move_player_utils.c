@@ -99,6 +99,8 @@ int	check_is_door(cordinat_map_infos *player, int x, int y)
 		line_number++;
 		traversal = traversal->next;
 	}
+	if (((player->y) == player->exit_y) && ((player->x) == player->exit_x))
+		return (2);
 	if (((player->y + y) == player->exit_y) && ((player->x + x) == player->exit_x))
 	{
 		if (player->collectibles_amount == -1)
