@@ -6,7 +6,7 @@
 /*   By: tgeler <tgeler@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 20:25:42 by tgeler            #+#    #+#             */
-/*   Updated: 2025/10/12 14:32:18 by tgeler           ###   ########.fr       */
+/*   Updated: 2025/10/19 21:03:31 by tgeler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 int	main(int argc, char **argv)
 {
-	int		fd;
-	t_list	*map;
-	window_management win;
-	textures	images;
-	
+	int					fd;
+	t_list				*map;
+	t_window_management	win;
+	t_textures			images;
+
 	map = NULL;
 	if (argc != 2)
 		return (error_messages(1));
-	fd = open(argv[1],O_RDONLY,0777);
+	fd = open(argv[1], O_RDONLY, 0777);
 	if (fd < 0)
 		return (error_messages(2));
 	if (check_file_has_valid_name(argv[1]) == 0)

@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "run_map.h"
+#include "run_map.h"
 
-void	handle_close_utils(cordinat_map_infos *game)
+void	handle_close_utils(t_cordinat_map_infos *game)
 {
 	mlx_destroy_image(game->minilibx, game->images->exit[0]);
 	mlx_destroy_image(game->minilibx, game->images->exit[1]);
@@ -28,7 +28,8 @@ void	handle_close_utils(cordinat_map_infos *game)
 	mlx_destroy_display(game->minilibx);
 	return ;
 }
-int	handle_close(cordinat_map_infos *game)
+
+int	handle_close(t_cordinat_map_infos *game)
 {
 	t_list	*temp;
 
@@ -42,7 +43,8 @@ int	handle_close(cordinat_map_infos *game)
 	handle_close_utils(game);
 	exit(0);
 }
-int handle_key(int keycode, cordinat_map_infos *player)
+
+int	handle_key(int keycode, t_cordinat_map_infos *player)
 {
 	if (keycode == 65307)
 		handle_close(player);
@@ -56,4 +58,3 @@ int handle_key(int keycode, cordinat_map_infos *player)
 		move_player(player, 1, 0);
 	return (0);
 }
-

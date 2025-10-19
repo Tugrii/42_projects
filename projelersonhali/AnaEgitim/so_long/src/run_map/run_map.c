@@ -10,11 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "run_map.h"
+#include "run_map.h"
 
-int	run_map(t_list *map, window_management *win, textures *images)
+int	run_map(t_list *map, t_window_management *win, t_textures *images)
 {
-	cordinat_map_infos	player;
+	t_cordinat_map_infos	player;
 
 	player.map_content = map;
 	player.minilibx = win->minilibx;
@@ -27,8 +27,7 @@ int	run_map(t_list *map, window_management *win, textures *images)
 	find_first_clb_amount(&player);
 	find_initial_position(&player);
 	mlx_hook(win->window, 17, 0, handle_close, &player);
-	mlx_hook(win->window, 2, (1L << 0) , handle_key, &player);
+	mlx_hook(win->window, 2, (1L << 0), handle_key, &player);
 	mlx_loop(win->minilibx);
 	return (0);
 }
-//mlx_put_image_to_window(win->minilibx , win->window, image->wall, (cordinat->x) * TILE_SIZE, (cordinat->y) * TILE_SIZE);

@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "run_map.h"
+#include "run_map.h"
 
-void	find_initial_position(cordinat_map_infos *player)
+void	find_initial_position(t_cordinat_map_infos *player)
 {
 	t_list	*traversal;
 	char	*line;

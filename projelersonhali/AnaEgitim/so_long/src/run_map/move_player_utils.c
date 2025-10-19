@@ -10,11 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "run_map.h"
+#include "run_map.h"
 
-int	find_first_clb_amount(cordinat_map_infos *clb)
+int	find_first_clb_amount(t_cordinat_map_infos *clb)
 {
-	t_list *traversal;
+	t_list	*traversal;
 	int		amount_of_clb;
 	char	*line;
 	int		x;
@@ -36,7 +36,8 @@ int	find_first_clb_amount(cordinat_map_infos *clb)
 	clb->collectibles_amount = amount_of_clb;
 	return (0);
 }
-int	check_is_wall_collectible(cordinat_map_infos *map, int x, int y)
+
+int	check_is_wall_collectible(t_cordinat_map_infos *map, int x, int y)
 {
 	char	*line;
 	t_list	*traversal;
@@ -61,9 +62,10 @@ int	check_is_wall_collectible(cordinat_map_infos *map, int x, int y)
 	}
 	return (-1);
 }
-int	find_exits_cordinates(cordinat_map_infos *exit, char mode)
+
+int	find_exits_cordinates(t_cordinat_map_infos *exit, char mode)
 {
-	t_list *traversal;
+	t_list	*traversal;
 	char	*line;
 	int		x;
 	int		y;
@@ -87,7 +89,8 @@ int	find_exits_cordinates(cordinat_map_infos *exit, char mode)
 	}
 	return (0);
 }
-int	check_is_door(cordinat_map_infos *player, int x, int y)
+
+int	check_is_door(t_cordinat_map_infos *player, int x, int y)
 {
 	t_list	*traversal;
 	int		line_number;
@@ -101,7 +104,8 @@ int	check_is_door(cordinat_map_infos *player, int x, int y)
 	}
 	if (((player->y) == player->exit_y) && ((player->x) == player->exit_x))
 		return (2);
-	if (((player->y + y) == player->exit_y) && ((player->x + x) == player->exit_x))
+	if (((player->y + y) == player->exit_y)
+		&& ((player->x + x) == player->exit_x))
 	{
 		if (player->collectibles_amount == -1)
 		{

@@ -70,6 +70,8 @@ SO_LONG_SRCS = src/create_map/error_code.c\
 				src/check_map/check_map_is_closed_utils.c\
 				src/check_map/check_map_has_one_exit_and_start_utils.c\
 				src/check_map/check_file_has_valid_name.c\
+				src/check_map/check_valid_path.c\
+				src/check_map/check_valid_path_utils.c\
 				src/run_map/run_map.c\
 				src/run_map/move_player_utils.c\
 				src/run_map/move_player.c\

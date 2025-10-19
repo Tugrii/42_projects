@@ -10,59 +10,74 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-void copy_list(t_list *map, t_list *map_copy)
-{
-	t_list	*traversal;
+#include "check_status.h"
 
-	traversal = map;
-	map_copy = NULL;
-	while (traversal)
-	{
-		ft_lst_addback(&map_copy, ft_lstnew(traversal->content));
-		traversal = traversal->next;
-	}
-	return ;
-}
-int	enqueue(void	*content, t_list *reached, t_list *front, t_list *rear)
+void	process_neighbor(t_queue *q, int y, int x, t_cordinat_map_infos *infos)
 {
-	t_list	*new_node;
-
-	if (front == NULL)
-	{
-		new_node = ft_lstnew(content);
-		front = new_node;
-		rear = new_node;
-	}
-	else
-	{
-		new_node = ft_lstnew(content);
-		ft_lstadd_back(&map_copy, new_node);
-		rear->next = new_node;
-		rear = new_node;
-	}
-	return (1);
+	if (y < 0 || y >= infos->map_heigth || x < 0 || x >= infos->map_length)
+		return ;
+	if (infos->map[y][x] == '1')
+		return ;
+	if (infos->map[y][x] == 'C')
+		infos->counters[0]++;
+	else if (infos->map[y][x] == 'E')
+		infos->counters[1] = 1;
+	infos->map[y][x] = '1';
+	enqueue(q, x, y);
 }
-int	dequeue(t_list *reached, t_list *front)
+
+int	check_valid_path_utils(t_queue *reached, t_cordinat_map_infos *infos)
 {
-	t_list	*temp;
+	t_queue_utils	*current_pos;
 
-	if (front == NULL)
-		return (0);
-	temp = front;
-	front = front->next;
-	free(temp);
-	return (1);
+	enqueue(reached, infos->x, infos->y);
+	while (reached->front != NULL)
+	{
+		current_pos = dequeue(reached);
+		infos->x = current_pos->x;
+		infos->y = current_pos->y;
+		free(current_pos);
+		process_neighbor(reached, infos->y - 1, infos->x, infos);
+		process_neighbor(reached, infos->y + 1, infos->x, infos);
+		process_neighbor(reached, infos->y, infos->x - 1, infos);
+		process_neighbor(reached, infos->y, infos->x + 1, infos);
+	}
+	if (infos->counters[0] == infos->collectibles_amount
+		&& infos->counters[1] == 1)
+	{
+		free(infos->counters);
+		free_it(infos->map, infos->map_heigth);
+		return (1);
+	}
+	free(infos->counters);
+	ft_printf("The Game is not finishable so map couldnt created!\n");
+	free_it(infos->map, infos->map_heigth);
+	return (0);
 }
+
 int	check_valid_path(t_list *map)
 {
-	cordinat_map_infos *map_copy;
-	t_list	*front;
-	t_list	*rear;
-	t_list	*reached;
+	t_cordinat_map_infos	infos;
+	t_queue					reached;
 
-	front = NULL;
-	rear = NULL;
-	copy_list(map, map_copy->map_content);
-	initilaze_the_map_copy(map_copy->map_content);
-	//buradan devam
+	infos.map_content = map;
+	infos.counters = malloc(sizeof(int) * 2);
+	if (!(infos.counters))
+		return (0);
+	infos.map_heigth = ft_lstsize(map);
+	infos.map_length = ft_strlen(map->content) - 1;
+	find_initial_position(&infos);
+	find_first_clb_amount(&infos);
+	convert_list_to_array(map, &infos);
+	if (!(infos.map))
+	{
+		free(infos.counters);
+		return (0);
+	}
+	reached.front = NULL;
+	reached.rear = NULL;
+	infos.map[infos.y][infos.x] = '1';
+	infos.counters[0] = 0;
+	infos.counters[1] = 0;
+	return (check_valid_path_utils(&reached, &infos));
 }

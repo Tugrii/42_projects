@@ -24,7 +24,7 @@ int	check_file_has_valid_name(char	*file_name)
 			&& file_name[length - 3] == 'b'
 			&& file_name[length - 4] == '.'
 			&& file_name[length - 5] != '/')
-				return (1);
+			return (1);
 		else
 			return (0);
 	}

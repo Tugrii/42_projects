@@ -6,7 +6,7 @@
 /*   By: tgeler <tgeler@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 19:34:53 by tgeler            #+#    #+#             */
-/*   Updated: 2025/10/02 17:42:42 by tgeler           ###   ########.fr       */
+/*   Updated: 2025/10/19 18:29:58 by tgeler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,5 @@ int	exit_start_counter(t_list *traversal, char mode)
 			number_of_e_or_p++;
 		i++;
 	}
-	return(number_of_e_or_p);
+	return (number_of_e_or_p);
 }

@@ -6,7 +6,7 @@
 /*   By: tgeler <tgeler@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 18:39:05 by tgeler            #+#    #+#             */
-/*   Updated: 2025/10/04 20:18:12 by tgeler           ###   ########.fr       */
+/*   Updated: 2025/10/19 18:38:17 by tgeler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	check_last_and_initial(t_list	*traversal, int length_line)
 {
 	char	*line;
 	int		i;
-	
+
 	i = 0;
 	line = traversal->content;
 	while (i < (length_line - 1))
@@ -27,7 +27,8 @@ int	check_last_and_initial(t_list	*traversal, int length_line)
 	}
 	return (1);
 }
-int check_interval_line(t_list	*traversal, int line_length)
+
+int	check_interval_line(t_list	*traversal, int line_length)
 {
 	char	*line;
 

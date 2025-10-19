@@ -6,7 +6,7 @@
 /*   By: tgeler <tgeler@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 21:24:58 by tgeler            #+#    #+#             */
-/*   Updated: 2025/10/04 20:13:25 by tgeler           ###   ########.fr       */
+/*   Updated: 2025/10/19 18:35:48 by tgeler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	check_map_rectangularity(t_list *map)
 			previous_line_length -= 1;
 		if (i != 1 && (previous_line_length != current_line_length))
 		{
-			ft_printf("Map is not RECTANGULAR!\n");			
+			ft_printf("Map is not RECTANGULAR!\n");
 			return (0);
 		}
 		traversal = traversal->next;
@@ -67,38 +67,40 @@ int	check_map_rectangularity(t_list *map)
 	}
 	return (1);
 }
+
 int	check_map_is_closed(t_list *map)
 {
 	t_list	*traversal;
 	int		truth;
 	int		length;
-	
+
 	traversal = map;
 	length = ft_strlen(traversal->content);
 	while (traversal)
 	{
-		if ((traversal == map ) || !(traversal->next))
+		if ((traversal == map) || !(traversal->next))
 			truth = check_last_and_initial(traversal, length);
 		else
 			truth = check_interval_line(traversal, length);
 		if (truth == 0)
 		{
 			ft_printf("Map is not CLOSED!\n");
-				return (0);
+			return (0);
 		}
 		traversal = traversal->next;
 	}
 	return (1);
 }
+
 int	check_map_has_one_exit_and_start(t_list *map)
 {
 	t_list	*traversal;
 	int		number_of_exits;
 	int		number_of_starts;
-	
+
 	number_of_exits = 0;
-	number_of_starts= 0;
-	traversal = map;	
+	number_of_starts = 0;
+	traversal = map;
 	while (traversal)
 	{
 		number_of_exits += exit_start_counter(traversal, 'E');
@@ -106,16 +108,17 @@ int	check_map_has_one_exit_and_start(t_list *map)
 		traversal = traversal->next;
 	}
 	if (number_of_starts != 1)
-		ft_printf("Error! Map has %d%s\n",number_of_starts, " STARTS!");
+		ft_printf("Error! Map has %d%s\n", number_of_starts, " STARTS!");
 	if (number_of_exits != 1)
-		ft_printf("Error! Map has %d%s\n",number_of_exits, " EXITS!");
+		ft_printf("Error! Map has %d%s\n", number_of_exits, " EXITS!");
 	if (number_of_starts != 1 || number_of_exits != 1)
 		return (0);
-	return (1);	
+	return (1);
 }
+
 int	check_map_has_at_least_one_clctb(t_list *map)
 {
-	t_list 	*traversal;
+	t_list	*traversal;
 	char	*line;
 
 	traversal = map;

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "check_status.h"
+#include "check_status.h"
 
 char	*find_start(t_list *map, int length_line)
 {
@@ -25,7 +25,7 @@ char	*find_start(t_list *map, int length_line)
 		line = traversal->content;
 		while (i < length_line)
 		{
-			if(line[i] == 'P')
+			if (line[i] == 'P')
 				return (line + i);
 			i++;
 		}
