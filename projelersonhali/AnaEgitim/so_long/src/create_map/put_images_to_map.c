@@ -79,12 +79,6 @@ void	fill_map_with_images(t_window_management *win, t_textures *image)
 			"./textures/exit_close_char.xpm", &img_size, &img_size);
 	image->player[0] = mlx_xpm_file_to_image(win->minilibx,
 			"./textures/char-_1_.xpm", &img_size, &img_size);
-	image->player[1] = mlx_xpm_file_to_image(win->minilibx,
-			"./textures/char-_2_.xpm", &img_size, &img_size);
-	image->player[2] = mlx_xpm_file_to_image(win->minilibx,
-			"./textures/char-_3_.xpm", &img_size, &img_size);
-	image->player[3] = mlx_xpm_file_to_image(win->minilibx,
-			"./textures/char-_4_.xpm", &img_size, &img_size);
 	return ;
 }
 

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "check_status.h"
+#include "../../library/Libft/libft.h"
 
 char	*find_start(t_list *map, int length_line)
 {

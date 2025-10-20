@@ -6,7 +6,7 @@
 /*   By: tgeler <tgeler@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 20:32:14 by tgeler            #+#    #+#             */
-/*   Updated: 2025/10/08 17:07:37 by tgeler           ###   ########.fr       */
+/*   Updated: 2025/10/20 16:26:23 by tgeler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include <errno.h>
 # include <fcntl.h>
 # include <math.h>
-# include "library/get_next_line/get_next_line.h"
 # include "library/Libft/libft.h"
 # include "src/create_map/create_map.h"
 # include "src/check_map/check_status.h"

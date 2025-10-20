@@ -6,12 +6,11 @@
 /*   By: tgeler <tgeler@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 21:24:58 by tgeler            #+#    #+#             */
-/*   Updated: 2025/10/19 18:35:48 by tgeler           ###   ########.fr       */
+/*   Updated: 2025/10/20 13:37:38 by tgeler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "check_status.h"
-#include "../../library/ft_printf/ft_printf.h"
 
 int	check_map_only_contain_valid_characters(t_list *map)
 {

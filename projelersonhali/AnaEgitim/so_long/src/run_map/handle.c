@@ -21,11 +21,10 @@ void	handle_close_utils(t_cordinat_map_infos *game)
 	mlx_destroy_image(game->minilibx, game->images->wall);
 	mlx_destroy_image(game->minilibx, game->images->collectible);
 	mlx_destroy_image(game->minilibx, game->images->player[0]);
-	mlx_destroy_image(game->minilibx, game->images->player[1]);
-	mlx_destroy_image(game->minilibx, game->images->player[2]);
-	mlx_destroy_image(game->minilibx, game->images->player[3]);
 	mlx_destroy_window(game->minilibx, game->window);
 	mlx_destroy_display(game->minilibx);
+	if (game->minilibx)
+		free(game->minilibx);
 	return ;
 }
 

@@ -16,21 +16,21 @@ int	calculate_width_or_height(t_list *map, char mode)
 {
 	t_list	*traversal;
 	int		width;
-	int		length;
+	int		heigth;
 
-	width = 0;
+	heigth = 0;
 	traversal = map;
 	if (!traversal)
 		return (0);
-	if (mode == 'l')
+	if (mode == 'w')
 	{
-		length = ft_strlen(traversal->content) - 1;
-		return (length);
+		width = ft_strlen(traversal->content) - 1;
+		return (width);
 	}
 	while (traversal)
 	{
-		width++;
+		heigth++;
 		traversal = traversal->next;
 	}
-	return (width);
+	return (heigth);
 }

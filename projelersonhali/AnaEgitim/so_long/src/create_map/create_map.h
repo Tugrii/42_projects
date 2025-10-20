@@ -12,10 +12,8 @@
 
 #ifndef CREATE_MAP_H
 # define CREATE_MAP_H
-# include "../../library/ft_printf/ft_printf.h"
 # include "../../library/Libft/libft.h"
 # include "../../library/minilibx-linux/mlx.h"
-# include "../../library/get_next_line/get_next_line.h"
 # ifndef TILE_SIZE
 #  define TILE_SIZE 32
 # endif
@@ -24,8 +22,8 @@ typedef struct w_mng
 {
 	void				*minilibx;
 	void				*window;
-	unsigned int		w;
-	unsigned int		l;
+	int					w;
+	int					h;
 	int					empty;
 }	t_window_management;
 
@@ -33,7 +31,7 @@ typedef struct txtrs
 {
 	void	*wall;
 	void	*floor;
-	void	*player[4];
+	void	*player[1];
 	void	*collectible;
 	void	*exit[3];
 	int		index;

@@ -34,7 +34,7 @@ char	*last_stash_controls(char **stash, char **line,
 	if (!*line)
 		return (NULL);
 	(*line)[length] = '\0';
-	fill_it(*line, *stash, 0, 0);
+	fill_it_gnl(*line, *stash, 0, 0);
 	free (*stash);
 	*stash = NULL;
 	return (*line);
@@ -52,7 +52,7 @@ size_t	gnl_strlen(const char *str)
 	return (i);
 }
 
-void	fill_it(char *dst, char *src, int j, int i)
+void	fill_it_gnl(char *dst, char *src, int j, int i)
 {
 	int	length;
 
@@ -90,7 +90,7 @@ char	*divide_the_stash(char **line, char **stash)
 	if (!*line)
 		return (NULL);
 	(*line)[length_line] = '\0';
-	fill_it(*line, *stash, 0, -1);
+	fill_it_gnl(*line, *stash, 0, -1);
 	length_new_stash = gnl_strlen(*stash) - length_line;
 	if (length_new_stash == 0)
 	{

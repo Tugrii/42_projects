@@ -6,7 +6,7 @@
 #    By: tgeler <tgeler@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/26 14:43:31 by tgeler            #+#    #+#              #
-#    Updated: 2025/10/02 18:47:09 by tgeler           ###   ########.fr        #
+#    Updated: 2025/10/20 13:22:22 by tgeler           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,16 +47,18 @@ SRCS = ft_atoi.c \
 	ft_strtrim.c\
 	ft_substr.c\
 	ft_tolower.c\
-	ft_toupper.c
-
-BONUS_SRCS = ft_lstadd_front_bonus.c\
+	ft_toupper.c\
+	ft_lstadd_front_bonus.c\
 	ft_lstlast_bonus.c\
 	ft_lstnew_bonus.c\
 	ft_lstsize_bonus.c\
-	ft_lstadd_back_bonus.c
+	ft_lstadd_back_bonus.c\
+	ft_printf/ft_printf.c\
+	ft_printf/helper_f1.c\
+	get_next_line/get_next_line.c\
+	get_next_line/get_next_line_utils.c
 
 OBJS = $(SRCS:.c=.o)
-BONUS_OBJS = $(BONUS_SRCS:.c=.o)
 
 NAME = libft.a
 
@@ -65,22 +67,15 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	ar rcs $(NAME) $(OBJS)
 
-bonus: $(OBJS) $(BONUS_OBJS)
-	ar rcs $(NAME) $(OBJS) $(BONUS_OBJS)
-
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-test: $(NAME) main.c
-	$(CC) $(CFLAGS) main.c libft.a -o test_program
-	./test_program
-
 clean:
-	rm -f $(OBJS) $(BONUS_OBJS)
+	rm -f $(OBJS)
 
 fclean: clean
-	rm -f $(NAME) test_program
+	rm -f $(NAME)
 
 re: fclean all
 
-.PHONY: all clean fclean re test bonus
+.PHONY: all clean fclean re

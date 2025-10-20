@@ -38,8 +38,8 @@ char	*build_new_malloc_for_stash(char **stash, char *buffer, int bytes_read)
 	new_stash = malloc(total_length + 1);
 	if (!new_stash)
 		return (NULL);
-	fill_it(new_stash, *stash, 0, 0);
-	fill_it(new_stash, buffer, old_length, -2);
+	fill_it_gnl(new_stash, *stash, 0, 0);
+	fill_it_gnl(new_stash, buffer, old_length, -2);
 	new_stash[total_length] = '\0';
 	free (*stash);
 	return (new_stash);
@@ -53,7 +53,7 @@ char	*add_to_stash(char **stash, char *buffer, int bytes_read)
 		if (!*stash)
 			return (NULL);
 		(*stash)[bytes_read] = '\0';
-		fill_it(*stash, buffer, 0, 0);
+		fill_it_gnl(*stash, buffer, 0, 0);
 		return (*stash);
 	}
 	else

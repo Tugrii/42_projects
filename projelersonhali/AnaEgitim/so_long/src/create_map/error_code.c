@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../library/ft_printf/ft_printf.h"
+#include "../../library/Libft/libft.h"
 
 int	error_messages(int error)
 {
