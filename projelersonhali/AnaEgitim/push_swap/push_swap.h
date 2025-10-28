@@ -12,10 +12,8 @@
 
 #ifndef	PUSH_SWAP_H
 # define PUSH_SWAP_H
-# include "Libft/libft.h"
-typedef struct arrays
-{
-	int		*int_array;
-}t_arrays;
-void	fill_arrays_int(t_arrays *push_swap, int argc, char **argv);
+#include "src/stack_operations/stack_operations.h"
+#include "src/error_messages/error_messages.h"
+#include "src/stack_initilaze/stack_initilaze.h"
+#include "src/check_status/check_status.h"
 #endif

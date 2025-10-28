@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   check_is_there_duplicate.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgeler <tgeler@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/20 22:14:30 by tgeler            #+#    #+#             */
-/*   Updated: 2025/10/20 22:14:30 by tgeler           ###   ########.fr       */
+/*   Created: 2025/10/29 01:22:46 by tgeler            #+#    #+#             */
+/*   Updated: 2025/10/29 01:22:46 by tgeler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "check_status.h"
 
-int main (int argc, char **argv)
+int	check_is_there_duplicate(int argc, char **argv)
 {
-	t_stack a;
-	//t_stack b;
+	int	i;
+	int j;
+	int x;
 
-	if (check_status(argc, argv) == 0)
-		return (-1);
-	a.top = NULL;
-	//b.top = NULL;
-	a.length = argc;
-	initilaze_the_a(&a, argv);
+
+	i = 1;
+	while (i < argc)
+	{
+		if (i != 1)
+		{
+			//will continue from here
+			while ()
+		}
+	}
 }

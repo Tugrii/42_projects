@@ -18,9 +18,23 @@ NAME = push_swap
 LIBFT_DIR = Libft
 LIBFT_ARC = $(LIBFT_DIR)/libft.a
 
-SRCS = push_swap.c\
-		push_swap_utils.c\
-		main.c
+SRCS = 	main.c\
+		src/check_status/check_status.c\
+		src/check_status/check_all_are_number.c\
+		src/check_status/check_is_over_limit.c\
+		src/stack_initilaze/initilaze.c\
+		src/stack_operations/pa.c\
+		src/stack_operations/pb.c\
+		src/stack_operations/ra.c\
+		src/stack_operations/rb.c\
+		src/stack_operations/rr.c\
+		src/stack_operations/rra.c\
+		src/stack_operations/rrb.c\
+		src/stack_operations/rrr.c\
+		src/stack_operations/sa.c\
+		src/stack_operations/sb.c\
+		src/stack_operations/ss.c\
+		src/error_messages/error_msgs.c
 
 OBJS = $(SRCS:.c=.o)
 

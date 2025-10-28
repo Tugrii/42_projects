@@ -1,26 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   initilaze.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgeler <tgeler@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/20 22:14:30 by tgeler            #+#    #+#             */
-/*   Updated: 2025/10/20 22:14:30 by tgeler           ###   ########.fr       */
+/*   Created: 2025/10/25 14:51:53 by tgeler            #+#    #+#             */
+/*   Updated: 2025/10/25 14:51:53 by tgeler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+# include "../stack_operations/stack_operations.h"
 
-int main (int argc, char **argv)
+void	initilaze_the_a(t_stack *a, char **src)
 {
-	t_stack a;
-	//t_stack b;
+	int	i;
+	int num;
+	t_stack *traversal;
+	int	*num_ptr;
 
-	if (check_status(argc, argv) == 0)
-		return (-1);
-	a.top = NULL;
-	//b.top = NULL;
-	a.length = argc;
-	initilaze_the_a(&a, argv);
+	traversal = a;
+	i = traversal->length - 1;
+	while (i != 0)
+	{
+		num = ft_atoi(src[i]);
+		num_ptr = malloc(sizeof(int));
+		if (!num_ptr)
+			break ;
+		*num_ptr = num;
+		ft_lstadd_front(&(traversal->top),ft_lstnew(num_ptr));
+		i--;
+	}
+	return ;
 }
