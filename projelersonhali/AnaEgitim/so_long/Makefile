@@ -21,7 +21,6 @@ MLX_ARC = $(MLX_DIR)/libmlx.a
 
 SRCS =			src/check_map/check_status.c\
 				src/check_map/check_status_utils.c\
-				src/check_map/check_not_surrounded_utils.c\
 				src/check_map/check_map_is_closed_utils.c\
 				src/check_map/check_map_has_one_exit_and_start_utils.c\
 				src/check_map/check_file_has_valid_name.c\

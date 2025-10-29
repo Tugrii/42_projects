@@ -12,17 +12,39 @@
 
 #include "run_map.h"
 
+void	clean_when_get_wrong_map(t_list	*map)
+{
+	t_list	*temp;
+
+	while (map)
+	{
+		temp = map->next;
+		free(map->content);
+		free(map);
+		map = temp;
+	}
+	return ;
+}
 void	handle_close_utils(t_cordinat_map_infos *game)
 {
-	mlx_destroy_image(game->minilibx, game->images->exit[0]);
-	mlx_destroy_image(game->minilibx, game->images->exit[1]);
-	mlx_destroy_image(game->minilibx, game->images->exit[2]);
-	mlx_destroy_image(game->minilibx, game->images->floor);
-	mlx_destroy_image(game->minilibx, game->images->wall);
-	mlx_destroy_image(game->minilibx, game->images->collectible);
-	mlx_destroy_image(game->minilibx, game->images->player[0]);
-	mlx_destroy_window(game->minilibx, game->window);
-	mlx_destroy_display(game->minilibx);
+	if (game->images->exit[0])
+		mlx_destroy_image(game->minilibx, game->images->exit[0]);
+	if (game->images->exit[1])
+		mlx_destroy_image(game->minilibx, game->images->exit[1]);
+	if (game->images->exit[2])
+		mlx_destroy_image(game->minilibx, game->images->exit[2]);
+	if (game->images->floor)
+		mlx_destroy_image(game->minilibx, game->images->floor);
+	if (game->images->wall)
+		mlx_destroy_image(game->minilibx, game->images->wall);
+	if (game->images->collectible)
+		mlx_destroy_image(game->minilibx, game->images->collectible);
+	if (game->images->player[0])
+		mlx_destroy_image(game->minilibx, game->images->player[0]);
+	if (game->window)
+		mlx_destroy_window(game->minilibx, game->window);
+	if (game->minilibx)
+		mlx_destroy_display(game->minilibx);
 	if (game->minilibx)
 		free(game->minilibx);
 	return ;

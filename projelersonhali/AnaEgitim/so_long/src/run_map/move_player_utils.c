@@ -109,6 +109,7 @@ int	check_is_door(t_cordinat_map_infos *player, int x, int y)
 	{
 		if (player->collectibles_amount == -1)
 		{
+			ft_printf("Move Number : %d\n", player->movements_amount + 1);
 			ft_printf("YOU WON THE GAME!\n");
 			handle_close(player);
 		}
