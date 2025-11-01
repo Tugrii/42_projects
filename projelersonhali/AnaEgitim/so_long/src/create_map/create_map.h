@@ -46,11 +46,14 @@ int		error_messages(int error);
 t_list	*save_map_in_linked_list(t_list *map, int fd);
 void	window_initilaze(t_list *map, t_window_management	*win);
 int		calculate_width_or_height(t_list *map, char mode);
-void	fill_map_with_images(t_window_management *win, t_textures *image);
+int		fill_map_with_images(t_window_management *win, t_textures *image);
 int		put_images_to_map(t_window_management *win,
 			t_list *map, t_textures *image);
 void	put_all_images(t_window_management *win, t_textures *image,
 			t_list	*map, int length);
 void	put_all_images_utils(t_window_management *win, t_textures *image,
 			t_put_img *cordinat, char *line);
+void	clean_if_have_image_error(t_list *map, t_textures *image,
+			t_window_management *win);
+void	clean_images(t_textures *images, t_window_management *win);
 #endif

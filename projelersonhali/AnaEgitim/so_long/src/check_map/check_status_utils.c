@@ -6,7 +6,7 @@
 /*   By: tgeler <tgeler@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 21:24:58 by tgeler            #+#    #+#             */
-/*   Updated: 2025/10/20 13:37:38 by tgeler           ###   ########.fr       */
+/*   Updated: 2025/11/01 17:00:38 by tgeler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ int	check_map_only_contain_valid_characters(t_list *map)
 		{
 			if (line[i] != '0' && line[i] != '1' && line[i] != 'C'
 				&& line[i] != 'E' && line[i] != 'P')
-				return (0);
+				return (
+					ft_printf("Error!\nMap include not valid character(s)\n"));
 			i++;
 		}
 		traversal = traversal->next;
@@ -58,7 +59,7 @@ int	check_map_rectangularity(t_list *map)
 			previous_line_length -= 1;
 		if (i != 1 && (previous_line_length != current_line_length))
 		{
-			ft_printf("Map is not RECTANGULAR!\n");
+			ft_printf("Error!\nMap is not RECTANGULAR!\n");
 			return (0);
 		}
 		traversal = traversal->next;
@@ -83,7 +84,7 @@ int	check_map_is_closed(t_list *map)
 			truth = check_interval_line(traversal, length);
 		if (truth == 0)
 		{
-			ft_printf("Map is not CLOSED!\n");
+			ft_printf("Error!\nMap is not CLOSED!\n");
 			return (0);
 		}
 		traversal = traversal->next;
@@ -107,9 +108,9 @@ int	check_map_has_one_exit_and_start(t_list *map)
 		traversal = traversal->next;
 	}
 	if (number_of_starts != 1)
-		ft_printf("Error! Map has %d%s\n", number_of_starts, " STARTS!");
+		ft_printf("Error!\nMap has %d%s\n", number_of_starts, " STARTS!");
 	if (number_of_exits != 1)
-		ft_printf("Error! Map has %d%s\n", number_of_exits, " EXITS!");
+		ft_printf("Error!\nMap has %d%s\n", number_of_exits, " EXITS!");
 	if (number_of_starts != 1 || number_of_exits != 1)
 		return (0);
 	return (1);
@@ -130,6 +131,6 @@ int	check_map_has_at_least_one_clctb(t_list *map)
 			return (1);
 		traversal = traversal->next;
 	}
-	ft_printf("Error! The map has not even one collectible\n");
+	ft_printf("Error!\nThe map has not even one collectible\n");
 	return (0);
 }

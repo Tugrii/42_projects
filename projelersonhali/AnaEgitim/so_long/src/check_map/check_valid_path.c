@@ -50,7 +50,7 @@ int	check_valid_path_utils(t_queue *reached, t_cordinat_map_infos *infos)
 		return (1);
 	}
 	free(infos->counters);
-	ft_printf("The Game is not finishable so map couldnt created!\n");
+	ft_printf("Error!\nThe Game is not finishable so map couldnt created!\n");
 	free_it(infos->map, infos->map_heigth);
 	return (0);
 }

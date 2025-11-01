@@ -30,6 +30,7 @@ SRCS =			src/check_map/check_status.c\
 				src/create_map/window_initilaze.c\
 				src/create_map/window_initilaze_utils.c\
 				src/create_map/error_code.c\
+				src/create_map/clean_if_have_image_error.c\
 				src/run_map/run_map.c\
 				src/run_map/move_player_utils.c\
 				src/run_map/move_player.c\

@@ -6,7 +6,7 @@
 /*   By: tgeler <tgeler@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 20:57:46 by tgeler            #+#    #+#             */
-/*   Updated: 2025/10/29 18:11:52 by tgeler           ###   ########.fr       */
+/*   Updated: 2025/11/01 17:01:02 by tgeler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	check_status(t_list *map)
 {
 	int	truth;
-	
+
 	truth = check_map_rectangularity(map);
 	if (truth == 1)
 		truth = check_map_is_closed(map);

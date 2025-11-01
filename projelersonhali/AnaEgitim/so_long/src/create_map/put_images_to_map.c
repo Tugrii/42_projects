@@ -60,7 +60,7 @@ void	put_all_images(t_window_management *win, t_textures *image,
 	return ;
 }
 
-void	fill_map_with_images(t_window_management *win, t_textures *image)
+int	fill_map_with_images(t_window_management *win, t_textures *image)
 {
 	int			img_size;
 
@@ -79,7 +79,11 @@ void	fill_map_with_images(t_window_management *win, t_textures *image)
 			"./textures/exit_close_char.xpm", &img_size, &img_size);
 	image->player[0] = mlx_xpm_file_to_image(win->minilibx,
 			"./textures/char-_1_.xpm", &img_size, &img_size);
-	return ;
+	if (image->wall && image->collectible && image->floor
+		&& image->exit[0] && image->exit[1]
+		&& image->exit[2] && image->player[0])
+		return (1);
+	return (0);
 }
 
 int	put_images_to_map(t_window_management *win, t_list *map, t_textures *image)
@@ -87,7 +91,12 @@ int	put_images_to_map(t_window_management *win, t_list *map, t_textures *image)
 	int			line_length;
 
 	line_length = ft_strlen(map->content);
-	fill_map_with_images(win, image);
-	put_all_images(win, image, map, line_length);
+	if (fill_map_with_images(win, image))
+	{
+		put_all_images(win, image, map, line_length);
+		return (1);
+	}
+	ft_printf("Error!\nProblem occured when uplouding images!\n");
+	clean_if_have_image_error(map, image, win);
 	return (0);
 }

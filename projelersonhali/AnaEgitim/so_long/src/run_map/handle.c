@@ -25,6 +25,7 @@ void	clean_when_get_wrong_map(t_list	*map)
 	}
 	return ;
 }
+
 void	handle_close_utils(t_cordinat_map_infos *game)
 {
 	if (game->images->exit[0])
