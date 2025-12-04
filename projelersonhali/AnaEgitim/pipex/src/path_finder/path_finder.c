@@ -41,6 +41,7 @@ char	*path_finder_utils(char **str)
 	}
 	return (NULL);
 }
+
 char	**path_finder(char **str)
 {
 	char	*non_splitted_path;
@@ -54,3 +55,13 @@ char	**path_finder(char **str)
 	double_array_join(splitted_path, "/");
 	return (splitted_path);
 }
+
+int	split_the_commands(char ***splitted_cmd1, char *cmd1,
+		char ***splitted_cmd2, char *cmd2)
+{
+	*splitted_cmd1 = ft_split(cmd1, ' ');
+	*splitted_cmd2 = ft_split(cmd2, ' ');
+	if (!*splitted_cmd1 || !*splitted_cmd2)
+		return (print_error_int("Error! About spliting the cmds!\n"));
+	return (1);
+}		

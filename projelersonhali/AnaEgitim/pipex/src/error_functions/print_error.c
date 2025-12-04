@@ -12,13 +12,13 @@
 
 #include "error_functions.h"
 
-int	print_error_int(char *str)
+int	print_error_int(char *msg)
 {
-	ft_putstr_fd(str, 2);
-	return (-1);
+	ft_putstr_fd(msg, 2);
+	return (0);
 }
-char *print_error_char(char *str)
+char *print_error_char(char *msg)
 {
-	ft_putstr_fd(str, 2);
+	ft_putstr_fd(msg, 2);
 	return (NULL);
 }

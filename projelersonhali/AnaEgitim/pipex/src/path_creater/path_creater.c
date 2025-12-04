@@ -12,7 +12,7 @@
 
 #include "path_creater.h"
 
-char	*check_path_validity(char *path, char *mode)
+char	*check_path_validity(char *path, int mode)
 {
 	if(access(path, mode) == 0)
 		return (path);
@@ -32,15 +32,24 @@ char	*path_creater(char **paths, char *cmd)
 	char	*temp_path;
 
 	i = 0;
-	if (ft_strchr())
-	while (paths[i] != NULL)
+	if (ft_strchr(cmd , '/'))
 	{
-		temp_path = path_joiner(paths[i], cmd);
-		if (check_path_validity(temp_path, "X_OK") != NULL)
-			return (temp_path);
+		if (access(cmd, 1) == 0)
+			return (ft_strdup(cmd));
 		else
-			free (temp_path);
-		i++;
+			return (NULL);
+	}
+	if (paths)
+	{
+		while (paths[i] != NULL)
+		{
+			temp_path = path_joiner(paths[i], cmd);
+			if (check_path_validity(temp_path, 1) != NULL)
+				return (temp_path);
+			else
+				free (temp_path);
+			i++;
+		}
 	}
 	return (NULL);
 }

@@ -10,9 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FREE_MEMORY_H
-# define FREE_MEMORY_H
+#ifndef EXIT_WITH_CLEAN_WAY
+# define EXIT_WITH_CLEAN_WAY
 # include "../../library/Libft/libft.h"
 # include "../error_functions/error_functions.h"
 
+int	exit_wit_clean_way2(char	**str1, char *str2, char *str3, int fd);
 #endif
