@@ -12,7 +12,7 @@
 
 #include "exit_with_clean_way.h"
 
-int	exit_wit_clean_way1(char	**str1, char **str2, char *str3, int fd)
+int	exit_wit_clean_way1(char **str1, char **str2, int fd)
 {
 	int	i;
 
@@ -36,8 +36,6 @@ int	exit_wit_clean_way1(char	**str1, char **str2, char *str3, int fd)
 		}
 		free (str2);
 	}
-	if (str3)
-		free (str3);
 	if (fd == 2)
 		return (print_error_int("Error! Malloc failed!!!\n"));
 	return (1);

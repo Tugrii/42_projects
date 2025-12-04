@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgeler <tgeler@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,14 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
-# include "library/Libft/libft.h"
-# include "src/error_functions/error_functions.h"
-# include "src/exit_with_clean_way/exit_with_clean_way.h"
-# include "src/path_process/path_process.h"
-# include "src/path_process/path_creater/path_creater.h"
-# include "src/path_process/path_creater/path_finder.h"
-# include "src/execute/execute.h"
+# include "execute.h"
 
-#endif
+int	start_to_execute(t_pipex *pipex, char **envp, char **argv)
+{
+	int	infile_fd;
+
+	infile_fd = open(argv[1], O_RDONLY, 0777);
+	
+}

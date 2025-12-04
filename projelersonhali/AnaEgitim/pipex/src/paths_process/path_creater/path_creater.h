@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   path_finder.h                                      :+:      :+:    :+:   */
+/*   path_creater.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgeler <tgeler@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,12 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PATH_FINDER_H
-# define PATH_FINDER_H
-# include "../../library/Libft/libft.h"
-# include "../error_functions/error_functions.h"
+#ifndef PATH_VALIDITY_H
+# define PATH_VALIDITY_H
+# include "../../../library/Libft/libft.h"
 
-char	*path_finder(char **str);
-char	*path_finder_utils(char **str);
-char	**double_array_join(char **str, char *to_add_str);
+char	*check_path_validity(char *path, int mode);
+char	*path_joiner(char *path, char *cmd);
+char	*path_creater(char **paths, char *cmd);
+
 #endif
