@@ -23,7 +23,7 @@ int	clean_when_get_wrong_map(t_list	*map)
 		free(map);
 		map = temp;
 	}
-	return(1);
+	return (1);
 }
 
 void	handle_close_utils(t_cordinat_map_infos *game)
