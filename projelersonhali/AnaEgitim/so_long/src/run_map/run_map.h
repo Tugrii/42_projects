@@ -42,7 +42,7 @@ int					check_is_wall_collectible(t_cordinat_map_infos *map,
 int					handle_key(int keycode, t_cordinat_map_infos *player);
 void				find_initial_position(t_cordinat_map_infos *player);
 int					find_first_clb_amount(t_cordinat_map_infos *clb);
-void				clean_when_get_wrong_map(t_list	*map);
+int					clean_when_get_wrong_map(t_list	*map);
 int					handle_close(t_cordinat_map_infos *game);
 int					check_is_door(t_cordinat_map_infos *player, int x, int y);
 #endif

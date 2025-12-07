@@ -12,7 +12,7 @@
 
 #include "run_map.h"
 
-void	clean_when_get_wrong_map(t_list	*map)
+int	clean_when_get_wrong_map(t_list	*map)
 {
 	t_list	*temp;
 
@@ -23,7 +23,7 @@ void	clean_when_get_wrong_map(t_list	*map)
 		free(map);
 		map = temp;
 	}
-	return ;
+	return(1);
 }
 
 void	handle_close_utils(t_cordinat_map_infos *game)

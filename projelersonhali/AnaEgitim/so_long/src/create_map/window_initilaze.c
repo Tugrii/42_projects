@@ -6,7 +6,7 @@
 /*   By: tgeler <tgeler@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 18:30:22 by tgeler            #+#    #+#             */
-/*   Updated: 2025/10/20 12:25:32 by tgeler           ###   ########.fr       */
+/*   Updated: 2025/12/07 18:09:45 by tgeler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_list	*save_map_in_linked_list(t_list *map, int fd)
 	return (map);
 }
 
-void	window_initilaze(t_list *map, t_window_management	*win)
+int	window_initilaze(t_list *map, t_window_management	*win)
 {
 	int	screen_w;
 	int	screen_h;
@@ -35,15 +35,17 @@ void	window_initilaze(t_list *map, t_window_management	*win)
 	win->h = TILE_SIZE * calculate_width_or_height(map, 'h');
 	win->minilibx = mlx_init();
 	if (!(win->minilibx))
-		return ;
+		return(0);
 	mlx_get_screen_size(win->minilibx, &screen_w, &screen_h);
 	if (win->w > screen_w || win->h > screen_h)
 	{
 		ft_printf("The map could'nt created. Map size is too much!\n");
-		return ;
+		mlx_destroy_display(win->minilibx);
+		free(win->minilibx);
+		return(0);
 	}
 	win->window = mlx_new_window(win->minilibx, win->w, win->h, "so_long");
 	if (!(win->window))
-		return ;
-	return ;
+		return(0);
+	return(1);
 }

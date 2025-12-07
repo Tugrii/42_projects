@@ -44,7 +44,7 @@ typedef struct put_images
 }	t_put_img;
 int		error_messages(int error);
 t_list	*save_map_in_linked_list(t_list *map, int fd);
-void	window_initilaze(t_list *map, t_window_management	*win);
+int		window_initilaze(t_list *map, t_window_management	*win);
 int		calculate_width_or_height(t_list *map, char mode);
 int		fill_map_with_images(t_window_management *win, t_textures *image);
 int		put_images_to_map(t_window_management *win,

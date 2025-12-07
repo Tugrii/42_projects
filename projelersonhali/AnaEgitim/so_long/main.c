@@ -6,7 +6,7 @@
 /*   By: tgeler <tgeler@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 20:25:42 by tgeler            #+#    #+#             */
-/*   Updated: 2025/11/01 16:04:49 by tgeler           ###   ########.fr       */
+/*   Updated: 2025/12/07 17:48:38 by tgeler           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ int	main(int argc, char **argv)
 	map = save_map_in_linked_list(map, fd);
 	if (check_status(map) != 1)
 		return (error_messages(4));
-	window_initilaze(map, &win);
+	if (window_initilaze(map, &win) == 0)
+		return (clean_when_get_wrong_map(map));
 	if (!win.minilibx || !win.window)
 		return (error_messages(5));
 	if (put_images_to_map(&win, map, &images))
