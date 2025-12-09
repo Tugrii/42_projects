@@ -13,11 +13,13 @@
 #ifndef EXECUTE_H
 # define EXECUTE_H
 # include "../path_process/path_process.h"
-# include "library/Libft/libft.h"
-# include "src/error_functions/error_functions.h"
-# include "src/exit_with_clean_way/exit_with_clean_way.h"
+# include "../../library/Libft/libft.h"
+# include "../error_functions/error_functions.h"
+# include "../exit_with_clean_way/exit_with_clean_way.h"
 # include <fcntl.h>
 # include <sys/wait.h>
 # include <string.h>
 # include <stdio.h>
+
+int	start_to_execute(t_pipex *pipex, char **argv);
 #endif

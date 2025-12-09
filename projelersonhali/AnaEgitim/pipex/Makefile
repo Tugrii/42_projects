@@ -12,13 +12,16 @@
 
 NAME        = pipex
 CC          = cc
-CFLAGS      = 
+CFLAGS      = -Wall -Wextra -Werror
 
 LIBFT_DIR  = library/Libft
 LIBFT_ARC   = $(LIBFT_DIR)/libft.a
 
 SRCS        =	src/error_functions/print_error.c\
-SRCS        =	src/path_finder/path_finder.c\
+				src/execute/execute.c\
+				src/exit_with_clean_way/exit_with_clean_way.c\
+				src/path_process/path_creater/path_creater.c\
+				src/path_process/path_finder/path_finder.c\
 				main.c
 OBJS        = $(SRCS:.c=.o)
 

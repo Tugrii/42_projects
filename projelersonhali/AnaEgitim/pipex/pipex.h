@@ -17,7 +17,7 @@
 # include "src/exit_with_clean_way/exit_with_clean_way.h"
 # include "src/path_process/path_process.h"
 # include "src/path_process/path_creater/path_creater.h"
-# include "src/path_process/path_creater/path_finder.h"
+# include "src/path_process/path_finder/path_finder.h"
 # include "src/execute/execute.h"
 
 #endif

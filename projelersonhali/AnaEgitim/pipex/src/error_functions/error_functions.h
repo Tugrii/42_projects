@@ -13,7 +13,10 @@
 #ifndef ERROR_FUNCTIONS_H
 # define ERROR_FUNCTIONS_H
 # include "../../library/Libft/libft.h"
+# include "../path_process/path_process.h"
 
-int		print_error_int(char *str);
-char	*print_error_char(char *str);
+void	print_error_exit(char *msg, int exit_type, int fd);
+int		print_error_int(char *msg);
+char	*print_error_char(char *msg);
+char	**print_error_p_char(char *msg);
 #endif

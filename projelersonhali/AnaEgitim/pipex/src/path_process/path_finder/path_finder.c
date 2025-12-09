@@ -12,7 +12,7 @@
 
 #include "path_finder.h"
 
-char	**double_array_join(char **str, char *to_add_str)
+static char	**double_array_join(char **str, char *to_add_str)
 {
 	int		i;
 	char	*temp;
@@ -28,7 +28,7 @@ char	**double_array_join(char **str, char *to_add_str)
 	return (str);
 }
 
-char	*path_finder_utils(char **str)
+static char	*path_finder_utils(char **str)
 {
 	int	i;
 
@@ -49,7 +49,7 @@ char	**path_finder(char **str)
 
 	non_splitted_path = path_finder_utils(str);
 	if (!non_splitted_path)
-		return (print_error_char("PATH Could'nt found!\n"));
+		return (print_error_p_char("PATH Could'nt found!\n"));
 	non_splitted_path += 5;
 	splitted_path = ft_split(non_splitted_path, ':');
 	double_array_join(splitted_path, "/");
@@ -64,4 +64,4 @@ int	split_the_commands(char ***splitted_cmd1, char *cmd1,
 	if (!*splitted_cmd1 || !*splitted_cmd2)
 		return (print_error_int("Error! About spliting the cmds!\n"));
 	return (1);
-}		
+}

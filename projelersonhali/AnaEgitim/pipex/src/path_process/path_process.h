@@ -12,12 +12,16 @@
 
 #ifndef PATH_PROCESS_H
 # define PATH_PROCESS_H
+# include <sys/types.h>
+
 typedef struct s_pipex
 {
 	char	**splitted_cmd1;
 	char	**splitted_cmd2;
 	char	*path1;
 	char	*path2;
+	char	**paths;
+	char	**envp;
 	int		end[2];
 	pid_t	pid1;
 	pid_t	pid2;

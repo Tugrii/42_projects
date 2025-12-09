@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_memory.h                                      :+:      :+:    :+:   */
+/*   exit_with_clean_way.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgeler <tgeler@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,11 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EXIT_WITH_CLEAN_WAY
-# define EXIT_WITH_CLEAN_WAY
+#ifndef EXIT_WITH_CLEAN_WAY_H
+# define EXIT_WITH_CLEAN_WAY_H
 # include "../../library/Libft/libft.h"
 # include "../error_functions/error_functions.h"
 
-int	exit_wit_clean_way1(char **str1, char **str2, int fd);
-int	exit_wit_clean_way2(char	**str1, char *str2, char *str3, int fd);
+int	clean_and_exit(t_pipex *pipex, int exit_type, char *msg, int fd);
 #endif

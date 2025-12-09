@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   path_creater.c                                     :+:      :+:    :+:   */
+/*   path_finder.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgeler <tgeler@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,46 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "path_creater.h"
+#ifndef PATH_FINDER_H
+# define PATH_FINDER_H
+# include "../../../library/Libft/libft.h"
+# include "../../error_functions/error_functions.h"
 
-char	*check_path_validity(char *path, int mode)
-{
-	if(access(path, mode) == 0)
-		return (path);
-	return (NULL);
-}
-char	*path_joiner(char *path, char *cmd)
-{
-	char	*new_path;
-
-	new_path = ft_strjoin(path, cmd);
-	return (new_path);
-}
-
-char	*path_creater(char **paths, char *cmd)
-{
-	int		i;
-	char	*temp_path;
-
-	i = 0;
-	if (ft_strchr(cmd , '/'))
-	{
-		if (access(cmd, 1) == 0)
-			return (ft_strdup(cmd));
-		else
-			return (NULL);
-	}
-	if (paths)
-	{
-		while (paths[i] != NULL)
-		{
-			temp_path = path_joiner(paths[i], cmd);
-			if (check_path_validity(temp_path, 1) != NULL)
-				return (temp_path);
-			else
-				free (temp_path);
-			i++;
-		}
-	}
-	return (NULL);
-}
+int		split_the_commands(char ***splitted_cmd1, char *cmd1,
+			char ***splitted_cmd2, char *cmd2);
+char	**path_finder(char **str);
+#endif
