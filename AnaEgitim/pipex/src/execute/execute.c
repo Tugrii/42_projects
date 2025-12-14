@@ -38,7 +38,7 @@ static void	lets_work_the_child(t_pipex *pipex, int input_fd,
 	return ;
 }
 
-int	start_to_execute(t_pipex *pipex, char **argv)
+int	start_to_execute(t_pipex *pipex, char **argv,)
 {
 	int	input_fd;
 	int	output_fd;

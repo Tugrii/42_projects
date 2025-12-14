@@ -15,7 +15,6 @@
 # include "../../../library/Libft/libft.h"
 # include "../../error_functions/error_functions.h"
 
-int		split_the_commands(char ***splitted_cmd1, char *cmd1,
-			char ***splitted_cmd2, char *cmd2);
+void split_the_commands(t_pipex *pipex);
 char	**path_finder(char **str);
 #endif

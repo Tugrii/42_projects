@@ -64,6 +64,7 @@ int	clean_and_exit(t_pipex *pipex, int exit_type, char *msg, int fd)
 {
 	exit_with_clean_way1(pipex->splitted_cmd1, pipex->splitted_cmd2);
 	exit_with_clean_way2(pipex->paths, pipex->path1, pipex->path2);
+	exit_with_clean_way2(NULL, pipex->argv[0], pipex->argv[1]);
 	if (msg)
 		print_error_exit(msg, exit_type, fd);
 	else

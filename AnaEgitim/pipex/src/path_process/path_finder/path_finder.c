@@ -49,19 +49,22 @@ char	**path_finder(char **str)
 
 	non_splitted_path = path_finder_utils(str);
 	if (!non_splitted_path)
-		return (print_error_p_char("PATH Could'nt found!\n"));
+		return (print_error_p_char("PATH Could'nt found! in envp\n"));
 	non_splitted_path += 5;
 	splitted_path = ft_split(non_splitted_path, ':');
 	double_array_join(splitted_path, "/");
 	return (splitted_path);
 }
 
-int	split_the_commands(char ***splitted_cmd1, char *cmd1,
-		char ***splitted_cmd2, char *cmd2)
+void split_the_commands(t_pipex *pipex)
 {
-	*splitted_cmd1 = ft_split(cmd1, ' ');
-	*splitted_cmd2 = ft_split(cmd2, ' ');
-	if (!*splitted_cmd1 || !*splitted_cmd2)
-		return (print_error_int("Error! About spliting the cmds!\n"));
-	return (1);
+	pipex->splitted_cmd1 = ft_split(pipex->argv[0], ' ');
+	pipex->splitted_cmd2 = ft_split(pipex->argv[1], ' ');
+	if (!pipex->splitted_cmd1)
+		print_error_int("Malloc Error! at splitting cmd1\n");
+	if (!pipex->splitted_cmd2)
+		print_error_int("Malloc Error! at splitting cmd2\n");
+	if (!pipex->splitted_cmd1 || !pipex->splitted_cmd2)
+		clean_and_exit(pipex, 1, NULL, 2);
+	return ;
 }
