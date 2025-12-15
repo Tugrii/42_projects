@@ -15,5 +15,6 @@
 # include "../../library/Libft/libft.h"
 # include "../error_functions/error_functions.h"
 
-int	clean_and_exit(t_pipex *pipex, int exit_type, char *msg, int fd);
+int		clean_and_exit(t_pipex *pipex, int exit_type, char *msg);
+void	command_not_found(char *cmd, t_pipex *pipex);
 #endif

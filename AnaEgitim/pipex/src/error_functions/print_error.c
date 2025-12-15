@@ -12,9 +12,9 @@
 
 #include "error_functions.h"
 
-void	print_error_exit(char *msg, int exit_type, int fd)
+void	print_error_exit(char *msg, int exit_type)
 {
-	ft_putstr_fd(msg, fd);
+	perror(msg);
 	exit(exit_type);
 }
 
@@ -22,16 +22,4 @@ int	print_error_int(char *msg)
 {
 	ft_putstr_fd(msg, 2);
 	return (0);
-}
-
-char	*print_error_char(char *msg)
-{
-	ft_putstr_fd(msg, 2);
-	return (NULL);
-}
-
-char	**print_error_p_char(char *msg)
-{
-	ft_putstr_fd(msg, 2);
-	return (NULL);
 }

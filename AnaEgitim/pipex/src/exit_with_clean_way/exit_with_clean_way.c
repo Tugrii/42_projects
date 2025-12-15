@@ -60,14 +60,23 @@ static int	exit_with_clean_way2(char **str1, char *str2, char *str3)
 	return (1);
 }
 
-int	clean_and_exit(t_pipex *pipex, int exit_type, char *msg, int fd)
+int	clean_and_exit(t_pipex *pipex, int exit_type, char *msg)
 {
 	exit_with_clean_way1(pipex->splitted_cmd1, pipex->splitted_cmd2);
 	exit_with_clean_way2(pipex->paths, pipex->path1, pipex->path2);
-	exit_with_clean_way2(NULL, pipex->argv[0], pipex->argv[1]);
 	if (msg)
-		print_error_exit(msg, exit_type, fd);
+		print_error_exit(msg, exit_type);
 	else
 		exit(exit_type);
 	return (1);
+}
+
+void	command_not_found(char *cmd, t_pipex *pipex)
+{
+	ft_putstr_fd(cmd, 2);
+	if (ft_strchr(cmd, '/'))
+		ft_putstr_fd(": No such file or directory\n", 2);
+	else
+		ft_putstr_fd(": command not found\n", 2);
+	clean_and_exit(pipex, 127, NULL);
 }

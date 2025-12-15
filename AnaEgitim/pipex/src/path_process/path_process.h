@@ -21,9 +21,11 @@ typedef struct s_pipex
 	char	*path1;
 	char	*path2;
 	char	**paths;
-	char	argv[2];
+	char	*argv[2];
 	char	**envp;
 	int		end[2];
+	int		input_fd;
+	int		output_fd;
 	pid_t	pid1;
 	pid_t	pid2;
 }	t_pipex;

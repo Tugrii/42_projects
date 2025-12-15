@@ -14,9 +14,8 @@
 # define ERROR_FUNCTIONS_H
 # include "../../library/Libft/libft.h"
 # include "../path_process/path_process.h"
+# include <stdio.h>
 
-void	print_error_exit(char *msg, int exit_type, int fd);
+void	print_error_exit(char *msg, int exit_type);
 int		print_error_int(char *msg);
-char	*print_error_char(char *msg);
-char	**print_error_p_char(char *msg);
 #endif
