@@ -24,10 +24,9 @@ int	main(int argc, char *argv[], char **envp)
 	pipex.envp = envp;
 	pipex.argv[0] = argv[2];
 	pipex.argv[1] = argv[3];
-	if (argc != 5)
-		return (print_error_int("Argument count is not 4!\n"));
+	arguments_controller(argc, 4);
 	split_the_commands(&pipex);
-	pipex.paths = path_finder(envp);
+	pipex.paths = path_finder(envp, &pipex);
 	pipex.path1 = path_creater(&pipex, pipex.paths, pipex.splitted_cmd1[0]);
 	pipex.path2 = path_creater(&pipex, pipex.paths, pipex.splitted_cmd2[0]);
 	return (start_to_execute(&pipex, argv));

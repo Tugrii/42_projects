@@ -12,7 +12,7 @@
 
 #include "path_finder.h"
 
-static char	**double_array_join(char **str, char *to_add_str)
+static char	**double_array_join(char **str, char *to_add_str, t_pipex *pipex)
 {
 	int		i;
 	char	*temp;
@@ -22,6 +22,8 @@ static char	**double_array_join(char **str, char *to_add_str)
 	{
 		temp = str[i];
 		str[i] = ft_strjoin(str[i], to_add_str);
+		if (!str[i])
+			clean_and_exit(pipex, 1, "Malloc error in double array join!\n");
 		free(temp);
 		i++;
 	}
@@ -42,7 +44,7 @@ static char	*path_finder_utils(char **str)
 	return (NULL);
 }
 
-char	**path_finder(char **str)
+char	**path_finder(char **str, t_pipex *pipex)
 {
 	char	*non_splitted_path;
 	char	**splitted_path;
@@ -52,19 +54,19 @@ char	**path_finder(char **str)
 		return (NULL);
 	non_splitted_path += 5;
 	splitted_path = ft_split(non_splitted_path, ':');
-	double_array_join(splitted_path, "/");
+	if (!splitted_path)
+		clean_and_exit(pipex, 1, "Malloc error in double array join!\n");
+	double_array_join(splitted_path, "/", pipex);
 	return (splitted_path);
 }
 
 void	split_the_commands(t_pipex *pipex)
 {
 	pipex->splitted_cmd1 = ft_split(pipex->argv[0], ' ');
-	pipex->splitted_cmd2 = ft_split(pipex->argv[1], ' ');
 	if (!pipex->splitted_cmd1)
-		print_error_int("Malloc Error! at splitting cmd1\n");
+		clean_and_exit(pipex, 1, "Malloc error! about splitting cmd1\n");
+	pipex->splitted_cmd2 = ft_split(pipex->argv[1], ' ');
 	if (!pipex->splitted_cmd2)
-		print_error_int("Malloc Error! at splitting cmd2\n");
-	if (!pipex->splitted_cmd1 || !pipex->splitted_cmd2)
-		clean_and_exit(pipex, 1, "Error! about malloc! at spliting cmds:");
+		clean_and_exit(pipex, 1, "Malloc error! about splitting cmd2\n");
 	return ;
 }

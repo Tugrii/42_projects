@@ -52,7 +52,7 @@ static void	lets_work_the_child(t_pipex *pipex, pid_t pid, char child_no,
 			if (pipex->input_fd == -1)
 				clean_and_exit(pipex, 1, infile_name);
 			if (!pipex->path1)
-				command_not_found(pipex->splitted_cmd1[0], pipex);
+				command_not_found(pipex->argv[0], pipex);
 			if (dup2(pipex->input_fd, 0) == -1 || dup2(pipex->end[1], 1) == -1)
 				clean_and_exit(pipex, 1, "Error! about dup2 for child1:");
 			lets_work_the_child_utils(pipex, '1');
@@ -60,7 +60,7 @@ static void	lets_work_the_child(t_pipex *pipex, pid_t pid, char child_no,
 		if (child_no == '2')
 		{
 			if (!pipex->path2)
-				command_not_found(pipex->splitted_cmd2[0], pipex);
+				command_not_found(pipex->argv[1], pipex);
 			if (dup2(pipex->end[0], 0) == -1 || dup2(pipex->output_fd, 1) == -1)
 				clean_and_exit(pipex, 1, "Error! about dup2 for child2:");
 			lets_work_the_child_utils(pipex, '2');

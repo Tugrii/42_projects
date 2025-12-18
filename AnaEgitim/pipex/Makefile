@@ -18,6 +18,7 @@ LIBFT_DIR  = library/Libft
 LIBFT_ARC   = $(LIBFT_DIR)/libft.a
 
 SRCS        =	src/error_functions/print_error.c\
+				src/error_functions/arguments_controller.c\
 				src/execute/execute.c\
 				src/exit_with_clean_way/exit_with_clean_way.c\
 				src/path_process/path_creater/path_creater.c\

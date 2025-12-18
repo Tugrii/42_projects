@@ -52,18 +52,21 @@ char	*path_creater(t_pipex *pipex, char **paths, char *cmd)
 
 	i = 0;
 	temp_path = NULL;
-	if (ft_strchr(cmd, '/'))
-		return (check_path_validity(pipex, temp_path, cmd, '0'));
-	else if (paths)
+	if (cmd)
 	{
-		while (paths[i] != NULL)
+		if (ft_strchr(cmd, '/'))
+			return (check_path_validity(pipex, temp_path, cmd, '0'));
+		else if (paths)
 		{
-			temp_path = path_joiner(pipex, paths[i], cmd);
-			if (check_path_validity(pipex, temp_path, cmd, '1') != NULL)
-				return (temp_path);
-			else
-				free (temp_path);
-			i++;
+			while (paths[i] != NULL)
+			{
+				temp_path = path_joiner(pipex, paths[i], cmd);
+				if (check_path_validity(pipex, temp_path, cmd, '1') != NULL)
+					return (temp_path);
+				else
+					free (temp_path);
+				i++;
+			}
 		}
 	}
 	return (NULL);

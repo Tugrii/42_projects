@@ -18,5 +18,5 @@
 # include "../../exit_with_clean_way/exit_with_clean_way.h"
 
 void	split_the_commands(t_pipex *pipex);
-char	**path_finder(char **str);
+char	**path_finder(char **str, t_pipex *pipex);
 #endif

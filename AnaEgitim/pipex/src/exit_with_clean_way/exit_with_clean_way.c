@@ -66,9 +66,7 @@ int	clean_and_exit(t_pipex *pipex, int exit_type, char *msg)
 	exit_with_clean_way2(pipex->paths, pipex->path1, pipex->path2);
 	if (msg)
 		print_error_exit(msg, exit_type);
-	else
-		exit(exit_type);
-	return (1);
+	exit(exit_type);
 }
 
 void	command_not_found(char *cmd, t_pipex *pipex)
