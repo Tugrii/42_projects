@@ -16,4 +16,9 @@
 #include "src/error_messages/error_messages.h"
 #include "src/stack_initilaze/stack_initilaze.h"
 #include "src/check_status/check_status.h"
+typedef struct push_swap
+{
+	char	**splitted_arguments;
+	t_list	*list;
+}t_push_swap;
 #endif

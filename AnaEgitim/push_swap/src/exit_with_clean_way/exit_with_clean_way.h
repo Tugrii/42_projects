@@ -1,17 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_messages.h                                   :+:      :+:    :+:   */
+/*   exit_with_clean_way.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgeler <tgeler@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tgeler <tgeler@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/25 15:01:05 by tgeler            #+#    #+#             */
-/*   Updated: 2025/10/25 15:01:05 by tgeler           ###   ########.fr       */
+/*   Created: 2025/12/01 22:35:37 by tgeler            #+#    #+#             */
+/*   Updated: 2025/12/10 00:32:37 by tgeler           ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERROR_MESSAGES_H
-# define ERROR_MESSAGES_H
-# include "../../Libft/libft.h"
-	int	error_messages(int	error_code);
+#ifndef EXIT_WITH_CLEAN_WAY_H
+# define EXIT_WITH_CLEAN_WAY_H
+# include "../../library/Libft/libft.h"
+# include "../error_functions/error_functions.h"
+
+int		clean_and_exit(t_pipex *push_swap, int exit_type, char *msg);
 #endif

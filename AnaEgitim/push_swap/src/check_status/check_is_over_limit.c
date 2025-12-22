@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_is_over_limit.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgeler <tgeler@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tgeler <tgeler@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/29 01:03:03 by tgeler            #+#    #+#             */
-/*   Updated: 2025/10/29 01:03:03 by tgeler           ###   ########.fr       */
+/*   Created: 2025/12/01 22:35:37 by tgeler            #+#    #+#             */
+/*   Updated: 2025/12/01 22:35:37 by tgeler           ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,14 @@ static int	check_is_over_limit_utils(int last_index, char *str, int sign)
 	return (1);
 }
 
-int check_is_over_limit(int argc, char **argv)
+int check_is_over_limit(char **argv)
 {
 	int			i;
 	int			sign;
 	int			last_index;
 
 	i = 1;
-	while (i < argc)
+	while (!*argv)
 	{
 		last_index = ft_strlen(argv[i]) - 1;
 		sign = 1;
@@ -49,7 +49,7 @@ int check_is_over_limit(int argc, char **argv)
 			if (argv[i][0] == '-')
 				sign = -1;
 		}
-		if (check_is_over_limit_utils(last_index, argv[i], sign) == 1)
+		if (check_is_over_limit_utils(last_index, argv[i], sign))
 			return (1);
 		i++;
 	}

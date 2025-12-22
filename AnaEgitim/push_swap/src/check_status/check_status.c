@@ -3,29 +3,48 @@
 /*                                                        :::      ::::::::   */
 /*   check_status.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgeler <tgeler@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tgeler <tgeler@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/28 21:46:01 by tgeler            #+#    #+#             */
-/*   Updated: 2025/10/28 21:46:01 by tgeler           ###   ########.fr       */
+/*   Created: 2025/12/01 22:35:37 by tgeler            #+#    #+#             */
+/*   Updated: 2025/12/01 22:35:37 by tgeler           ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "check_status.h"
 
-int	check_status(int argc, char **argv)
+static int	check_status_utils2(char **argv)
 {
+	if (check_all_are_number(argv))
+	{
+		if (!check_is_over_limit(argv))
+			return (1);
+		else
+			return (0);
+	}
+	return (0);
+}
+
+static int	check_status_utils1(int argc, char **argv)
+{
+	int	i;
+
+	i = 1;
 	if (argc == 1)
 		return (0);
-	if (check_all_are_number(argc, argv) == 1)
+	while (i < argc)
 	{
-		if (check_is_over_limit(argc, argv) == 1)
-			return (error_messages(1));
-		if (argc == 2)
+		if (specilazed_control(argv[i]) == 0)
 			return (0);
-		if (check_is_there_duplicate(argc, argv) == 1)
-			return (error_messages(1));
+		i++;
 	}
-	else
-		return (0);
+	return (1);
+}
+
+int	check_status(int argc, char **argv, char step)
+{
+	if (step == '1')
+		return (check_status_utils1(argc, argv));
+	if (step == '2')
+		return (check_status_utils2(argv));
 	return (1);
 }

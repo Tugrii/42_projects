@@ -1,20 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_msgs.c                                       :+:      :+:    :+:   */
+/*   split_the_arguments.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgeler <tgeler@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tgeler <tgeler@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/25 15:01:12 by tgeler            #+#    #+#             */
-/*   Updated: 2025/10/25 15:01:12 by tgeler           ###   ########.fr       */
+/*   Created: 2025/12/01 22:35:37 by tgeler            #+#    #+#             */
+/*   Updated: 2025/12/01 22:35:37 by tgeler           ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "error_messages.h"
+#ifndef SPLIT_THE_ARGUMENTS_H
+# define SPLIT_THE_ARGUMENTS_H
+# include "../../Libft/libft.h"
+#endif
 
-int	error_messages(int	error_code)
-{
-	if (error_code == 1)
-		ft_printf("Error\n");
-	return (0);
-}
+
