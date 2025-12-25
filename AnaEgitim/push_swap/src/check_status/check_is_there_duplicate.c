@@ -14,5 +14,20 @@
 
 int	check_is_there_duplicate(t_list *list)
 {
+	t_list	*node;
+	t_list	*traversal;
 
+	traversal = list;
+	while (traversal)
+	{
+		node = list;
+		while (node != traversal)
+		{
+			if (traversal->data == node->data)
+				return (0);
+			node = node->next;
+		}
+		traversal = traversal->next;
+	}
+	return (1);
 }

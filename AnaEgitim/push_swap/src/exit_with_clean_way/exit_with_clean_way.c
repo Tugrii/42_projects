@@ -12,7 +12,7 @@
 
 #include "exit_with_clean_way.h"
 
-static int	exit_with_clean_way1(char **str1, char **str2)
+static int	exit_with_clean_way1(char **str1, t_list **list)
 {
 	int	i;
 
@@ -26,15 +26,14 @@ static int	exit_with_clean_way1(char **str1, char **str2)
 		}
 		free (str1);
 	}
-	i = 0;
-	if (str2)
+	if (list)
 	{
-		while (str2[i])
+		while (*list)
 		{
-			free (str2[i]);
-			i++;
+			free (*list);
+			*list = *(list->next);
 		}
-		free (str2);
+		free (list);
 	}
 	return (1);
 }
@@ -62,7 +61,7 @@ static int	exit_with_clean_way2(char **str1, char *str2, char *str3)
 
 int	clean_and_exit(t_push_swap *push_swap, int exit_type, char *msg)
 {
-	exit_with_clean_way1(push_swap->splitted_arguments, NULL);
+	exit_with_clean_way1(push_swap->splitted_arguments, &(push_swap->list));
 	exit_with_clean_way2(NULL, NULL, NULL);
 	if (msg)
 		print_error_exit(msg, exit_type);

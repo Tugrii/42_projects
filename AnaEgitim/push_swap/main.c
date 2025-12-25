@@ -23,6 +23,6 @@ int main (int argc, char **argv)
 	if (check_status(push_swap.splitted_arguments, '2'))
 		push_swap.list = convert_tointlinkedlist(push_swap.splitted_arguments);
 	if (!check_is_there_duplicate(&(push_swap.list)))
-		return (start_to_execute("To be continue..."));
+		return (start_to_execute(&push_swap));
 	return (clean_and_exit(&push_swap, 1, "Error\n"));
 }

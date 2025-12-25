@@ -13,9 +13,15 @@
 #ifndef STACK_OPERATIONS_H
 # define STACK_OPERATIONS_H
 # include "../../Libft/libft.h"
-typedef struct stack
-{
-	t_list	*top;
-	int		length;
-}t_stack;
+void	pa(t_list **list1, t_list **list2);
+void	pb(t_list **list1, t_list **list2);
+void	ra(t_list **list, char mode);
+void	rb(t_list **list, char mode);
+void	rr(t_list **list1, t_list **list2);
+void	rra(t_list **list, char mode);
+void	rrb(t_list **list, char mode);
+void	rrr(t_list **list1, t_list **list2);
+void	sa(t_list **list, char mode);
+void	sb(t_list **list, char mode);
+void	ss(t_list **list1, t_list **list2);
 #endif

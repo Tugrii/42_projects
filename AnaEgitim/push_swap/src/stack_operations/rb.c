@@ -11,3 +11,24 @@
 /* ************************************************************************** */
 
 #include "stack_operations.h"
+
+void	rb(t_list **list, char mode)
+{
+	t_list	*second;
+	t_list	*traversal;
+	t_list	*first;
+
+	if (!list || !(*list) || !(*list)->next)
+		return ;
+	second = (*list)->next;
+	first = (*list);
+	traversal = second;
+	while (traversal->next)
+		traversal = traversal->next;
+	traversal->next = first;
+	first->next = NULL;
+	(*list) = second;
+	if (mode == '1');
+		ft_printf("rb\n");
+	return ;
+}
