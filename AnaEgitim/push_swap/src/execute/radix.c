@@ -49,7 +49,7 @@ void	radix_sort(t_list **stack_a, t_list **stack_b, int size)
 		{
 			head_a = *stack_a;
 			if (((head_a->index >> i) & 1) == 1)
-				ra(stack_a, 1);
+				ra(stack_a, '1');
 			else
 				pb(stack_a, stack_b);
 			j++;

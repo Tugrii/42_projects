@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_status.h                                     :+:      :+:    :+:   */
+/*   check_is_there_duplicate.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgeler <tgeler@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,15 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHECK_STATUS_H
-# define CHECK_STATUS_H
-# include "../../Libft/libft.h"
+#include "check_status.h" 
 
-void	arguments_controller(int argc, int argument_limit);
-int		check_all_are_number(char **argv);
-int		check_is_over_limit(char **argv);
-int		check_is_there_duplicate(t_list *list);
-int		check_status(int argc, char **argv, char step);
-size_t	specilazed_control(char *str);
-int		is_sorted(t_list *stack);
-#endif
+int	is_sorted(t_list *stack)
+{
+	while (stack && stack->next)
+	{
+		if (*(int *)stack->content > *(int *)stack->next->content)
+			return (0);
+		stack = stack->next;
+	}
+	return (1);
+}

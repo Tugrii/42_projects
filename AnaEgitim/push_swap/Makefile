@@ -23,6 +23,7 @@ SRCS = 	main.c\
 		src/check_status/check_all_are_number.c\
 		src/check_status/check_is_over_limit.c\
 		src/check_status/check_is_there_duplicate.c\
+		src/check_status/check_is_sorted.c\
 		src/check_status/check_status.c\
 		src/check_status/specilazed_control.c\
 		src/error_functions/print_error.c\

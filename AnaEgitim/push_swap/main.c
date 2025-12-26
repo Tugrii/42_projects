@@ -30,6 +30,11 @@ int	main(int argc, char **argv)
 	else
 		return (print_error_int("Error\n"));
 	if (!check_is_there_duplicate(push_swap.list))
-		start_to_execute(&push_swap);
+	{
+		if (!is_sorted(push_swap.list))
+			start_to_execute(&push_swap);
+		else
+			clean_and_exit(&push_swap, 0, NULL);
+	}
 	return (clean_and_exit(&push_swap, 1, "Error\n"));
 }
