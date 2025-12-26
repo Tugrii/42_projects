@@ -10,15 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef	PUSH_SWAP_H
+#ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
-#include "src/stack_operations/stack_operations.h"
-#include "src/error_messages/error_messages.h"
-#include "src/stack_initilaze/stack_initilaze.h"
-#include "src/check_status/check_status.h"
-typedef struct push_swap
-{
-	char	**splitted_arguments;
-	t_list	*list;
-}t_push_swap;
+# include "push_swap_utils.h"
+# include "src/check_status/check_status.h"
+# include "src/error_functions/error_functions.h"
+# include "src/execute/execute.h"
+# include "src/exit_with_clean_way/exit_with_clean_way.h"
+# include "src/parser/parser.h"
 #endif

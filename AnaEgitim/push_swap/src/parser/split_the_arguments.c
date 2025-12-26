@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "split_the_arguments.h"
+#include "parser.h"
 
-char	*cat_the_arguments(char **argv, int argc)
+static char	*cat_the_arguments(char **argv, int argc)
 {
 	int		i;
 	char	*temp1;
@@ -22,24 +22,24 @@ char	*cat_the_arguments(char **argv, int argc)
 	i = 2;
 	temp1 = NULL;
 	temp2 = NULL;
-	main_string = argv[1];
+	main_string = ft_strdup(argv[1]);
 	while (i < argc)
 	{
-		if (i > 2)
-			temp1 = main_string;
-		main_string = ft_strjoin(main_string, ' ');
-		if (!main_string)
-			return (NULL);
 		temp2 = main_string;
-		main_string = ft_strjoin(main_string, argv[i]);
+		main_string = ft_strjoin(main_string, " ");
 		if (!main_string)
 			return (NULL);
 		free (temp2);
+		temp1 = main_string;
+		main_string = ft_strjoin(main_string, argv[i]);
+		if (!main_string)
+			return (NULL);
 		free (temp1);
 		i++;
 	}
 	return (main_string);
 }
+
 char	**split_the_arguments(char **argv, int argc)
 {
 	char	**splitted_arguments;
@@ -48,7 +48,7 @@ char	**split_the_arguments(char **argv, int argc)
 	non_splitted_arguments = cat_the_arguments(argv, argc);
 	if (!non_splitted_arguments)
 		return (NULL);
-	splitted_arguments = ft_split(non_splitted_arguments);
-	if (!splitted_arguments)
-		
+	splitted_arguments = ft_split(non_splitted_arguments, ' ');
+	free (non_splitted_arguments);
+	return (splitted_arguments);
 }

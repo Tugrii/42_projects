@@ -19,19 +19,22 @@ int	check_all_are_number(char **argv)
 	int	j;
 
 	i = 1;
-	while (!*argv)
+	if (argv)
 	{
-		j = 0;
-		length = ft_strlen(argv[i]);
-		if (length > 1 && (argv[i][0] == '-' || argv[i][0] == '+'))
-			j = 1;
-		while (j < length)
+		while (argv[i])
 		{
-			if (!(argv[i][j] >= '0' && argv[i][j] <= '9'))
-				return (0);
-			j++;
+			j = 0;
+			length = ft_strlen(argv[i]);
+			if (length > 1 && (argv[i][0] == '-' || argv[i][0] == '+'))
+				j = 1;
+			while (j < length)
+			{
+				if (!(argv[i][j] >= '0' && argv[i][j] <= '9'))
+					return (0);
+				j++;
+			}
+			i++;
 		}
-		i++;
 	}
 	return (1);
 }

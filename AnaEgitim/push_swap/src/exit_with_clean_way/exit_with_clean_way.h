@@ -12,8 +12,9 @@
 
 #ifndef EXIT_WITH_CLEAN_WAY_H
 # define EXIT_WITH_CLEAN_WAY_H
-# include "../../library/Libft/libft.h"
+# include "../../Libft/libft.h"
 # include "../error_functions/error_functions.h"
+# include "../../push_swap.h"
 
-int		clean_and_exit(t_pipex *push_swap, int exit_type, char *msg);
+int	clean_and_exit(t_push_swap *push_swap, int exit_type, char *msg);
 #endif

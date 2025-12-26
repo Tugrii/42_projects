@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stddef.h>
+
 size_t	specilazed_control(char *str)
 {
 	size_t	index1;

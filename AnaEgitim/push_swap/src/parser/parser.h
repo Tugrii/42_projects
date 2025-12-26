@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   split_the_arguments.h                              :+:      :+:    :+:   */
+/*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgeler <tgeler@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,9 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SPLIT_THE_ARGUMENTS_H
-# define SPLIT_THE_ARGUMENTS_H
+#ifndef PARSER_H
+# define PARSER_H
 # include "../../Libft/libft.h"
+
+char	**split_the_arguments(char **argv, int argc);
+t_list	*convert_tointlinkedlist(char **str);
 #endif
-
-

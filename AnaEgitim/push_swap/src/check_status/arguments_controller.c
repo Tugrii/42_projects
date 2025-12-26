@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "error_functions.h"
+#include "../error_functions/error_functions.h"
 
 void	arguments_controller(int argc, int argument_limit)
 {

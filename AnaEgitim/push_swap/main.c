@@ -12,17 +12,24 @@
 
 #include "push_swap.h"
 
-int main (int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_push_swap	push_swap;
 
-	if (check_status(argc, argv, '1'));
-		push_swap.splitted_arguments = split_the_arguments(argv, argc);
+	push_swap.splitted_arg = NULL;
+	push_swap.list = NULL;
+	push_swap.list_b = NULL;
+	if (check_status(argc, argv, '1'))
+	{
+		push_swap.splitted_arg = split_the_arguments(argv, argc);
+		if (check_status(argc, push_swap.splitted_arg, '2'))
+			push_swap.list = convert_tointlinkedlist(push_swap.splitted_arg);
+		else
+			clean_and_exit(&push_swap, 1, "Error\n");
+	}
 	else
 		return (print_error_int("Error\n"));
-	if (check_status(push_swap.splitted_arguments, '2'))
-		push_swap.list = convert_tointlinkedlist(push_swap.splitted_arguments);
-	if (!check_is_there_duplicate(&(push_swap.list)))
-		return (start_to_execute(&push_swap));
+	if (!check_is_there_duplicate(push_swap.list))
+		start_to_execute(&push_swap);
 	return (clean_and_exit(&push_swap, 1, "Error\n"));
 }

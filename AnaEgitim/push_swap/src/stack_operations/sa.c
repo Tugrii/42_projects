@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   sa.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgeler <tgeler@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tgeler <tgeler@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 14:20:21 by tgeler            #+#    #+#             */
 /*   Updated: 2025/10/25 14:20:21 by tgeler           ###   ########.fr       */

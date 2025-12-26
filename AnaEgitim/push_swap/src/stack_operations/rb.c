@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   rb.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgeler <tgeler@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tgeler <tgeler@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 14:19:58 by tgeler            #+#    #+#             */
 /*   Updated: 2025/10/25 14:19:58 by tgeler           ###   ########.fr       */
@@ -28,7 +28,7 @@ void	rb(t_list **list, char mode)
 	traversal->next = first;
 	first->next = NULL;
 	(*list) = second;
-	if (mode == '1');
+	if (mode == '1')
 		ft_printf("rb\n");
 	return ;
 }

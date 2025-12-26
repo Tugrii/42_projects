@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   rrb.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgeler <tgeler@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tgeler <tgeler@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 14:20:13 by tgeler            #+#    #+#             */
 /*   Updated: 2025/10/25 14:20:13 by tgeler           ###   ########.fr       */
@@ -16,7 +16,6 @@ void	rrb(t_list **list, char mode)
 {
 	t_list	*traversal1;
 	t_list	*traversal2;
-	t_list	*last_node;
 
 	if (!list || !(*list) || !((*list)->next))
 		return ;

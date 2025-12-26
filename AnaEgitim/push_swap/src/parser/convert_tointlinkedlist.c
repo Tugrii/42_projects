@@ -10,18 +10,21 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../Libft/libft.h"
+#include "parser.h"
 
 t_list	*convert_tointlinkedlist(char **str)
 {
 	int		i;
 	t_list	*int_list;
+	int		*num;
 
 	i = 0;
 	int_list = NULL;
 	while (str[i])
 	{
-		ft_lstadd_back(&int_list, ft_lstnew(ft_atoi(str[i])));
+		num = malloc(sizeof(int));
+		*num = ft_atoi(str[i]);
+		ft_lstadd_back(&int_list, ft_lstnew(num));
 		i++;
 	}
 	return (int_list);

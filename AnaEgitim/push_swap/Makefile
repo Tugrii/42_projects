@@ -19,10 +19,19 @@ LIBFT_DIR = Libft
 LIBFT_ARC = $(LIBFT_DIR)/libft.a
 
 SRCS = 	main.c\
-		src/check_status/check_status.c\
+		src/check_status/arguments_controller.c\
 		src/check_status/check_all_are_number.c\
 		src/check_status/check_is_over_limit.c\
-		src/stack_initilaze/initilaze.c\
+		src/check_status/check_is_there_duplicate.c\
+		src/check_status/check_status.c\
+		src/check_status/specilazed_control.c\
+		src/error_functions/print_error.c\
+		src/execute/radix.c\
+		src/execute/simple.c\
+		src/execute/start_to_execute.c\
+		src/exit_with_clean_way/exit_with_clean_way.c\
+		src/parser/convert_tointlinkedlist.c\
+		src/parser/split_the_arguments.c\
 		src/stack_operations/pa.c\
 		src/stack_operations/pb.c\
 		src/stack_operations/ra.c\
@@ -33,8 +42,7 @@ SRCS = 	main.c\
 		src/stack_operations/rrr.c\
 		src/stack_operations/sa.c\
 		src/stack_operations/sb.c\
-		src/stack_operations/ss.c\
-		src/error_messages/error_msgs.c
+		src/stack_operations/ss.c
 
 OBJS = $(SRCS:.c=.o)
 

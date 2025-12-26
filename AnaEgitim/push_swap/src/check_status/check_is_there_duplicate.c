@@ -23,11 +23,11 @@ int	check_is_there_duplicate(t_list *list)
 		node = list;
 		while (node != traversal)
 		{
-			if (traversal->data == node->data)
-				return (0);
+			if (*(int *)(traversal->content) == *(int *)(node->content))
+				return (1);
 			node = node->next;
 		}
 		traversal = traversal->next;
 	}
-	return (1);
+	return (0);
 }

@@ -12,28 +12,19 @@
 
 #include "exit_with_clean_way.h"
 
-static int	exit_with_clean_way1(char **str1, t_list **list)
+static int	exit_with_clean_way1(t_list **list)
 {
-	int	i;
+	t_list	*temp;
 
-	i = 0;
-	if (str1)
-	{
-		while (str1[i])
-		{
-			free (str1[i]);
-			i++;
-		}
-		free (str1);
-	}
 	if (list)
 	{
 		while (*list)
 		{
+			temp = (*list)->next;
+			free ((*list)->content);
 			free (*list);
-			*list = *(list->next);
+			(*list) = temp;
 		}
-		free (list);
 	}
 	return (1);
 }
@@ -61,9 +52,9 @@ static int	exit_with_clean_way2(char **str1, char *str2, char *str3)
 
 int	clean_and_exit(t_push_swap *push_swap, int exit_type, char *msg)
 {
-	exit_with_clean_way1(push_swap->splitted_arguments, &(push_swap->list));
-	exit_with_clean_way2(NULL, NULL, NULL);
+	exit_with_clean_way1(&(push_swap->list));
+	exit_with_clean_way2(push_swap->splitted_arg, NULL, NULL);
 	if (msg)
-		print_error_exit(msg, exit_type);
+		print_error_exit(msg);
 	exit(exit_type);
 }
