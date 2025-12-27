@@ -18,7 +18,7 @@ int	check_all_are_number(char **argv)
 	int	length;
 	int	j;
 
-	i = 1;
+	i = 0;
 	if (argv)
 	{
 		while (argv[i])

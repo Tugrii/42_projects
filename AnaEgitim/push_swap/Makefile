@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tgeler <tgeler@student.42.fr>              +#+  +:+       +#+         #
+#    By: tgeler <tgeler@student.42istanbul.com.tr>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/10/20 22:14:27 by tgeler            #+#    #+#              #
-#    Updated: 2025/10/20 22:14:27 by tgeler           ###   ########.fr        #
+#    Created: 2025/12/20 22:14:27 by tgeler            #+#    #+#              #
+#    Updated: 2025/12/27 09:53:27 by tgeler           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,6 @@ LIBFT_DIR = Libft
 LIBFT_ARC = $(LIBFT_DIR)/libft.a
 
 SRCS = 	main.c\
-		src/check_status/arguments_controller.c\
 		src/check_status/check_all_are_number.c\
 		src/check_status/check_is_over_limit.c\
 		src/check_status/check_is_there_duplicate.c\

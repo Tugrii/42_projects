@@ -30,7 +30,7 @@ static int	check_status_utils1(int argc, char **argv)
 
 	i = 1;
 	if (argc == 1)
-		return (0);
+		exit(0);
 	while (i < argc)
 	{
 		if (specilazed_control(argv[i]) == 0)
